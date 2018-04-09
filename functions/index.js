@@ -16,9 +16,22 @@ const {dialogflow} = require('actions-on-google');
 const {
   getPhase,
 } = require('./utils');
+const {
+  fallback,
+  goodbye,
+  noInput,
+} = require('./prompts/utils');
 
 const app = dialogflow({
   debug: true,
+  init: () => ({
+    data: {
+      fallbackCount: 0,
+      intentsTriggered: [],
+      noInputResponses: [],
+      fallbackResponses: [],
+    },
+  }),
 });
 
 app.middleware((conv) => {
@@ -26,6 +39,21 @@ app.middleware((conv) => {
   conv.phase = getPhase(conv.currentTime);
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
     'repeat' : 'firstTime';
+  if (conv.intent !== 'fallback') {
+    conv.data.fallbackCount = 0;
+  }
 });
+
+app.intent('welcome', (conv) => {
+  conv.ask('Hi!');
+});
+
+app.intent('goodbye', goodbye);
+
+app.intent('cancel', goodbye);
+
+app.intent('no-input', noInput);
+
+app.intent('fallback', fallback);
 
 exports.googleio = functions.https.onRequest(app);
