@@ -28,7 +28,6 @@ const app = dialogflow({
   init: () => ({
     data: {
       fallbackCount: 0,
-      intentsTriggered: [],
       noInputResponses: [],
       fallbackResponses: [],
     },
@@ -47,6 +46,8 @@ app.middleware((conv) => {
 
 app.intent('welcome', prompt);
 
+app.intent('date', prompt);
+
 app.intent('goodbye', goodbye);
 
 app.intent('cancel', goodbye);
@@ -54,5 +55,7 @@ app.intent('cancel', goodbye);
 app.intent('no-input', noInput);
 
 app.intent('fallback', fallback);
+
+app.fallback(fallback);
 
 exports.googleio = functions.https.onRequest(app);

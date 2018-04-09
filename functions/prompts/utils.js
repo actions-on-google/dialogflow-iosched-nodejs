@@ -16,22 +16,15 @@ const {
 } = require('actions-on-google');
 
 // Logic for parsing prompts. This function looks for prompts first by the
-// current intent, then by the repeat status of the user. It can also account
-// for "re-entry" intents, which have different behavior when triggered more
-// than once in a dialog. The function then locates the appropriate prompts
+// current intent, then by the repeat status of the user.
+// The function then locates the appropriate prompts
 // for the surface on which the user is interacting. Finally, randomization
 // is used to choose between variations of prompts.
 const prompt = (conv) => {
   const prompts = require('./'+conv.phase+'.js');
   // Get the right set of prompt variants by intent and repeat status of user
-  let responseVariations = prompts[conv.intent][conv.isRepeat];
-  // If this is a "re-entry" intent, check if it's been hit in this convo
-  if (prompts[conv.intent]['reentry'] &&
-    conv.data.intentsTriggered.includes(conv.intent)) {
-    responseVariations = prompts[conv.intent]['reentry'];
-  } else {
-    conv.data.intentsTriggered.push(conv.intent);
-  }
+  let responseVariations = prompts[conv.intent][conv.isRepeat] ||
+    prompts[conv.intent]['firstTime/repeat'];
   // Check for the appropriate surface variants to use (phone, speaker, etc)
   if (responseVariations.screen &&
     conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
@@ -53,6 +46,20 @@ const prompt = (conv) => {
   }
   conv.data.noInputResponses = responseVariant.noInput;
   conv.data.fallbackResponses = responseVariant.fallback;
+  // Recursivelly check for menu re-entry
+  if (responseVariant['appendReentry']) {
+    promptForReentry(conv, responseVariant['appendReentry']);
+  }
+};
+
+const promptForReentry = (conv, intent) => {
+  const tempIntent = conv.intent;
+  conv.intent = intent;
+  const tempIsRepeat = conv.isRepeat;
+  conv.isRepeat = 'reentry';
+  prompt(conv);
+  conv.isRepeat = tempIsRepeat;
+  conv.intent = tempIntent;
 };
 
 // Returns a single random element from some array
