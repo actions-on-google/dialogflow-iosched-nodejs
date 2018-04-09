@@ -11,21 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const functions = require('firebase-functions');
-const {dialogflow} = require('actions-on-google');
-const {
+// The sets of times in UTC during which prompts rotate
+const promptPhases = {
+  pre: Date.UTC(2018, 4, 8, 12),
+  during: Date.UTC(2018, 4, 11, 0),
+};
+
+// Compares a given current UTC time to prompt phases
+const getPhase = (currentTime) => {
+  if (!currentTime) {
+    return null;
+  }
+  let phase = 'post';
+  if (currentTime < promptPhases.during) {
+    phase = 'during';
+  }
+  if (currentTime < promptPhases.pre) {
+    phase = 'pre';
+  }
+  return phase;
+};
+
+module.exports = {
   getPhase,
-} = require('./utils');
-
-const app = dialogflow({
-  debug: true,
-});
-
-app.middleware((conv) => {
-  conv.currentTime = Date.now();
-  conv.phase = getPhase(conv.currentTime);
-  conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
-    'repeat' : 'firstTime';
-});
-
-exports.googleio = functions.https.onRequest(app);
+};
