@@ -17,6 +17,7 @@ const {
   getPhase,
 } = require('./utils');
 const {
+  prompt,
   fallback,
   goodbye,
   noInput,
@@ -44,9 +45,7 @@ app.middleware((conv) => {
   }
 });
 
-app.intent('welcome', (conv) => {
-  conv.ask('Hi!');
-});
+app.intent('welcome', prompt);
 
 app.intent('goodbye', goodbye);
 

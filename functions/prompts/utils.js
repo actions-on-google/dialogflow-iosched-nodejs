@@ -15,6 +15,46 @@ const {
   Suggestions,
 } = require('actions-on-google');
 
+// Logic for parsing prompts. This function looks for prompts first by the
+// current intent, then by the repeat status of the user. It can also account
+// for "re-entry" intents, which have different behavior when triggered more
+// than once in a dialog. The function then locates the appropriate prompts
+// for the surface on which the user is interacting. Finally, randomization
+// is used to choose between variations of prompts.
+const prompt = (conv) => {
+  const prompts = require('./'+conv.phase+'.js');
+  // Get the right set of prompt variants by intent and repeat status of user
+  let responseVariations = prompts[conv.intent][conv.isRepeat];
+  // If this is a "re-entry" intent, check if it's been hit in this convo
+  if (prompts[conv.intent]['reentry'] &&
+    conv.data.intentsTriggered.includes(conv.intent)) {
+    responseVariations = prompts[conv.intent]['reentry'];
+  } else {
+    conv.data.intentsTriggered.push(conv.intent);
+  }
+  // Check for the appropriate surface variants to use (phone, speaker, etc)
+  if (responseVariations.screen &&
+    conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+      responseVariations = responseVariations.screen;
+    } else if (responseVariations.speaker) {
+    responseVariations = responseVariations.speaker;
+  } else if (responseVariations['screen/speaker']) {
+    responseVariations = responseVariations['screen/speaker'];
+  }
+  // Choose a random variant within the dimensions
+  const responseVariant = getSingleRandom(responseVariations);
+  for (element in responseVariant.elements) {
+    if (responseVariant.elements.hasOwnProperty(element)) {
+      conv.ask(getSingleRandom(responseVariant.elements[element]));
+    }
+  }
+  if (responseVariant.suggestions) {
+    conv.ask(getSuggestions(responseVariant.suggestions));
+  }
+  conv.data.noInputResponses = responseVariant.noInput;
+  conv.data.fallbackResponses = responseVariant.fallback;
+};
+
 // Returns a single random element from some array
 const getSingleRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -74,6 +114,7 @@ const noInput = (conv) => {
 };
 
 module.exports = {
+  prompt,
   fallback,
   goodbye,
   noInput,
