@@ -1,0 +1,74 @@
+[
+  {
+    "id": "6d00d615-72a1-402d-aa15-79f7699bc9be",
+    "data": [
+      {
+        "text": "dress code",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  },
+  {
+    "id": "1d576808-444e-498a-b7eb-55d4d29ee759",
+    "data": [
+      {
+        "text": "What is expected to wear?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  },
+  {
+    "id": "c3a220d0-b4e0-47e2-abc7-2f561e9ea26b",
+    "data": [
+      {
+        "text": "Is there a dress code?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  },
+  {
+    "id": "fa78999d-9bb9-48f7-b9b7-d0c0bb43f4e7",
+    "data": [
+      {
+        "text": "Should I take a jacket?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  },
+  {
+    "id": "0362bc8f-7aa9-406f-946b-b7b04c1bb629",
+    "data": [
+      {
+        "text": "What type of clothes should I wear?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  },
+  {
+    "id": "daa7188a-e99c-4fe3-92f5-510cbaaee33d",
+    "data": [
+      {
+        "text": "What should I wear?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523649546
+  }
+]

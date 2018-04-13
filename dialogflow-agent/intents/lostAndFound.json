@@ -1,0 +1,22 @@
+{
+  "id": "0ebf0ac8-ac12-4d9a-9b27-956746fe73a9",
+  "name": "lostAndFound",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523651103,
+  "fallbackIntent": false,
+  "events": []
+}

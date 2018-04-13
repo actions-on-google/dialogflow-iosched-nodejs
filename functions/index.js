@@ -48,6 +48,26 @@ app.intent('welcome', prompt);
 
 app.intent('date', prompt);
 
+app.intent('keynote', prompt);
+
+app.intent('codelabs', prompt);
+
+app.intent('appReview', prompt);
+
+app.intent('food', prompt);
+
+app.intent('swag', prompt);
+
+app.intent('afterParty', prompt);
+
+app.intent('watchRemotely', prompt);
+
+app.intent('announcements', prompt);
+
+app.intent('lostAndFound', prompt);
+
+app.intent('whatToWear', prompt);
+
 app.intent('goodbye', goodbye);
 
 app.intent('cancel', goodbye);

@@ -248,6 +248,160 @@ module.exports = {
       },
     ],
   },
+  'keynote': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak>There're actually two keynotes this year, <break time="250ms"/> since one keynote won't be enough to hold all the announcements Google's eager to share with developers. CEO Sundar Pichai will kick things off on May 8th at 10AM Pacific Standard Time. If you're attending, you'll be able to grab some lunch before the second keynote at 12:45PM. <break time="1s"/> Pro-Tip:<break time="500ms"/> <prosody rate="110%">The best seats will be assigned on a first-come, first-served basis, during badge pickup.</prosody> So, plan to arrive early. <break time="750ms"/>Of course, those of you watching via livestream will already have the best view.<break time="750ms"/></speak>`,
+              text: `There're 2 keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. The second keynote starts at 12:45PM. PRO-TIP: The best seats will be assigned on a first-come, first-served basis during badge pickup beginning at 7AM on May 7th, so plan to arrive early.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'codelabs': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak>Codelabs and Sandboxes are all about hands-on inspiration.<break time="750ms"/> Come to the Codelabs to try out short coding experiences, with Googlers as your guide.<break time="750ms"/> Swing by the Sandboxes to chat with Googlers as they demo the latest interactive experiences built on the Google developer platform.<break time="750ms"/></speak>`,
+              text: `Codelabs and Sandboxes are all about hands-on inspiration. Come to the Codelabs to try out short coding experiences, with Googlers as your guide. Swing by the Sandboxes to chat with Googlers as they demo the latest interactive experiences built on the Google developer platform.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'appReview': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak>Attendees will be able to improve their projects by getting advice and on-the-spot reviews from Googlers during office hours and app reviews. You can choose between App Consultations and Design Reviews.<break time="750ms"/></speak>`,
+              text: `Attendees will be able to improve their projects by getting advice and on-the-spot reviews from Googlers during app reviews. You can choose between App Consultations and Design Reviews.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'food': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak>Attendees can enjoy complimentary breakfast, lunch, and snacks during the conference. They can also grab dinner during the after parties.<break time="750ms"/></speak>`,
+              text: `Attendees can enjoy complimentary breakfast, lunch, and snacks during the conference. They can also grab dinner during the after parties.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'swag': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak>I can neither confirm nor deny the rumors of swag. You'll have to come and see for yourself. <break time="750ms"/></speak>`,
+              text: `I can neither confirm nor deny the rumors of swag. You'll have to come and see for yourself.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'afterParty': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak> These are two nights you don’t want to miss! Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over. Both After Hours events will be hosted at Shoreline Amphitheatre, and your attendee badge is required for entrance.<break time="750ms"/></speak>`,
+              text: `These are two nights you don't want to miss! Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over. Both After Hours events will be hosted at Shoreline Amphitheatre, and your attendee badge is required for entrance.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'watchRemotely': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak> It'll be easy to stay plugged into what's happening at IO. All the keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. But if you're looking for something a little more social, you can attend or host an extended viewing party. Last year, developers all over the world created their own mini IO gatherings. 534 of them to be exact. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
+              text: `It'll be easy to stay plugged into what's happening at I/O. All the keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. But if you're looking for something a little more social, you can attend or host an extended viewing party. Last year, developers all over the world created their own mini IO gatherings. 534 of them to be exact. Find out more at events.google.com/IO.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'announcements': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak> So you want to know what will be announced? Yeah, I can't really answer that. Just guess!<break time="750ms"/></speak>`,
+              text: `So you want to know what will be announced? Yeah, I can't really answer that. Just guess!`,
+            }),
+            new SimpleResponse({
+              speech: `<speak> You wanna know about the juicy stuff happening this year? Well, I guess you’ll just have to wait and find out at the event.<break time="750ms"/></speak>`,
+              text: `You wanna know about the juicy stuff happening this year? Well, I guess you'll just have to wait and find out at the event.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'lostAndFound': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak> The lost and found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google IO badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference! <break time="750ms"/></speak>`,
+              text: `The lost & found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google I/O badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference!`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
+  'whatToWear': {
+    'firstTime/repeat': [
+      {
+        'appendReentry': 'welcome',
+        'elements': [
+          [
+            new SimpleResponse({
+              speech: `<speak> Google IO is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.<break time="750ms"/></speak>`,
+              text: `Google I/O is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.`,
+            }),
+          ],
+        ],
+      },
+    ],
+  },
   defaultFallbackPrompts,
   defaultNoInputPrompts,
   'goodbyePrompts': [

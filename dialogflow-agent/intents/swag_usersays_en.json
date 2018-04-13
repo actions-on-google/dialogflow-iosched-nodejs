@@ -1,0 +1,100 @@
+[
+  {
+    "id": "946f59a6-7a03-48be-8b28-a8d4070b2b3a",
+    "data": [
+      {
+        "text": "swag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  },
+  {
+    "id": "ad39b6c5-cf05-42ce-9727-1148fa06c460",
+    "data": [
+      {
+        "text": "What is the swag?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  },
+  {
+    "id": "631cff74-2095-47f2-b39f-7f0fcc8f617c",
+    "data": [
+      {
+        "text": "What is the free things ",
+        "userDefined": false
+      },
+      {
+        "text": "this year",
+        "alias": "date-period",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  },
+  {
+    "id": "f5c8e03c-81de-46a2-8350-fe1512dbb524",
+    "data": [
+      {
+        "text": "Will",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      },
+      {
+        "text": " we get free stuff?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  },
+  {
+    "id": "8cb207ef-4635-4700-98a9-340dae5daff7",
+    "data": [
+      {
+        "text": "What is the swag ",
+        "userDefined": false
+      },
+      {
+        "text": "this year",
+        "alias": "date-period",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  },
+  {
+    "id": "55b9508c-1441-44b0-b2ac-7cba557f8031",
+    "data": [
+      {
+        "text": "Will there be a free prize?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523592643
+  }
+]

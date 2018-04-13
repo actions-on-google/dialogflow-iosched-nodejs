@@ -1,0 +1,22 @@
+{
+  "id": "2c9479b2-7720-4683-a03b-9715c0c7b385",
+  "name": "whatToWear",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523649546,
+  "fallbackIntent": false,
+  "events": []
+}

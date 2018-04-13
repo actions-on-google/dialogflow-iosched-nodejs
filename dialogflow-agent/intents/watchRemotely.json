@@ -1,0 +1,22 @@
+{
+  "id": "6e748fb3-5365-45a9-85eb-35314e0fc401",
+  "name": "watchRemotely",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523647353,
+  "fallbackIntent": false,
+  "events": []
+}

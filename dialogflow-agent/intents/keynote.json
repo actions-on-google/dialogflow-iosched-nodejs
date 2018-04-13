@@ -1,0 +1,22 @@
+{
+  "id": "08b90989-d636-49af-ab49-1056b524c8d7",
+  "name": "keynote",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523647313,
+  "fallbackIntent": false,
+  "events": []
+}

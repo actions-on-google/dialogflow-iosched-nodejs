@@ -1,0 +1,80 @@
+[
+  {
+    "id": "3979cb7c-7a9b-488f-883c-c35e59a11484",
+    "data": [
+      {
+        "text": "announcements",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648827
+  },
+  {
+    "id": "0495b656-092f-4c83-b81f-4b703b6a60a3",
+    "data": [
+      {
+        "text": "Tell me the biggest news",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523637709
+  },
+  {
+    "id": "df2e6efa-a551-4a35-bc3f-586efc923915",
+    "data": [
+      {
+        "text": "I want to learn about the announcements for ",
+        "userDefined": false
+      },
+      {
+        "text": "this year",
+        "alias": "date-period",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523637709
+  },
+  {
+    "id": "21bc5c80-90f2-4d08-b734-bfde0a641c69",
+    "data": [
+      {
+        "text": "What is the biggest release?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523637709
+  },
+  {
+    "id": "7eab0629-af08-42e3-a5e9-220bc5310bb3",
+    "data": [
+      {
+        "text": "What is the new announcement?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523637709
+  },
+  {
+    "id": "c56d886f-6d3d-47aa-a496-0d04d9b15d50",
+    "data": [
+      {
+        "text": "What is being announced?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523637709
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "id": "bd843816-1a6b-49ae-a26c-5eacfae9f3de",
+  "name": "announcements",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "3123ddf8-ebbe-4bd7-9460-4fdb0a59a71a",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "name": "date-period",
+          "value": "$date-period",
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523648827,
+  "fallbackIntent": false,
+  "events": []
+}

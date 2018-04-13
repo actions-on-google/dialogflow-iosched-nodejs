@@ -1,0 +1,22 @@
+{
+  "id": "2bad5489-24ff-4273-9aab-a76d5f35cca0",
+  "name": "codelabs",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523647268,
+  "fallbackIntent": false,
+  "events": []
+}

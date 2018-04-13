@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1c8ce119-af78-4097-bf02-fdca5bad7bdd",
+    "data": [
+      {
+        "text": "Tell me about lost and found",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "6dc63a47-2129-4bc3-a366-68530fff624a",
+    "data": [
+      {
+        "text": "Is there a lost and found?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "70369c8d-87d5-4b35-82cb-9000f0a985cc",
+    "data": [
+      {
+        "text": "Where can I return a missing item?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "013c4847-a3ab-4e5f-a08b-105bcb8f419c",
+    "data": [
+      {
+        "text": "I misplaced my laptop, where can I find it?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "5beb288e-3810-4743-877f-453db8182ada",
+    "data": [
+      {
+        "text": "I found a hat, where should I take it?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "542540fa-5e05-4129-840f-ec07a5d05f40",
+    "data": [
+      {
+        "text": "where can I find lost and found?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  },
+  {
+    "id": "aad71b26-270f-401b-8042-c632acc71c31",
+    "data": [
+      {
+        "text": "I lost my phone",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523648720
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "id": "0d5ab049-831c-4b6c-82a3-a17d34d7275e",
+  "name": "afterParty",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523647228,
+  "fallbackIntent": false,
+  "events": []
+}

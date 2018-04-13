@@ -1,0 +1,74 @@
+[
+  {
+    "id": "e12b8097-a827-4445-9a08-dc5454fac0eb",
+    "data": [
+      {
+        "text": "meet the approval team",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  },
+  {
+    "id": "01c8182a-a161-426e-b797-1e441fc8af2d",
+    "data": [
+      {
+        "text": "Work with approval team",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  },
+  {
+    "id": "0d0e14f6-1160-4e84-ae90-c0d183e1cd1c",
+    "data": [
+      {
+        "text": "Find out why my app was declined",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  },
+  {
+    "id": "32ad4dd4-1244-4ab7-a3f9-7b0e28d0a5c0",
+    "data": [
+      {
+        "text": "Where can I get help to get my app approved?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  },
+  {
+    "id": "87315c0a-f004-473c-a411-1989e34a597d",
+    "data": [
+      {
+        "text": "Review my app",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  },
+  {
+    "id": "bd5c4416-cb04-4c85-b8d0-5d211f305f56",
+    "data": [
+      {
+        "text": "I want to get my app reviewed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523580803
+  }
+]
