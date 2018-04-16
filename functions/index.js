@@ -24,6 +24,7 @@ const {
   noInput,
   goodbye,
 } = require('./prompts/common/utils');
+const ConferenceData = require('./event/conference');
 
 const app = dialogflow({
   debug: true,
@@ -46,6 +47,7 @@ app.middleware((conv) => {
     conv.data.fallbackResponses = [];
     conv.data.noInputResponses = [];
   }
+  conv.conference = new ConferenceData();
 });
 
 app.intent('welcome', static.prompt);
