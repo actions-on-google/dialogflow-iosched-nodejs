@@ -12,16 +12,18 @@
 // limitations under the License.
 
 const functions = require('firebase-functions');
-const {dialogflow} = require('actions-on-google');
+const {
+  dialogflow,
+} = require('actions-on-google');
 const {
   getPhase,
 } = require('./utils');
+const static = require('./prompts/static/utils');
 const {
-  prompt,
   fallback,
-  goodbye,
   noInput,
-} = require('./prompts/utils');
+  goodbye,
+} = require('./prompts/common/utils');
 
 const app = dialogflow({
   debug: true,
@@ -39,34 +41,36 @@ app.middleware((conv) => {
   conv.phase = getPhase(conv.currentTime);
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
     'repeat' : 'firstTime';
-  if (conv.intent !== 'fallback') {
+  if (!(conv.intent === 'fallback' || conv.intent === 'no-input')) {
     conv.data.fallbackCount = 0;
+    conv.data.fallbackResponses = [];
+    conv.data.noInputResponses = [];
   }
 });
 
-app.intent('welcome', prompt);
+app.intent('welcome', static.prompt);
 
-app.intent('date', prompt);
+app.intent('date', static.prompt);
 
-app.intent('keynote', prompt);
+app.intent('keynote', static.prompt);
 
-app.intent('codelabs', prompt);
+app.intent('codelabs', static.prompt);
 
-app.intent('appReview', prompt);
+app.intent('appReview', static.prompt);
 
-app.intent('food', prompt);
+app.intent('food', static.prompt);
 
-app.intent('swag', prompt);
+app.intent('swag', static.prompt);
 
-app.intent('afterParty', prompt);
+app.intent('afterParty', static.prompt);
 
-app.intent('watchRemotely', prompt);
+app.intent('watchRemotely', static.prompt);
 
-app.intent('announcements', prompt);
+app.intent('announcements', static.prompt);
 
-app.intent('lostAndFound', prompt);
+app.intent('lostAndFound', static.prompt);
 
-app.intent('whatToWear', prompt);
+app.intent('whatToWear', static.prompt);
 
 app.intent('goodbye', goodbye);
 
@@ -76,6 +80,9 @@ app.intent('no-input', noInput);
 
 app.intent('fallback', fallback);
 
-app.fallback(fallback);
+app.fallback((conv) => {
+  console.error('No matching intent handler found: ' + conv.intent);
+  fallback(conv);
+});
 
 exports.googleio = functions.https.onRequest(app);

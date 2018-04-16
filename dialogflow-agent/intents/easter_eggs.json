@@ -1,7 +1,7 @@
 {
-  "id": "dd2a4b12-f307-4abc-bd3b-dd7602e53ffa",
-  "name": "cancel",
-  "auto": true,
+  "id": "d23156bc-191a-4b98-b34a-8948d98177cf",
+  "name": "easter_eggs",
+  "auto": false,
   "contexts": [],
   "responses": [
     {
@@ -12,7 +12,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": []
+          "speech": "Easter eggs"
         }
       ],
       "defaultResponsePlatforms": {},
@@ -20,13 +20,9 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": true,
+  "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1523766288,
+  "lastUpdate": 1523645799,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "actions_intent_CANCEL"
-    }
-  ]
+  "events": []
 }

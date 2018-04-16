@@ -24,8 +24,8 @@ const defaultFallbackPrompts = [
     }),
     'suggestions': {
       'required': [
-        'Tell me about the keynotes',
-        'Tell me about the sessions',
+        'Tell me about keynotes',
+        'Tell me about sessions',
       ],
       'randomized': [
         'Where is it?', 'How can I watch remotely?', `Find office hours`,
@@ -40,7 +40,7 @@ const defaultFallbackPrompts = [
     }),
     'suggestions': {
       'required': [
-        'Tell me about the keynotes',
+        'Tell me about keynotes',
         'Browse sessions',
       ],
       'randomized': [
@@ -52,15 +52,25 @@ const defaultFallbackPrompts = [
   {
     'response': new SimpleResponse({
       speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+      text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
     }),
   },
 ];
 
+// No Input Prompts should work only on speaker surfaces
 const defaultNoInputPrompts = [
-  `You're sending an empty signal here. What do you want to know about IO?`,
-  `I can tell you about the keynotes, sessions, or anything else about IO. What would you like to know?`,
-  `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+  new SimpleResponse({
+    speech: `You're sending an empty signal here. What do you want to know about IO?`,
+    text: `You're sending an empty signal here. What do you want to know about I/O?`,
+  }),
+  new SimpleResponse({
+    speech: `I can tell you about the keynotes, sessions, or anything else about IO. What would you like to know?`,
+    text: `I can tell you about the keynotes, sessions, or anything else about I/O. What would you like to know?`,
+  }),
+  new SimpleResponse({
+    speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+    text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+  }),
 ];
 
 module.exports = {
