@@ -81,6 +81,14 @@ app.intent('browse-topics-next', menu);
 
 app.intent('browse-topics-repeat', menu);
 
+app.intent('browse-topics-OPTION', menu);
+
+app.intent('browse-sessions', menu);
+
+app.intent('browse-sessions-repeat', menu);
+
+app.intent('browse-sessions-next', menu);
+
 app.intent('cancel', goodbye);
 
 app.intent('no-input', noInput);

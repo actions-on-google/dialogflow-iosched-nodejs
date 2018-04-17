@@ -14,6 +14,7 @@
 // const Handler = require('./handler');
 const {
   parse,
+  fallback,
 } = require('../common/utils');
 
 const DEFAULT_SCREEN_MAX = 30;
@@ -82,10 +83,65 @@ const browseTopicsRepeat = (conv) => {
   });
 };
 
+const browseTopicsOption = (conv) => {
+  if (conv.arguments.get('OPTION')) {
+    const tagID = conv.arguments.get('OPTION');
+    return conv.conference.tag(tagID).then((tag) => browseSessions(conv, tag));
+  } else {
+    fallback(conv);
+  }
+};
+
+const browseSessionsByTopic = (conv, {topic}) => {
+  if (topic) {
+    return conv.conference.tagByName(topic)
+      .then((tag) => browseSessions(conv, tag));
+  } else {
+    fallback(conv);
+  }
+};
+
+const browseSessions = (conv, tag) => {
+  console.log(`Browsing for sessions with tag: ${tag.tag}`);
+  const prompts = require('./'+conv.phase+'.js')['browse-sessions-first-set'];
+  conv.data.sessionsTag = tag.name;
+  return conv.conference.sessions(tag.tag).then((sessions) => {
+    return browse({
+      conv,
+      itemsPromise: Promise.resolve(sessions),
+      prompts: prompts(tag.name, sessions.length),
+    });
+  });
+};
+
+const browseSessionsNext = (conv) => {
+  console.log(`Browsing next set of sessions`);
+  const prompts = require('./'+conv.phase+'.js')['browse-sessions-next'];
+  return browse({
+    conv,
+    itemsPromise: Promise.resolve(conv.data.nextItems),
+    prompts: prompts(conv.data.sessionsTag),
+  });
+};
+
+const browseSessionsRepeat = (conv) => {
+  console.log('Repeating previously browsed sessions');
+  const prompts = require('./'+conv.phase+'.js')['browse-sessions-repeat'];
+  return browse({
+    conv,
+    itemsPromise: Promise.resolve(conv.data.currentItems),
+    prompts: prompts(conv.data.sessionsTag),
+  });
+};
+
 const intents = {
   'browse-topics': browseTopics,
   'browse-topics-next': browseTopicsNext,
   'browse-topics-repeat': browseTopicsRepeat,
+  'browse-topics-OPTION': browseTopicsOption,
+  'browse-sessions': browseSessionsByTopic,
+  'browse-sessions-repeat': browseSessionsRepeat,
+  'browse-sessions-next': browseSessionsNext,
 };
 
 module.exports = (conv, ...args) => {

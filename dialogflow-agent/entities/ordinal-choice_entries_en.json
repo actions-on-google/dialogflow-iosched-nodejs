@@ -1,0 +1,20 @@
+[
+  {
+    "value": "first",
+    "synonyms": [
+      "first",
+      "the first one",
+      "first",
+      "number one"
+    ]
+  },
+  {
+    "value": "second",
+    "synonyms": [
+      "second",
+      "the second one",
+      "second",
+      "number 2"
+    ]
+  }
+]
