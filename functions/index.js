@@ -19,6 +19,7 @@ const {
   getPhase,
 } = require('./utils');
 const static = require('./prompts/static/utils');
+const menu = require('./prompts/menu/utils');
 const {
   fallback,
   noInput,
@@ -74,7 +75,11 @@ app.intent('lostAndFound', static.prompt);
 
 app.intent('whatToWear', static.prompt);
 
-app.intent('goodbye', goodbye);
+app.intent('browse-topics', menu);
+
+app.intent('browse-topics-next', menu);
+
+app.intent('browse-topics-repeat', menu);
 
 app.intent('cancel', goodbye);
 

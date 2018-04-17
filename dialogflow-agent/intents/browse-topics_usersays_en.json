@@ -1,0 +1,146 @@
+[
+  {
+    "id": "327dd4fd-de05-4817-ae40-e912ac49d065",
+    "data": [
+      {
+        "text": "Search for talks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "a9ad8052-3e50-4ecb-a42f-5ded23254441",
+    "data": [
+      {
+        "text": "Browse",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "ba39071b-4a98-4d7e-b79d-1dc750df8907",
+    "data": [
+      {
+        "text": "browse sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1523741712
+  },
+  {
+    "id": "6dcc3f98-b8c1-4645-ac73-5eb4ce668a6a",
+    "data": [
+      {
+        "text": "Tell me about sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "288a1a10-bc87-4ccc-82b3-613964ac4030",
+    "data": [
+      {
+        "text": "about the talks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1523741712
+  },
+  {
+    "id": "9031a927-83a5-4560-99c3-520e8b491981",
+    "data": [
+      {
+        "text": "about the sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "26b9976a-0f1a-4a10-ae8a-ff2c9f93fe8c",
+    "data": [
+      {
+        "text": "find a session",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "d0be5a31-be7f-4955-8dda-ea7b5d5dbe73",
+    "data": [
+      {
+        "text": "find a talk",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "14e80837-489c-4120-a002-a807465b0093",
+    "data": [
+      {
+        "text": "search for sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "9e727d56-9ee8-4774-8bee-69a3001465f2",
+    "data": [
+      {
+        "text": "search for talks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "208e1730-168e-4059-84eb-1054effbcc34",
+    "data": [
+      {
+        "text": "talks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  },
+  {
+    "id": "a93effd9-439e-46a5-b968-e175edddbc62",
+    "data": [
+      {
+        "text": "sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1523741712
+  }
+]
