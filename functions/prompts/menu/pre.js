@@ -14,6 +14,7 @@
 const {
   SimpleResponse,
   List,
+  BasicCard,
 } = require('actions-on-google');
 
 /* eslint-disable max-len*/
@@ -298,6 +299,135 @@ const browseSessions = (items=[], topic='that topic',
   };
 };
 
+const showSession = (session, prefixes, postfixes) => {
+  // Note: Prefixes must be SimpleResponses which use SSML
+  if (!session) {
+    session = {
+      title: '',
+    };
+  }
+  session.description = session.description || `Hmm, I can't find that session's description.`,
+  prefixes = prefixes || [
+    new SimpleResponse({
+      speech: `<speak>That one sounds really cool. Here's more about it.<break time="250ms"/></speak>`,
+      text: `That one sounds really cool. Here's more about it.`,
+    }),
+    new SimpleResponse({
+      speech: `<speak>Nice. Here's the description.<break time="250ms"/></speak>`,
+      text: `Nice. Here's the description.`,
+    }),
+    new SimpleResponse({
+      speech: `<speak>Alright. Here's more info about it.<break time="250ms"/></speak>`,
+      text: `Alright. Here's more info about it.`,
+    }),
+    new SimpleResponse({
+      speech: `<speak>Here's the description.<break time="250ms"/></speak>`,
+      text: `Here's the description.`,
+    }),
+    new SimpleResponse({
+      speech: `<speak>Sure. Here's more about it.<break time="250ms"/></speak>`,
+      text: `Sure. Here's more about it.`,
+    }),
+    new SimpleResponse({
+      speech: `<speak>Here's a more detailed description.<break time="250ms"/></speak>`,
+      text: `Here's a more detailed description.`,
+    }),
+  ];
+  postfixes = postfixes || [
+    new SimpleResponse({
+      speech: `<speak>Now, do you want me to repeat that,<break time="250ms"/> add it to your schedule,<break time="250ms"/> or tell you about other sessions?</speak>`,
+      text: `Now, do you want me to repeat that, add it to your schedule, or tell you about other sessions?`,
+    }),
+  ];
+  return {
+    'presentSession': {
+      'firstTime/repeat': {
+        'screen': [
+          {
+            'elements': [
+              prefixes,
+              [
+                new BasicCard({
+                  title: session.title,
+                  text: session.description,
+                }),
+              ],
+              postfixes,
+            ],
+            'noInput': [
+              `I can repeat that, or tell you about other sessions.`,
+              `Do you want me to repeat that, or tell you about other sessions?`,
+            ],
+            'fallback': [
+              {
+                'elements': [`Sorry, did you want to repeat that, or hear other sessions?`],
+              },
+              {
+                'elements': [`I'm still not sure. Do you want me to repeat that, or tell you about other sessions?`],
+              },
+            ],
+          },
+        ],
+        'speaker': [
+          {
+            'elements': [
+              prefixes.map((prefix) => {
+                return prefix.textToSpeech
+                  .replace('</speak>', `${session.description}</speak>`);
+              }),
+              postfixes,
+            ],
+            'noInput': [
+              `I can repeat that, or tell you about other sessions.`,
+              `Do you want me to repeat that, or tell you about other sessions?`,
+            ],
+            'fallback': [
+              {
+                'elements': [`Sorry, did you want to repeat that, or hear other sessions?`],
+              },
+              {
+                'elements': [`I'm still not sure. Do you want me to repeat that, or tell you about other sessions?`],
+              },
+            ],
+          },
+        ],
+      },
+    },
+    'error': {
+      'firstTime/repeat': {
+        'screen/speaker': [
+          {
+            elements: [
+              [
+                new SimpleResponse({
+                  speech: `Well that's a 500 error. I can't access that session right now, so is there something else I can help you with?`,
+                  text: `Well that's a 500 error. I can't access that session right now, so is there something else I can help you with?`,
+                }),
+              ],
+            ],
+          },
+        ],
+      },
+    },
+  };
+};
+
+const showSessionRepeat = (session) => {
+  const prefixes = [
+    new SimpleResponse({
+      speech: `<speak>Here's that description again.<break time="250ms"/></speak>`,
+      text: `Here's that description again.`,
+    }),
+  ];
+  const postfixes = [
+    new SimpleResponse({
+      speech: `You can add it to your schedule, or hear more sessions.`,
+      text: `You can add it to your schedule, or hear more sessions.`,
+    }),
+  ];
+  return showSession(session, prefixes, postfixes);
+};
+
 const sanitizeSsml = (str) => str.replace('&', 'and').replace('AR', 'A R');
 
 module.exports = {
@@ -306,4 +436,6 @@ module.exports = {
   'browse-sessions-first-set': browseSessionsFirstSet,
   'browse-sessions-next': browseSessionsNext,
   'browse-sessions-repeat': browseSessionsRepeat,
+  'show-session': showSession,
+  'show-session-repeat': showSessionRepeat,
 };

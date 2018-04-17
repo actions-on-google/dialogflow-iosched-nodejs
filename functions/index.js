@@ -89,6 +89,10 @@ app.intent('browse-sessions-repeat', menu);
 
 app.intent('browse-sessions-next', menu);
 
+app.intent('show-session', menu);
+
+app.intent('show-session-repeat', menu);
+
 app.intent('cancel', goodbye);
 
 app.intent('no-input', noInput);

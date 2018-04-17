@@ -134,6 +134,46 @@ const browseSessionsRepeat = (conv) => {
   });
 };
 
+const showSession = (conv, {sessionId, ordinalChoice}) => {
+  const prompts = require('./'+conv.phase+'.js')['show-session'];
+  if (sessionId) {
+    // User spoke session name directly
+  } else if (conv.arguments.get('OPTION')) {
+    // User tapped on session list
+    sessionId = conv.arguments.get('OPTION');
+  } else if (ordinalChoice && ordinalChoice === 'second' &&
+    conv.data.currentOptions && conv.data.currentOptions[1]) {
+      // User said e.g. 'the second one'
+      sessionId = conv.data.currentOptions[1].id;
+  } else if (conv.data.currentOptions && conv.data.currentOptions[0]) {
+    // User said e.g. 'the first one' or 'yes'
+    sessionId = conv.data.currentOptions[0].id;
+  }
+  console.log(`Showing session with ID: ${sessionId}`);
+  return conv.conference.session(sessionId).then((session) => {
+    if (session) {
+      conv.data.sessionShown = session;
+      return parse(conv, prompts(session)['presentSession']);
+    } else {
+      return parse(conv, prompts().error);
+    }
+  }).catch((error) => {
+    console.error(`Error showing session: ${error}`);
+    return parse(conv, prompts().error);
+  });
+};
+
+const showSessionRepeat = (conv) => {
+  console.log('Repeating previously shown session');
+  const prompts = require('./'+conv.phase+'.js')['show-session-repeat'];
+  if (conv.data.sessionShown) {
+    return parse(conv, prompts(conv.data.sessionShown)['presentSession']);
+  } else {
+    console.error(`Error repeating session: ${error}`);
+    return parse(conv, prompts().error);
+  }
+};
+
 const intents = {
   'browse-topics': browseTopics,
   'browse-topics-next': browseTopicsNext,
@@ -142,6 +182,8 @@ const intents = {
   'browse-sessions': browseSessionsByTopic,
   'browse-sessions-repeat': browseSessionsRepeat,
   'browse-sessions-next': browseSessionsNext,
+  'show-session': showSession,
+  'show-session-repeat': showSessionRepeat,
 };
 
 module.exports = (conv, ...args) => {

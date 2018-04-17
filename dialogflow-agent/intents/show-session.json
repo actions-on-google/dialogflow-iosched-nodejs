@@ -1,0 +1,65 @@
+{
+  "id": "ab9b8005-6468-4242-a630-e6124fbf2bcd",
+  "parentId": "52028621-a35e-400a-ae17-1d8068b50031",
+  "rootParentId": "52028621-a35e-400a-ae17-1d8068b50031",
+  "name": "show-session",
+  "auto": true,
+  "contexts": [
+    "browse-sessions-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "browse-sessions.browse-sessions-custom",
+      "affectedContexts": [
+        {
+          "name": "show-session-followup",
+          "parameters": {},
+          "lifespan": 2
+        },
+        {
+          "name": "browse-sessions-followup",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "5095a2a2-4496-4f4e-ba8b-291953a89b69",
+          "required": false,
+          "dataType": "@ordinal-choice",
+          "name": "ordinalChoice",
+          "value": "$ordinalChoice",
+          "isList": false
+        },
+        {
+          "id": "621c586b-5340-4566-b3c1-7140ba85655a",
+          "required": false,
+          "dataType": "@sessions",
+          "name": "sessionId",
+          "value": "$sessionId",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1523952109,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
+}
