@@ -141,11 +141,12 @@ const browseSessionsFirstSet = (topic, totalItems) => {
     (`There's ${totalItems} sessions on ${topic}. `) +
     (items.length !== totalItems ? `Here are ${items.length}. ` : '') +
     (`Which most interests you?`);
-  const spokenNames =
-    (items) => items.map((session) => sanitizeSsml(session.title));
-  const speakerItems = `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
+  const itemsToSpeech = (items) => {
+    const spokenNames = items.map((session) => sanitizeSsml(session.title));
+    return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
+  };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, speakerItems);
+    displayIntro, itemsToSpeech(items));
 };
 
 const browseSessionsNext = (topic='that topic') => {
@@ -154,11 +155,12 @@ const browseSessionsNext = (topic='that topic') => {
     text: `There's also`,
   };
   const displayIntro = () => `There's also these options.`;
-  const spokenNames =
-    (items) => items.map((session) => sanitizeSsml(session.title));
-  const speakerItems = `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
+  const itemsToSpeech = (items) => {
+    const spokenNames = items.map((session) => sanitizeSsml(session.title));
+    return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
+  };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, speakerItems);
+    displayIntro, itemsToSpeech(items));
 };
 
 const browseSessionsRepeat = (topic='that topic') => {
@@ -167,11 +169,12 @@ const browseSessionsRepeat = (topic='that topic') => {
     text: `Again, those are`,
   };
   const displayIntro = (items) => `Here are the options again.`;
-  const spokenNames =
-    (items) => items.map((session) => sanitizeSsml(session.title));
-  const speakerItems = `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
+  const itemsToSpeech = (items) => {
+    const spokenNames = items.map((session) => sanitizeSsml(session.title));
+    return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
+  };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, speakerItems);
+    displayIntro, itemsToSpeech(items));
 };
 
 const browseSessions = (items=[], topic='that topic',
@@ -245,7 +248,7 @@ const browseSessions = (items=[], topic='that topic',
           {
             'elements': [
               [
-                `<speak>${spokenIntro.speech} ${speakerItems}. Which of those interests you?</speak>`,
+                `<speak>${sanitizeSsml(spokenIntro.speech)} ${speakerItems}. Which of those interests you?</speak>`,
               ],
             ],
             'noInput': [

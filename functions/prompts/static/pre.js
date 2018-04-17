@@ -178,7 +178,7 @@ module.exports = {
   'date': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> This year’s developer festival will be held May <say-as interpret-as="ordinal">8</say-as> through <say-as interpret-as="ordinal">10</say-as> in California <break time="250ms"/> next to Google's main campus.<break time="750ms"/></speak>`,
+        speech: `<speak> This year’s developer festival will be held May <say-as interpret-as="ordinal">8</say-as> through <say-as interpret-as="ordinal">10</say-as> at the Shoreline Amphitheatre. That's in, Mountain View, California, <break time="250ms"/> next to Google's main campus.<break time="750ms"/></speak>`,
         text: `This years developer festival will be held May 8-10 at the Shoreline Amphitheatre in Mountain View, CA`,
       }),
     ]),
