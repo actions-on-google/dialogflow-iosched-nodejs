@@ -1,0 +1,60 @@
+{
+  "id": "211730b7-0419-4e5f-a612-82f1efab70d0",
+  "parentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "rootParentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "name": "show-schedule-session",
+  "auto": true,
+  "contexts": [
+    "show-schedule-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "show-schedule.show-schedule-custom",
+      "affectedContexts": [
+        {
+          "name": "show-schedule-session-followup",
+          "parameters": {},
+          "lifespan": 0
+        }
+      ],
+      "parameters": [
+        {
+          "id": "f96e8398-fce0-4011-9064-cc1d29c413eb",
+          "required": false,
+          "dataType": "@ordinal-choice",
+          "name": "ordinal-choice",
+          "value": "$ordinal-choice",
+          "isList": false
+        },
+        {
+          "id": "20e6990d-584c-495b-980b-6c90ff42adda",
+          "required": false,
+          "dataType": "@sessions",
+          "name": "sessions",
+          "value": "$sessions",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1524543124,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
+}

@@ -2,6 +2,6 @@ node_modules
 *.DS_store
 *.log
 .firebaserc
-keys.json
+oauthClientKey.json
 eventsServiceKey.json
 dialogflow-agent.zip

@@ -120,8 +120,8 @@ exports.parse = (conv, prompts) => {
  * @param {Promise} options.itemsPromise Promise which resolves with array of
  *     items.
  * @param {Function} options.prompts Function which returns the prompts object.
- * @param {boolean} options.maxScreen Max items to show on screen.
- * @param {boolean} options.maxAudio Max items to say on speaker.
+ * @param {number=} options.maxScreen Max items to show on screen.
+ * @param {number=} options.maxAudio Max items to say on speaker.
  * @param {Function=} options.sort Function by which to sort browsed items.
  * @return {Promise} Promise which resolves with the parsed response.
  */

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "f0af61d6-fb7b-4a86-9ade-603aabfa2488",
+    "data": [
+      {
+        "text": "Android Security and Privacy",
+        "alias": "sessions",
+        "meta": "@sessions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "7e3f3a2d-e070-4c6c-99a2-96b22a736676",
+    "data": [
+      {
+        "text": "the first one",
+        "alias": "ordinal-choice",
+        "meta": "@ordinal-choice",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "9255956e-ee7b-400d-a943-b921d57be570",
+    "data": [
+      {
+        "text": "let\u0027s do ",
+        "userDefined": false
+      },
+      {
+        "text": "the second one",
+        "alias": "ordinal-choice",
+        "meta": "@ordinal-choice",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "ce00c514-cf30-4dcc-8ebe-ada057dae972",
+    "data": [
+      {
+        "text": "yes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "e057db68-5957-4b8c-b114-163e1ed63214",
+    "data": [
+      {
+        "text": "yep",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "e49ec5b0-9d31-4b16-ae15-74c6802843b0",
+    "data": [
+      {
+        "text": "why not",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  },
+  {
+    "id": "ae0507f9-e511-44c1-b7f8-4b1a403dcf16",
+    "data": [
+      {
+        "text": "sure",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524543032
+  }
+]

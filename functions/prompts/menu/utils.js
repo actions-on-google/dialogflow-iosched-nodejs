@@ -11,7 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// const Handler = require('./handler');
 const {
   parse,
   fallback,
@@ -112,8 +111,8 @@ const browseSessionsRepeat = (conv) => {
   });
 };
 
-const showSession = (conv, {sessionId, ordinalChoice}) => {
-  const prompts = require('./'+conv.phase+'.js')['show-session'];
+const showSession = (conv, {sessionId, ordinalChoice}, prompts) => {
+  prompts = prompts || require('./'+conv.phase+'.js')['show-session'];
   if (sessionId) {
     // User spoke session name directly
   } else if (conv.arguments.get('OPTION')) {
@@ -131,7 +130,7 @@ const showSession = (conv, {sessionId, ordinalChoice}) => {
   return conv.conference.session(sessionId).then((session) => {
     if (session) {
       conv.data.sessionShown = session;
-      return parse(conv, prompts(session)['presentSession']);
+      return parse(conv, prompts({session})['presentSession']);
     } else {
       return parse(conv, prompts().error);
     }
@@ -139,6 +138,15 @@ const showSession = (conv, {sessionId, ordinalChoice}) => {
     console.error(`Error showing session: ${error}`);
     return parse(conv, prompts().error);
   });
+};
+
+const showBrowsedSession = (conv, {sessionId, ordinalChoice}) => {
+  return showSession(conv, {sessionId, ordinalChoice});
+};
+
+const showScheduleSession = (conv, {sessionId, ordinalChoice}) => {
+  const prompts = require('./'+conv.phase+'.js')['show-schedule-session'];
+  return showSession(conv, {sessionId, ordinalChoice}, prompts);
 };
 
 const showSessionRepeat = (conv) => {
@@ -160,8 +168,10 @@ const intents = {
   'browse-sessions': browseSessionsByTopic,
   'browse-sessions-repeat': browseSessionsRepeat,
   'browse-sessions-next': browseSessionsNext,
-  'show-session': showSession,
+  'show-session': showBrowsedSession,
   'show-session-repeat': showSessionRepeat,
+  'show-schedule-session': showScheduleSession,
+  'show-schedule-session-repeat': showSessionRepeat,
 };
 
 module.exports = (conv, ...args) => {

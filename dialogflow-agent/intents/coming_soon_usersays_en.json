@@ -1,18 +1,6 @@
 [
   {
-    "id": "a8d1f21d-7d17-4831-80db-f809a5256dd2",
-    "data": [
-      {
-        "text": "add to my schedule",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524185150
-  },
-  {
-    "id": "7712c55c-6744-4a9e-8df2-928241dc04e0",
+    "id": "234ba53a-f05a-4f0e-bbb9-294a89f6da9d",
     "data": [
       {
         "text": "give me directions",
@@ -21,22 +9,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1524185150
+    "updated": 1524540458
   },
   {
-    "id": "afdab359-8e20-48e1-936d-5086d2203113",
-    "data": [
-      {
-        "text": "what\u0027s my next schedule",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524185150
-  },
-  {
-    "id": "149ada10-fb97-4aa9-b154-165a4b1eda5e",
+    "id": "696404fb-d42e-4e52-9214-4aa0d1b54068",
     "data": [
       {
         "text": "tell me about office hours",
@@ -45,10 +21,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1524185150
+    "updated": 1524540458
   },
   {
-    "id": "57d8640f-27e4-4ef9-85d1-a13c232d97ff",
+    "id": "5c658c49-187f-41a9-b7d6-673418711ea1",
     "data": [
       {
         "text": "office hours",
@@ -57,30 +33,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1524185150
-  },
-  {
-    "id": "8b6b8fd8-81bb-4ede-bf1e-2807412cd192",
-    "data": [
-      {
-        "text": "manage my schedule",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524185150
-  },
-  {
-    "id": "c3b16a5c-dae4-4954-8f63-c661e34eb803",
-    "data": [
-      {
-        "text": "schedule",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524185150
+    "updated": 1524540458
   }
 ]

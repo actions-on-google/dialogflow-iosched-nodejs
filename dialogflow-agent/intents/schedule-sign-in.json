@@ -1,0 +1,37 @@
+{
+  "id": "d112ed68-eaa2-42ff-a4b1-fc54737bee98",
+  "parentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "rootParentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "name": "schedule-sign-in",
+  "auto": true,
+  "contexts": [
+    "show-schedule-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "show-schedule.show-schedule-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1524386072,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_SIGN_IN"
+    }
+  ]
+}

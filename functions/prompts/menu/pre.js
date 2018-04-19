@@ -170,9 +170,10 @@ const browseSessionsFirstSet = (topic, totalItems) => {
     text: `There's ${totalItems} sessions on ${topic}. Here's the first two.`,
   };
   const displayIntro = (items=[]) =>
-    (`There's ${totalItems} sessions on ${topic}. `) +
-    (items.length !== totalItems ? `Here are ${items.length}. ` : '') +
-    (`Which most interests you?`);
+    new SimpleResponse({
+      speech: `There's ${totalItems} sessions on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+      text: `There's ${totalItems} sessions on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+    });
   const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
@@ -216,7 +217,6 @@ const browseSessions = (items=[], topic='that topic',
     text: `Here are some sessions`,
   };
   displayIntro = displayIntro || (() => `Here are some sessions`);
-  topic = sanitizeSsml(topic);
   const screenItems = items.reduce((itemsObj, session) => {
     itemsObj[session.id] = {
       title: session.title,
@@ -232,7 +232,7 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `The only session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  speech: `The only session on ${sanitizeSsml(topic)} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
                   text: `The only session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
                 }),
               ],
@@ -363,8 +363,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `That was all the sessions. So, let me know if you want to hear them again, or do something else?`,
-                  text: `That was all the sessions. So, let me know if you want to hear them again, or do something else?`,
+                  speech: `That was all the sessions on ${sanitizeSsml(topic)}. So, let me know if you want to hear them again, or do something else?`,
+                  text: `That was all the sessions on ${topic}. So, let me know if you want to hear them again, or do something else?`,
                 }),
               ],
             ],
@@ -389,7 +389,8 @@ const browseSessions = (items=[], topic='that topic',
   };
 };
 
-const showSession = (session, prefixes, postfixes) => {
+const showSession = ({session, prefixes, postfixes, buttonText,
+  pivotSuggestion}) => {
   // Note: Prefixes must be SimpleResponses which use SSML
   if (!session) {
     session = {
@@ -451,7 +452,7 @@ const showSession = (session, prefixes, postfixes) => {
                   text: session.description,
                   buttons: [
                     new Button({
-                      title: 'Add to my schedule',
+                      title: buttonText || 'Add to my schedule',
                       url: `https://events.google.com/io/schedule/?sid=${session.id}`,
                     }),
                   ],
@@ -461,7 +462,7 @@ const showSession = (session, prefixes, postfixes) => {
             ],
             'suggestions': {
               'required': [
-                'Other topics',
+                pivotSuggestion || 'Other topics',
                 'Do something else',
               ],
               'randomized': [
@@ -552,7 +553,27 @@ const showSessionRepeat = (session) => {
       }),
     ],
   };
-  return showSession(session, prefixes, postfixes);
+  return showSession({session, prefixes, postfixes});
+};
+
+const showScheduleSession = (session) => {
+  const postfixes = {
+    'screen': [
+      new SimpleResponse({
+        speech: `<speak>Now, do you want to go back to your schedule, <break time="250ms"/>or do something else?</speak>`,
+        text: `Now, do you want to go back to your schedule, or do something else?`,
+      }),
+    ],
+    'speaker': [
+      new SimpleResponse({
+        speech: `<speak>Now, do you want to repeat that, <break time="250ms"/>go back to your schedule, <break time="250ms"/>or do something else?</speak>`,
+        text: `Now, do you want to repeat that, go back to your schedule, or do something else?`,
+      }),
+    ],
+  };
+  const buttonText = 'Manage in my schedule';
+  const pivotSuggestion = 'Back to my schedule';
+  return showSession({session, postfixes, buttonText, pivotSuggestion});
 };
 
 module.exports = {
@@ -562,5 +583,6 @@ module.exports = {
   'browse-sessions-next': browseSessionsNext,
   'browse-sessions-repeat': browseSessionsRepeat,
   'show-session': showSession,
+  'show-schedule-session': showScheduleSession,
   'show-session-repeat': showSessionRepeat,
 };

@@ -1,26 +1,21 @@
 {
-  "id": "d5377046-81dc-454f-ad29-ccfb8f8ee943",
-  "name": "browse-topics",
+  "id": "e6607b8d-1594-43c0-8a5c-0dddb0162fc1",
+  "parentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "rootParentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "name": "show-schedule-repeat",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "show-schedule-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "show-schedule.show-schedule-repeat",
       "affectedContexts": [
-        {
-          "name": "browse-topics-followup",
-          "parameters": {},
-          "lifespan": 3
-        },
-        {
-          "name": "browse-sessions-followup",
-          "parameters": {},
-          "lifespan": 0
-        },
         {
           "name": "show-schedule-followup",
           "parameters": {},
-          "lifespan": 0
+          "lifespan": 2
         }
       ],
       "parameters": [],
@@ -38,7 +33,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524548965,
+  "lastUpdate": 1524541288,
   "fallbackIntent": false,
   "events": []
 }

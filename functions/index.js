@@ -25,6 +25,7 @@ const {
   noInput,
   goodbye,
 } = require('./prompts/common/utils');
+const schedule = require('./prompts/schedule/utils');
 const ConferenceData = require('./event/conference');
 
 const app = dialogflow({
@@ -41,6 +42,9 @@ const app = dialogflow({
 app.middleware((conv) => {
   conv.currentTime = Date.now();
   conv.phase = getPhase(conv.currentTime);
+  if (conv.phase === 'post') {
+    conv.user.storage.uid = undefined;
+  }
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
     'repeat' : 'firstTime';
   if (!(conv.intent === 'fallback' || conv.intent === 'no-input')) {
@@ -96,6 +100,22 @@ app.intent('browse-sessions-next', menu);
 app.intent('show-session', menu);
 
 app.intent('show-session-repeat', menu);
+
+app.intent('show-schedule', schedule);
+
+app.intent('schedule-sign-in', schedule);
+
+app.intent('show-schedule-browse-topics-yes', schedule);
+
+app.intent('show-schedule-browse-topics-no', schedule);
+
+app.intent('show-schedule-next', schedule);
+
+app.intent('show-schedule-repeat', schedule);
+
+app.intent('show-schedule-session', menu);
+
+app.intent('show-schedule-session-repeat', menu);
 
 app.intent('cancel', goodbye);
 

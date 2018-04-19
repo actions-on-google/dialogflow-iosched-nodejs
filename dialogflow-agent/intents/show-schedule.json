@@ -1,6 +1,6 @@
 {
-  "id": "52028621-a35e-400a-ae17-1d8068b50031",
-  "name": "browse-sessions",
+  "id": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "name": "show-schedule",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -8,37 +8,22 @@
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "browse-topics-followup",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
           "name": "show-schedule-followup",
           "parameters": {},
-          "lifespan": 0
+          "lifespan": 2
         },
         {
           "name": "browse-sessions-followup",
           "parameters": {},
-          "lifespan": 2
-        }
-      ],
-      "parameters": [
+          "lifespan": 0
+        },
         {
-          "id": "774b0840-ca79-4410-8943-41d769b66702",
-          "required": true,
-          "dataType": "@topics",
-          "name": "topic",
-          "value": "$topic",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "Which topic do you want to hear about?"
-            }
-          ],
-          "isList": false
+          "name": "browse-topics-followup",
+          "parameters": {},
+          "lifespan": 0
         }
       ],
+      "parameters": [],
       "messages": [
         {
           "type": 0,
@@ -53,7 +38,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524548996,
+  "lastUpdate": 1524548945,
   "fallbackIntent": false,
   "events": []
 }

@@ -98,7 +98,7 @@ class ConferenceData {
       });
     }).catch((error) => {
       console.error(`Error getting complete topic list: ${error}`);
-      reject(error);
+      throw error;
     });
   }
 
@@ -197,6 +197,32 @@ class ConferenceData {
         }
       }, (error) => {
         console.error(`Error finding session by id: ${error}`);
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * Method for fetching set of session data by set of session ID.
+   *
+   * @param {Array<string>} ids
+   * @return {Promise} A promise that resolves with array of found sessions.
+   */
+  sessionsById(ids) {
+    if (ids.length === 0) {
+      return Promise.resolve([]);
+    }
+    return new Promise((resolve, reject) => {
+      this.data_((data) => {
+        const returnSessions = data.sessions.filter((dataSession) => {
+          return ids.includes(dataSession.id);
+        });
+        for (let returnSession of returnSessions) {
+          returnSession.title = returnSession.title.replace('[Session] ', '');
+        }
+        resolve(returnSessions);
+      }, (error) => {
+        console.error(`Error finding sessions by id's: ${error}`);
         reject(error);
       });
     });
