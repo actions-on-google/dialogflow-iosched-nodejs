@@ -20,7 +20,7 @@ const {
 /* eslint-disable max-len*/
 const browseTopics = (items=[], spokenIntro) => {
   spokenIntro = spokenIntro || {
-    speech: `Here's a taste of what's coming at I O. They've got`,
+    speech: `<speak>Here's a taste of what's coming at I O. They've got<break time="500ms"/></speak>`,
     text: `Here's a taste of what's coming at I/O. They've got`,
   };
   const screenItems = items.reduce((itemsObj, topic) => {
@@ -32,7 +32,7 @@ const browseTopics = (items=[], spokenIntro) => {
   const spokenNames = items.map((topic) => sanitizeSsml(topic.name));
   const speakerItems = spokenNames.slice(0, spokenNames.length - 1)
     .join(', <break time="300ms"/>') +
-    ' and <break time="300ms"/>' + spokenNames[spokenNames.length-1];
+    '<break time="300ms"/> and ' + spokenNames[spokenNames.length-1];
 
   return {
     'presentItems': {
@@ -53,6 +53,11 @@ const browseTopics = (items=[], spokenIntro) => {
                 }),
               ],
             ],
+            'suggestions': {
+              'required': [
+                'None of those',
+              ],
+            },
             'fallback': [
               {
                 'elements': [`Sorry, which topic was that?`],
@@ -231,7 +236,7 @@ const browseSessions = (items=[], topic='that topic',
             ],
             'suggestions': {
               'required': [
-                'What else?',
+                'None of those',
               ],
             },
             'fallback': [

@@ -1,6 +1,6 @@
 {
-  "id": "40bd9420-6dc7-4df3-b613-8a186e9d4d36",
-  "name": "no-input",
+  "id": "db4f57cc-6e70-4677-baf4-33026797a2d9",
+  "name": "coming_soon",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -12,7 +12,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": []
+          "speech": "That feature is coming soon! In the meantime, is there something else I can help with?"
         }
       ],
       "defaultResponsePlatforms": {},
@@ -20,13 +20,9 @@
     }
   ],
   "priority": 500000,
-  "webhookUsed": true,
+  "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1523252638,
+  "lastUpdate": 1524185150,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "actions_intent_NO_INPUT"
-    }
-  ]
+  "events": []
 }

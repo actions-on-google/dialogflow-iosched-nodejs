@@ -81,7 +81,7 @@ exports.defaultNoInputPrompts = [
 
 exports.goodbye = [
   new SimpleResponse({
-    speech: `<speak><prosody rate="x-fast">OK.</prosody> <prosody rate="fast">Hope to talk to you again soon.</prosody></speak>`,
+    speech: `<speak><prosody rate="fast">OK.</prosody> Hope to talk to you again soon.</speak>`,
     text: `OK. Hope to talk to you again soon.`,
   }),
   new SimpleResponse({

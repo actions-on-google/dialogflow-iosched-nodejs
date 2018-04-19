@@ -207,7 +207,7 @@ module.exports = {
   'date': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> This year’s developer festival will be held May <say-as interpret-as="ordinal">8</say-as> through <say-as interpret-as="ordinal">10</say-as> at the Shoreline Amphitheatre. That's in, Mountain View, California, <break time="250ms"/> next to Google's main campus.<break time="750ms"/></speak>`,
+        speech: `<speak>This year’s developer festival will be held May <say-as interpret-as="ordinal">8</say-as> through <say-as interpret-as="ordinal">10</say-as> at the Shoreline Amphitheatre. That's in, Mountain View, California, <break time="250ms"/> next to Google's main campus.<break time="750ms"/></speak>`,
         text: `This years developer festival will be held May 8-10 at the Shoreline Amphitheatre in Mountain View, CA`,
       }),
     ]),
@@ -215,8 +215,8 @@ module.exports = {
   'keynote': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak>There're actually two keynotes this year, <break time="250ms"/> since one keynote won't be enough to hold all the announcements Google's eager to share with developers. CEO Sundar Pichai will kick things off on May 8th at 10AM Pacific Standard Time. If you're attending, you'll be able to grab some lunch before the second keynote at 12:45PM. <break time="1s"/> Pro-Tip:<break time="500ms"/> <prosody rate="110%">The best seats will be assigned on a first-come, first-served basis, during badge pickup.</prosody> So, plan to arrive early. <break time="750ms"/>Of course, those of you watching via livestream will already have the best view.<break time="750ms"/></speak>`,
-        text: `There're 2 keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. The second keynote starts at 12:45PM. PRO-TIP: The best seats will be assigned on a first-come, first-served basis during badge pickup beginning at 7AM on May 7th, so plan to arrive early.`,
+        speech: `<speak>There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. <prosody rate="110%">If you're attending, the best seats will be assigned on a first-come, first-served basis, during badge pickup.</prosody> So, plan to arrive early. <break time="750ms"/>If you're not attending, get the best view by watching the livestream.<break time="750ms"/></speak>`,
+        text: `There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. If you're attending, the best seats will be assigned on a first-come, first-served basis during badge pickup. So, plan to arrive early. If you're not attending, get the best view by watching the livestream.`,
       }),
     ]),
   },
@@ -255,27 +255,27 @@ module.exports = {
   'afterParty': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> These are two nights you don’t want to miss! Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over. Both After Hours events will be hosted at Shoreline Amphitheatre, and your attendee badge is required for entrance.<break time="750ms"/></speak>`,
-        text: `These are two nights you don't want to miss! Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over. Both After Hours events will be hosted at Shoreline Amphitheatre, and your attendee badge is required for entrance.`,
+        speech: `<speak>Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over.<break time="750ms"/></speak>`,
+        text: `Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over.`,
       }),
     ]),
   },
   'watchRemotely': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> It'll be easy to stay plugged into what's happening at IO. All the keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. But if you're looking for something a little more social, you can attend or host an extended viewing party. Last year, developers all over the world created their own mini IO gatherings. 534 of them to be exact. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
-        text: `It'll be easy to stay plugged into what's happening at I/O. All the keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. But if you're looking for something a little more social, you can attend or host an extended viewing party. Last year, developers all over the world created their own mini IO gatherings. 534 of them to be exact. Find out more at events.google.com/IO.`,
+        speech: `<speak>The keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. You can also attend or host an extended viewing party. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
+        text: `Watch the keynotes and sessions via livestream or on the Google Developers YouTube channel. You can also attend or host an extended viewing party. Find out more at events.google.com/IO.`,
       }),
     ]),
   },
   'announcements': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> So you want to know what will be announced? Yeah, I can't really answer that. Just guess!<break time="750ms"/></speak>`,
+        speech: `<speak>So you want to know what will be announced? Yeah, I can't really answer that. Just guess!<break time="750ms"/></speak>`,
         text: `So you want to know what will be announced? Yeah, I can't really answer that. Just guess!`,
       }),
       new SimpleResponse({
-        speech: `<speak> You wanna know about the juicy stuff happening this year? Well, I guess you’ll just have to wait and find out at the event.<break time="750ms"/></speak>`,
+        speech: `<speak>You wanna know about the juicy stuff happening this year? Well, I guess you’ll just have to wait and find out at the event.<break time="750ms"/></speak>`,
         text: `You wanna know about the juicy stuff happening this year? Well, I guess you'll just have to wait and find out at the event.`,
       }),
     ]),
@@ -283,7 +283,7 @@ module.exports = {
   'lostAndFound': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> The lost and found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google IO badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference! <break time="750ms"/></speak>`,
+        speech: `<speak>The lost and found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google IO badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference! <break time="750ms"/></speak>`,
         text: `The lost & found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google I/O badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference!`,
       }),
     ]),
@@ -291,7 +291,7 @@ module.exports = {
   'whatToWear': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> Google IO is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.<break time="750ms"/></speak>`,
+        speech: `<speak>Google IO is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.<break time="750ms"/></speak>`,
         text: `Google I/O is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.`,
       }),
     ]),
