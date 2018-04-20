@@ -13,7 +13,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": "Greetings!"
+          "speech": "As the Keeper of I/O Specific Knowledge, consider me your guide. So, what do you want to know about I/O?"
         }
       ],
       "defaultResponsePlatforms": {},
@@ -23,7 +23,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1523250369,
+  "lastUpdate": 1524237824,
   "fallbackIntent": false,
   "events": [
     {

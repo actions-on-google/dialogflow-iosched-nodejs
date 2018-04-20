@@ -13,20 +13,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": [
-            "I didn\u0027t get that. Can you say it again?",
-            "I missed what you said. Say it again?",
-            "Sorry, could you say that again?",
-            "Sorry, can you say that again?",
-            "Can you say that again?",
-            "Sorry, I didn\u0027t get that.",
-            "Sorry, what was that?",
-            "One more time?",
-            "What was that?",
-            "Say that again?",
-            "I didn\u0027t get that.",
-            "I missed that."
-          ]
+          "speech": "Sorry. That\u0027s beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?"
         }
       ],
       "defaultResponsePlatforms": {},
@@ -36,7 +23,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1523248146,
+  "lastUpdate": 1524376173,
   "fallbackIntent": true,
   "events": []
 }

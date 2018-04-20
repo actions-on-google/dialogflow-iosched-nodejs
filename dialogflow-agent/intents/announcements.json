@@ -17,7 +17,13 @@
           "isList": false
         }
       ],
-      "messages": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+        }
+      ],
       "defaultResponsePlatforms": {},
       "speech": []
     }
@@ -25,7 +31,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1523648827,
+  "lastUpdate": 1524237512,
   "fallbackIntent": false,
   "events": []
 }

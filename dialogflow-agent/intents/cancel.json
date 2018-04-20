@@ -12,7 +12,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": []
+          "speech": "Come back if there\u0027s anything else IO you\u0027d like to know."
         }
       ],
       "defaultResponsePlatforms": {},
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524183939,
+  "lastUpdate": 1524237657,
   "fallbackIntent": false,
   "events": [
     {
