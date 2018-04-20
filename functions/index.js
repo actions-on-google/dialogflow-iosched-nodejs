@@ -51,6 +51,8 @@ app.middleware((conv) => {
   conv.conference = new ConferenceData();
 });
 
+app.intent('menu', static.prompt);
+
 app.intent('welcome', static.prompt);
 
 app.intent('date', static.prompt);

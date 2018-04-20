@@ -16,24 +16,151 @@ const {
 } = require('actions-on-google');
 
 /* eslint-disable max-len*/
+const menuFirstTime = (prefixPrompts) => {
+  const elements = [
+    [
+      new SimpleResponse({
+        speech: `<speak>As the Keeper of IO Specific Knowledge, consider me your guide. I can help you plan for IO by telling you about when it's happening, or how to watch remotely. You can also browse topics. So, what do you want to know?</speak>`,
+        text: `As the Keeper of I/O Specific Knowledge, consider me your guide. So, what do you want to know about I/O?`,
+      }),
+    ],
+  ];
+  if (prefixPrompts) {
+    elements.unshift(prefixPrompts);
+  }
+  return {
+    'screen/speaker': [
+      {
+        'elements': elements,
+        'suggestions': {
+          'required': [
+            'When is it?',
+            'How to watch remotely',
+            'Browse topics',
+            'Keynotes',
+            'Where is it?',
+          ],
+          'randomized': [
+
+          ],
+        },
+      },
+    ],
+  };
+};
+
+const menuRepeat = (prefixPrompts) => {
+  const elementList = [
+    [
+      [
+        new SimpleResponse({
+          speech: `<speak>I can tell you more about IO. For example, you might like to know about the keynote, <break time="250ms"/>or codelabs. <break time="500ms"/>You can also browse topics.<break time="250ms"/> So, what do you want to know?</speak>`,
+          text: `I can tell you more about I/O. What do you want to know?`,
+        }),
+      ],
+    ],
+    [
+      [
+        new SimpleResponse({
+          speech: `<speak>I have all kinds of info on IO, <break time="250ms"/>from codelabs and sandboxes, <break time="250ms"/>to the keynotes and sessions. So, tell me what you want to know about.</speak>`,
+          text: `I have all kinds of info on I/O, so, tell me what you want to know.`,
+        }),
+      ],
+    ],
+    [
+      [
+        new SimpleResponse({
+          speech: `<speak>All of my expertise, as keeper of IO specific knowledge <break time="200ms"/> is at your disposal. You can browse topics, <break time="250ms"/>manage your schedule, <break time="250ms"/>or ask about the food, swag, or after parties.  So, what's your query?</speak>`,
+          text: `All of my expertise as keeper of I/O-specific knowledge is at your disposal. So, what's your query?`,
+        }),
+      ],
+    ],
+    [
+      [
+        new SimpleResponse({
+          speech: `<speak>I've got more info about IO. You might be interested in where it's happening or how you can watch remotely. You can also browse topics. So, what are you interested in?</speak>`,
+          text: `I've got more info about I/O. What are you interested in?`,
+        }),
+      ],
+    ],
+  ];
+  if (prefixPrompts) {
+    elementList.forEach((element) =>
+      element.unshift(prefixPrompts));
+  }
+  return {
+    'screen/speaker': [
+      {
+        'elements': elementList[0],
+        'suggestions': {
+          'required': [
+            'Keynotes',
+            'What are codelabs?',
+            'Browse topics',
+          ],
+          'randomized': [
+            'Find office hours',
+          ],
+        },
+      },
+      {
+        'elements': elementList[1],
+        'suggestions': {
+          'required': [
+            'Codelabs and sandboxes',
+            'Keynotes',
+            'Browse sessions',
+          ],
+        },
+      },
+      {
+        'elements': elementList[2],
+        'suggestions': {
+          'required': [
+            'Browse topics',
+            'Manage my schedule',
+            'Will there be food?',
+            'Is there swag?',
+            `When's the after party?`,
+          ],
+        },
+      },
+      {
+        'elements': elementList[3],
+        'suggestions': {
+          'required': [
+            'Where is it?',
+            'How can I watch remotely?',
+            'Browse topics',
+          ],
+          'randomized': [
+            'Find office hours',
+            'Keynotes',
+          ],
+        },
+      },
+    ],
+  };
+};
+
 const welcomeReentry = (prefixPrompts) => [
   {
     'elements': [
       prefixPrompts,
       [
         new SimpleResponse({
-          speech: `Now, you can search for talks, manage your viewing schedule, or ask me anything else you want to know about IO.`,
+          speech: `Now, you can browse topics, manage your schedule, or ask me anything else you want to know about IO.`,
           text: `Now, you can ask me anything else you want to know about I/O.`,
         }),
       ],
     ],
     'suggestions': {
       'required': [
-        'Search for talks',
+        'Browse topics',
         'Manage my schedule',
       ],
       'randomized': [
-        'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+        'Where is it?', 'How can I watch remotely?', 'Keynotes', `Find office hours`,
         'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
       ],
     },
@@ -50,8 +177,8 @@ const welcomeReentry = (prefixPrompts) => [
     ],
     'suggestions': {
       'required': [
-        'Tell me about keynotes',
-        'Tell me about sessions',
+        'Keynotes',
+        'Browse topics',
       ],
       'randomized': [
         'Where is it?', 'How can I watch remotely?', `Find office hours`,
@@ -63,117 +190,19 @@ const welcomeReentry = (prefixPrompts) => [
 
 module.exports = {
   'welcome': {
-    'firstTime': {
-      'screen/speaker': [
-        {
-          'elements': [
-            [
-              new SimpleResponse({
-                speech: `Welcome to your launchpad for all things Google IO.`,
-                text: `Welcome to your launchpad for all things Google I/O.`,
-              }),
-            ],
-            [
-              new SimpleResponse({
-                speech: `<speak>As the Keeper of IO Specific Knowledge, consider me your guide. I can help you plan for IO by telling you about when it's happening, or how to watch remotely. I can also search for talks. So, what do you want to know?</speak>`,
-                text: `As the Keeper of I/O Specific Knowledge, consider me your guide. So, what do you want to know about I/O?`,
-              }),
-            ],
-          ],
-          'suggestions': {
-            'required': [
-              'When is it?',
-              'How can I watch remotely?',
-              'Search for talks',
-              'Tell me about keynotes',
-            ],
-            'randomized': [
-
-            ],
-          },
-        },
-      ],
-    },
-    'repeat': {
-      'screen/speaker': [
-        {
-          'elements': [
-            [
-              'Hi again',
-              'Welcome back',
-            ],
-            [
-              new SimpleResponse({
-                speech: `<speak>I can tell you more about IO. For example, you might like to know about the keynote, <break time="250ms"/>or app reviews. <break time="500ms"/>I can also help you find sessions, <break time="250ms"/>or office hours. So, what do you want to know?</speak>`,
-                text: `I can tell you more about I/O. What do you want to know?`,
-              }),
-            ],
-          ],
-          'suggestions': {
-            'required': [
-              'Tell me about keynotes', 'What are codelabs?', 'Can I get my app reviewed', 'Browse sessions', 'Find office hours',
-            ],
-          },
-        },
-        {
-          'elements': [
-            [
-              'Hi again',
-              'Welcome back',
-            ],
-            [
-              new SimpleResponse({
-                speech: `<speak>I have all kinds of info on IO, <break time="250ms"/>from codelabs and sandboxes, <break time="250ms"/>to the keynotes and sessions. So, tell me what you want to know about.</speak>`,
-                text: `I have all kinds of info on I/O, so, tell me what you want to know.`,
-              }),
-            ],
-          ],
-          'suggestions': {
-            'required': [
-              'Codelabs and sandboxes', 'Tell me about keynotes', 'Browse sessions',
-            ],
-          },
-        },
-        {
-          'elements': [
-            [
-              'Hi again',
-              'Welcome back',
-            ],
-            [
-              new SimpleResponse({
-                speech: `<speak>All of my expertise, as keeper of IO specific knowledge <break time="200ms"/> is at your disposal. You can search for talks, <break time="250ms"/>manage your viewing schedule, <break time="250ms"/>or ask to hear about things like the food, swag, and after parties.  So, what's your query?</speak>`,
-                text: `All of my expertise as keeper of I/O specific knowledge is at your disposal. So, what's your query?`,
-              }),
-            ],
-          ],
-          'suggestions': {
-            'required': [
-              'Search for talks', 'Manage my schedule', 'Will there be food?', 'Is there swag?', `When's the after party?`,
-            ],
-          },
-        },
-        {
-          'elements': [
-            [
-              'Hi again',
-              'Welcome back',
-            ],
-            [
-              new SimpleResponse({
-                speech: `<speak>I've got more info about IO. You might be interested in where it's happening or how you can watch remotely. I can also tell you about the keynotes, sessions, and office hours. So, what are you interested in?</speak>`,
-                text: `I've got more info about I/O. What are you interested in?`,
-              }),
-            ],
-          ],
-          'suggestions': {
-            'required': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', 'Browse sessions', `Find office hours`,
-            ],
-          },
-        },
-      ],
-    },
+    'firstTime': menuFirstTime([
+      new SimpleResponse({
+        speech: `Welcome to your launchpad for all things Google IO.`,
+        text: `Welcome to your launchpad for all things Google I/O.`,
+      }),
+    ]),
+    'repeat': menuRepeat([
+      'Hi again',
+      'Welcome back',
+    ]),
+  },
+  'menu': {
+    'firstTime/repeat': menuRepeat(),
   },
   'date': {
     'firstTime/repeat': welcomeReentry([
