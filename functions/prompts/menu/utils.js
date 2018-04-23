@@ -110,6 +110,7 @@ const browseSessions = (conv, tag) => {
       conv,
       itemsPromise: Promise.resolve(sessions),
       prompts: prompts(tag.name, sessions.length),
+      maxAudio: 2,
     });
   });
 };
@@ -121,6 +122,7 @@ const browseSessionsNext = (conv) => {
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
     prompts: prompts(conv.data.sessionsTag),
+    maxAudio: 2,
   });
 };
 
@@ -131,6 +133,7 @@ const browseSessionsRepeat = (conv) => {
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
     prompts: prompts(conv.data.sessionsTag),
+    maxAudio: 2,
   });
 };
 

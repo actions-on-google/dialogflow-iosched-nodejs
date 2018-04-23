@@ -15,7 +15,10 @@ const {
   SimpleResponse,
   List,
   BasicCard,
+  Button,
 } = require('actions-on-google');
+
+const moment = require('moment-timezone');
 
 /* eslint-disable max-len*/
 const browseTopics = (items=[], spokenIntro) => {
@@ -56,6 +59,15 @@ const browseTopics = (items=[], spokenIntro) => {
             'suggestions': {
               'required': [
                 'None of those',
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
               ],
             },
             'fallback': [
@@ -122,6 +134,19 @@ const browseTopics = (items=[], spokenIntro) => {
                 }),
               ],
             ],
+            'suggestions': {
+              'required': [
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
+              ],
+            },
           },
         ],
       },
@@ -142,11 +167,11 @@ const browseSessionsFirstSet = (topic, totalItems) => {
     speech: `There's ${totalItems} sessions on ${topic}. Here's the first two.`,
     text: `There's ${totalItems} sessions on ${topic}. Here's the first two.`,
   };
-  const displayIntro = (items) =>
+  const displayIntro = (items=[]) =>
     (`There's ${totalItems} sessions on ${topic}. `) +
     (items.length !== totalItems ? `Here are ${items.length}. ` : '') +
     (`Which most interests you?`);
-  const itemsToSpeech = (items) => {
+  const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
   };
@@ -160,7 +185,7 @@ const browseSessionsNext = (topic='that topic') => {
     text: `There's also`,
   };
   const displayIntro = () => `There's also these options.`;
-  const itemsToSpeech = (items) => {
+  const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
@@ -173,8 +198,8 @@ const browseSessionsRepeat = (topic='that topic') => {
     speech: `Again, those are`,
     text: `Again, those are`,
   };
-  const displayIntro = (items) => `Here are the options again.`;
-  const itemsToSpeech = (items) => {
+  const displayIntro = () => `Here are the options again.`;
+  const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
@@ -184,10 +209,16 @@ const browseSessionsRepeat = (topic='that topic') => {
 
 const browseSessions = (items=[], topic='that topic',
   spokenIntro, displayIntro, speakerItems) => {
+  spokenIntro = spokenIntro || {
+    speech: `Here are some sessions`,
+    text: `Here are some sessions`,
+  };
+  displayIntro = displayIntro || (() => `Here are some sessions`);
   topic = sanitizeSsml(topic);
   const screenItems = items.reduce((itemsObj, session) => {
     itemsObj[session.id] = {
       title: session.title,
+      description: moment(session.startTimestamp).tz('America/Los_Angeles').format('ddd MMM D h:mmA'),
     };
     return itemsObj;
   }, {});
@@ -204,6 +235,20 @@ const browseSessions = (items=[], topic='that topic',
                 }),
               ],
             ],
+            'suggestions': {
+              'required': [
+                'Sure',
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
+              ],
+            },
             'noInput': [
               `Do you want to hear more?`,
               `Do you want to hear more about that session?`,
@@ -237,6 +282,15 @@ const browseSessions = (items=[], topic='that topic',
             'suggestions': {
               'required': [
                 'None of those',
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
               ],
             },
             'fallback': [
@@ -276,7 +330,7 @@ const browseSessions = (items=[], topic='that topic',
       'firstTime/repeat': {
         'screen/speaker': [
           {
-            elements: [
+            'elements': [
               [
                 new SimpleResponse({
                   speech: `Well that's a 500 error. I can't access the sessions right now, so is there something else I can help you with?`,
@@ -284,6 +338,18 @@ const browseSessions = (items=[], topic='that topic',
                 }),
               ],
             ],
+            'suggestions': {
+              'required': [
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
+              ],
+            },
           },
         ],
       },
@@ -292,7 +358,7 @@ const browseSessions = (items=[], topic='that topic',
       'firstTime/repeat': {
         'screen/speaker': [
           {
-            elements: [
+            'elements': [
               [
                 new SimpleResponse({
                   speech: `That was all the sessions. So, let me know if you want to hear them again, or do something else?`,
@@ -300,6 +366,20 @@ const browseSessions = (items=[], topic='that topic',
                 }),
               ],
             ],
+            'suggestions': {
+              'required': [
+                'Other topics',
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
+              ],
+            },
           },
         ],
       },
@@ -341,12 +421,20 @@ const showSession = (session, prefixes, postfixes) => {
       text: `Here's a more detailed description.`,
     }),
   ];
-  postfixes = postfixes || [
-    new SimpleResponse({
-      speech: `<speak>Now, do you want me to repeat that,<break time="250ms"/> add it to your schedule,<break time="250ms"/> or tell you about other sessions?</speak>`,
-      text: `Now, do you want me to repeat that, add it to your schedule, or tell you about other sessions?`,
-    }),
-  ];
+  postfixes = postfixes || {
+    'screen': [
+      new SimpleResponse({
+        speech: `<speak>Now, do you want to choose another topic, <break time="250ms"/>or do something else?</speak>`,
+        text: `Now, do you want to choose another topic, or do something else?`,
+      }),
+    ],
+    'speaker': [
+      new SimpleResponse({
+        speech: `<speak>Now, do you want to repeat that, <break time="250ms"/>choose another topic, <break time="250ms"/>or do something else?</speak>`,
+        text: `Now, do you want to repeat that, choose another topic, or do something else?`,
+      }),
+    ],
+  };
   return {
     'presentSession': {
       'firstTime/repeat': {
@@ -357,11 +445,32 @@ const showSession = (session, prefixes, postfixes) => {
               [
                 new BasicCard({
                   title: session.title,
+                  subtitle: moment(session.startTimestamp).tz('America/Los_Angeles').format('ddd MMM D h:mmA'),
                   text: session.description,
+                  buttons: [
+                    new Button({
+                      title: 'Add to my schedule',
+                      url: `https://events.google.com/io/schedule/?sid=${session.id}`,
+                    }),
+                  ],
                 }),
               ],
-              postfixes,
+              postfixes.screen,
             ],
+            'suggestions': {
+              'required': [
+                'Other topics',
+                'Do something else',
+              ],
+              'randomized': [
+                'How can I watch remotely?',
+                'Keynotes',
+                'Will there be food?',
+                'Is there swag?',
+                `When's the after party?`,
+                'Codelabs and sandboxes',
+              ],
+            },
             'noInput': [
               `I can repeat that, or tell you about other sessions.`,
               `Do you want me to repeat that, or tell you about other sessions?`,
@@ -383,7 +492,7 @@ const showSession = (session, prefixes, postfixes) => {
                 return prefix.textToSpeech
                   .replace('</speak>', `${session.description}</speak>`);
               }),
-              postfixes,
+              postfixes.speaker,
             ],
             'noInput': [
               `I can repeat that, or tell you about other sessions.`,
@@ -427,12 +536,20 @@ const showSessionRepeat = (session) => {
       text: `Here's that description again.`,
     }),
   ];
-  const postfixes = [
-    new SimpleResponse({
-      speech: `You can add it to your schedule, or hear more sessions.`,
-      text: `You can add it to your schedule, or hear more sessions.`,
-    }),
-  ];
+  const postfixes = {
+    'screen': [
+      new SimpleResponse({
+        speech: `I can repeat that again, or tell you about other topics.`,
+        text: `I can repeat that again, or tell you about other topics.`,
+      }),
+    ],
+    'speaker': [
+      new SimpleResponse({
+        speech: `I can repeat that again, or tell you about other topics.`,
+        text: `I can repeat that again, or tell you about other topics.`,
+      }),
+    ],
+  };
   return showSession(session, prefixes, postfixes);
 };
 
