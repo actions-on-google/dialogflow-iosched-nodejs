@@ -10,19 +10,43 @@
       "parameters": [],
       "messages": [
         {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "lang": "en",
+          "suggestions": [
+            {
+              "title": "Do something else"
+            },
+            {
+              "title": "Keynotes"
+            },
+            {
+              "title": "How can I watch remotely?"
+            },
+            {
+              "title": "Is there swag?"
+            },
+            {
+              "title": "Browse topics"
+            }
+          ]
+        },
+        {
           "type": 0,
           "lang": "en",
           "speech": "That feature is coming soon! In the meantime, is there something else I can help with?"
         }
       ],
-      "defaultResponsePlatforms": {},
+      "defaultResponsePlatforms": {
+        "google": true
+      },
       "speech": []
     }
   ],
   "priority": 500000,
   "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524185150,
+  "lastUpdate": 1524523862,
   "fallbackIntent": false,
   "events": []
 }

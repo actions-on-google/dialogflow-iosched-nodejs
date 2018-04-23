@@ -230,8 +230,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `The last session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
-                  text: `The last session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  speech: `The only session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  text: `The only session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
                 }),
               ],
             ],
