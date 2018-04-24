@@ -145,12 +145,12 @@ const showSession = (conv, {sessionId, ordinalChoice}) => {
     // User tapped on session list
     sessionId = conv.arguments.get('OPTION');
   } else if (ordinalChoice && ordinalChoice === 'second' &&
-    conv.data.currentOptions && conv.data.currentOptions[1]) {
+    conv.data.currentItems && conv.data.currentItems[1]) {
       // User said e.g. 'the second one'
-      sessionId = conv.data.currentOptions[1].id;
-  } else if (conv.data.currentOptions && conv.data.currentOptions[0]) {
+      sessionId = conv.data.currentItems[1].id;
+  } else if (conv.data.currentItems && conv.data.currentItems[0]) {
     // User said e.g. 'the first one' or 'yes'
-    sessionId = conv.data.currentOptions[0].id;
+    sessionId = conv.data.currentItems[0].id;
   }
   console.log(`Showing session with ID: ${sessionId}`);
   return conv.conference.session(sessionId).then((session) => {
