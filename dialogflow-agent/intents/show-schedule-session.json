@@ -15,6 +15,11 @@
         {
           "name": "show-schedule-session-followup",
           "parameters": {},
+          "lifespan": 2
+        },
+        {
+          "name": "show-schedule-followup",
+          "parameters": {},
           "lifespan": 0
         }
       ],
@@ -23,8 +28,8 @@
           "id": "f96e8398-fce0-4011-9064-cc1d29c413eb",
           "required": false,
           "dataType": "@ordinal-choice",
-          "name": "ordinal-choice",
-          "value": "$ordinal-choice",
+          "name": "ordinalChoice",
+          "value": "$ordinalChoice",
           "isList": false
         },
         {
@@ -50,7 +55,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524543124,
+  "lastUpdate": 1524605162,
   "fallbackIntent": false,
   "events": [
     {

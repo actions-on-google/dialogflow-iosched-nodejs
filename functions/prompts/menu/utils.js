@@ -153,7 +153,9 @@ const showSessionRepeat = (conv) => {
   console.log('Repeating previously shown session');
   const prompts = require('./'+conv.phase+'.js')['show-session-repeat'];
   if (conv.data.sessionShown) {
-    return parse(conv, prompts(conv.data.sessionShown)['presentSession']);
+    return parse(conv, prompts({
+      session: conv.data.sessionShown,
+    })['presentSession']);
   } else {
     console.error(`Error repeating session: ${error}`);
     return parse(conv, prompts().error);

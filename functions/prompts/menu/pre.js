@@ -532,7 +532,7 @@ const showSession = ({session, prefixes, postfixes, buttonText,
   };
 };
 
-const showSessionRepeat = (session) => {
+const showSessionRepeat = ({session}) => {
   const prefixes = [
     new SimpleResponse({
       speech: `<speak>Here's that description again.<break time="250ms"/></speak>`,
@@ -556,7 +556,7 @@ const showSessionRepeat = (session) => {
   return showSession({session, prefixes, postfixes});
 };
 
-const showScheduleSession = (session) => {
+const showScheduleSession = ({session}) => {
   const postfixes = {
     'screen': [
       new SimpleResponse({
