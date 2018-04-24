@@ -49,6 +49,8 @@ app.middleware((conv) => {
     conv.data.noInputResponses = [];
   }
   conv.conference = new ConferenceData();
+  conv.screen = conv.surface.capabilities
+    .has('actions.capability.SCREEN_OUTPUT');
 });
 
 app.intent('menu', static.prompt);

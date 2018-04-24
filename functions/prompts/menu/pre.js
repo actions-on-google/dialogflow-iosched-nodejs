@@ -20,6 +20,8 @@ const {
 
 const moment = require('moment-timezone');
 
+const {sanitizeSsml} = require('../common/utils');
+
 /* eslint-disable max-len*/
 const browseTopics = (items=[], spokenIntro) => {
   spokenIntro = spokenIntro || {
@@ -552,8 +554,6 @@ const showSessionRepeat = (session) => {
   };
   return showSession(session, prefixes, postfixes);
 };
-
-const sanitizeSsml = (str) => str.replace('&', 'and').replace('AR', 'A R');
 
 module.exports = {
   'browse-topics': browseTopics,

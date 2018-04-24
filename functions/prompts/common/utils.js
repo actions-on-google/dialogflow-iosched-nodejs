@@ -16,6 +16,8 @@ const {
 } = require('actions-on-google');
 
 const MAX_SUGGESTIONS = 8;
+const DEFAULT_SCREEN_MAX = 30;
+const DEFAULT_AUDIO_MAX = 6;
 
 // Returns a single random element from some array
 const getSingleRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -84,8 +86,7 @@ exports.parse = (conv, prompts) => {
     let responseVariations = prompts[conv.isRepeat] ||
       prompts['firstTime/repeat'];
     // Check for the appropriate surface variants to use (phone, speaker, etc)
-    if (responseVariations.screen &&
-      conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+    if (responseVariations.screen && conv.screen) {
         responseVariations = responseVariations.screen;
       } else if (responseVariations.speaker) {
       responseVariations = responseVariations.speaker;
@@ -110,3 +111,37 @@ exports.parse = (conv, prompts) => {
     return;
   }
 };
+
+/**
+ * Based on the parameters, displays a browsing prompt to the user.
+ *
+ * @param {Object} options
+ * @param {Object} options.conv Client library conversation object.
+ * @param {Promise} options.itemsPromise Promise which resolves with array of
+ *     items.
+ * @param {Function} options.prompts Function which returns the prompts object.
+ * @param {boolean} options.maxScreen Max items to show on screen.
+ * @param {boolean} options.maxAudio Max items to say on speaker.
+ * @param {Function=} options.sort Function by which to sort browsed items.
+ * @return {Promise} Promise which resolves with the parsed response.
+ */
+exports.browse = ({conv, itemsPromise, prompts,
+  maxScreen=DEFAULT_SCREEN_MAX, maxAudio=DEFAULT_AUDIO_MAX, sort}) => {
+    return itemsPromise.then((items) => {
+      if (!items || items.length === 0) {
+        return exports.parse(conv, prompts().emptyOptions);
+      };
+      // Sort items and split into current and next set to present.
+      items.sort(sort);
+      const currentItems = items.slice(0, conv.screen ? maxScreen : maxAudio);
+      const nextItems = items.slice(conv.screen ? maxScreen : maxAudio);
+      conv.data.currentItems = currentItems;
+      conv.data.nextItems = nextItems;
+      return exports.parse(conv, prompts(currentItems).presentItems);
+    }).catch((error) => {
+      console.error(`Error with browsing prompt: ${error}`);
+      return exports.parse(conv, prompts().error);
+    });
+};
+
+exports.sanitizeSsml = (str) => str.replace('&', 'and').replace('AR', 'A R');

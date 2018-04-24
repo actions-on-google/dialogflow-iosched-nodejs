@@ -15,43 +15,12 @@
 const {
   parse,
   fallback,
+  browse,
 } = require('../common/utils');
 
-const DEFAULT_SCREEN_MAX = 30;
-const DEFAULT_AUDIO_MAX = 6;
-
-/**
- * Based on the parameters, displays a browsing prompt to the user.
- *
- * @param {Object} options
- * @param {Object} options.conv Client library conversation object.
- * @param {Promise} options.itemsPromise Promise which resolves with array of
- *     items.
- * @param {Function} options.prompts Function which returns the prompts object.
- * @param {boolean} options.maxScreen Max items to show on screen.
- * @param {boolean} options.maxAudio Max items to say on speaker.
- * @return {Promise} Promise which resolves with the parsed response.
- */
-const browse = ({conv, itemsPromise, prompts,
-  maxScreen=DEFAULT_SCREEN_MAX, maxAudio=DEFAULT_AUDIO_MAX}) => {
-    return itemsPromise.then((items) => {
-      if (!items || items.length === 0) {
-        return parse(conv, prompts().emptyOptions);
-      };
-      // Shuffle items and split into current and next set to present.
-      items.sort(() => Math.random() - 0.5);
-      const hasScreen = conv.surface.capabilities
-        .has('actions.capability.SCREEN_OUTPUT');
-      const currentItems = items.slice(0, hasScreen ? maxScreen : maxAudio);
-      const nextItems = items.slice(hasScreen ? maxScreen : maxAudio);
-      conv.data.currentItems = currentItems;
-      conv.data.nextItems = nextItems;
-      return parse(conv, prompts(currentItems).presentItems);
-    }).catch((error) => {
-      console.error(`Error with browsing prompt: ${error}`);
-      return parse(conv, prompts().error);
-    });
-};
+const sortByName = (a, b) => a.name < b.name ? -1 : 1;
+const randomSort = () => Math.random() - 0.5;
+const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
 
 const browseTopics = (conv) => {
   console.log('Browsing for topics');
@@ -59,6 +28,7 @@ const browseTopics = (conv) => {
   return browse({
     conv,
     itemsPromise: conv.conference.topics(),
+    sort: conv.screen ? sortByName : randomSort,
     prompts,
   });
 };
@@ -69,6 +39,7 @@ const browseTopicsNext = (conv) => {
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
+    sort: conv.screen ? sortByName : randomSort,
     prompts,
   });
 };
@@ -79,6 +50,7 @@ const browseTopicsRepeat = (conv) => {
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
+    sort: conv.screen ? sortByName : randomSort,
     prompts,
   });
 };
@@ -110,6 +82,7 @@ const browseSessions = (conv, tag) => {
       conv,
       itemsPromise: Promise.resolve(sessions),
       prompts: prompts(tag.name, sessions.length),
+      sort: sortByTimestamp,
       maxAudio: 2,
     });
   });
@@ -122,6 +95,7 @@ const browseSessionsNext = (conv) => {
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
     prompts: prompts(conv.data.sessionsTag),
+    sort: sortByTimestamp,
     maxAudio: 2,
   });
 };
@@ -133,6 +107,7 @@ const browseSessionsRepeat = (conv) => {
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
     prompts: prompts(conv.data.sessionsTag),
+    sort: sortByTimestamp,
     maxAudio: 2,
   });
 };
