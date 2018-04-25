@@ -164,25 +164,25 @@ const browseTopicsNext = (items) => {
   return browseTopics(items, spokenIntro);
 };
 
-const browseSessionsFirstSet = (topic, totalItems) => {
+const browseSessionsFirstSet = (topic, totalItems, sessionType) => {
   const spokenIntro = {
-    speech: `There's ${totalItems} sessions on ${topic}. Here's the first two.`,
-    text: `There's ${totalItems} sessions on ${topic}. Here's the first two.`,
+    speech: `There's ${totalItems} ${sessionType} on ${topic}. Here's the first two.`,
+    text: `There's ${totalItems} ${sessionType} on ${topic}. Here's the first two.`,
   };
   const displayIntro = (items=[]) =>
     new SimpleResponse({
-      speech: `There's ${totalItems} sessions on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
-      text: `There's ${totalItems} sessions on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+      speech: `There's ${totalItems} ${sessionType} on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+      text: `There's ${totalItems} ${sessionType} on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
     });
   const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
   };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items), totalItems === 1 ? 'only' : 'last');
+    displayIntro, itemsToSpeech(items), sessionType, totalItems === 1 ? 'only' : 'last');
 };
 
-const browseSessionsNext = (topic='that topic') => {
+const browseSessionsNext = (topic='that topic', sessionType) => {
   const spokenIntro = {
     speech: `There's also`,
     text: `There's also`,
@@ -193,10 +193,10 @@ const browseSessionsNext = (topic='that topic') => {
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items));
+    displayIntro, itemsToSpeech(items), sessionType);
 };
 
-const browseSessionsRepeat = (topic='that topic') => {
+const browseSessionsRepeat = (topic='that topic', sessionType) => {
   const spokenIntro = {
     speech: `Again, those are`,
     text: `Again, those are`,
@@ -207,11 +207,11 @@ const browseSessionsRepeat = (topic='that topic') => {
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items));
+    displayIntro, itemsToSpeech(items), sessionType);
 };
 
 const browseSessions = (items=[], topic='that topic',
-  spokenIntro, displayIntro, speakerItems, lastItemPrefix='last') => {
+  spokenIntro, displayIntro, speakerItems, sessionType='sessions', lastItemPrefix='last') => {
   spokenIntro = spokenIntro || {
     speech: `Here are some sessions`,
     text: `Here are some sessions`,
@@ -224,6 +224,7 @@ const browseSessions = (items=[], topic='that topic',
     };
     return itemsObj;
   }, {});
+  const sessionTypeSingular = sessionType.slice(0, -1);
   return {
     'presentItems': items.length === 1 ? {
       'firstTime/repeat': {
@@ -232,8 +233,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `The ${lastItemPrefix} session on ${sanitizeSsml(topic)} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
-                  text: `The ${lastItemPrefix} session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  speech: `The ${lastItemPrefix} ${sessionTypeSingular} on ${sanitizeSsml(topic)} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  text: `The ${lastItemPrefix} ${sessionTypeSingular} on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
                 }),
               ],
             ],
@@ -253,7 +254,7 @@ const browseSessions = (items=[], topic='that topic',
             },
             'noInput': [
               `Do you want to hear more?`,
-              `Do you want to hear more about that session?`,
+              `Do you want to hear more about that ${sessionTypeSingular}?`,
             ],
             'fallback': [
               {
@@ -276,7 +277,7 @@ const browseSessions = (items=[], topic='that topic',
               ],
               [
                 new List({
-                  title: `Sessions on ${topic}`,
+                  title: `${sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} on ${topic}`,
                   items: screenItems,
                 }),
               ],
@@ -297,10 +298,10 @@ const browseSessions = (items=[], topic='that topic',
             },
             'fallback': [
               {
-                'elements': [`Sorry, which session was that?`],
+                'elements': [`Sorry, which ${sessionTypeSingular} was that?`],
               },
               {
-                'elements': [`I'm still not sure, so go ahead and pick a session from the list.`],
+                'elements': [`I'm still not sure, so go ahead and pick a ${sessionTypeSingular} from the list.`],
               },
             ],
           },
@@ -313,12 +314,12 @@ const browseSessions = (items=[], topic='that topic',
               ],
             ],
             'noInput': [
-              `Which of the sessions interests you?`,
-              `I can tell you more about the session, the second one, or neither one.`,
+              `Which of the ${sessionType} interests you?`,
+              `I can tell you more about the ${sessionTypeSingular}, the second one, or neither one.`,
             ],
             'fallback': [
               {
-                'elements': [`Sorry, was that the first or second session? Or neither?`],
+                'elements': [`Sorry, was that the first or second ${sessionTypeSingular}? Or neither?`],
               },
               {
                 'elements': [`I'm getting a 4 0 4 error. Did you want the first one, the second one, or neither?`],
@@ -335,8 +336,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `Well that's a 500 error. I can't access the sessions right now, so is there something else I can help you with?`,
-                  text: `Well that's a 500 error. I can't access the sessions right now, so is there something else I can help you with?`,
+                  speech: `Well that's a 500 error. I can't access the ${sessionType} right now, so is there something else I can help you with?`,
+                  text: `Well that's a 500 error. I can't access the ${sessionType} right now, so is there something else I can help you with?`,
                 }),
               ],
             ],
@@ -363,8 +364,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `That was all the sessions on ${sanitizeSsml(topic)}. So, let me know if you want to hear them again, or do something else?`,
-                  text: `That was all the sessions on ${topic}. So, let me know if you want to hear them again, or do something else?`,
+                  speech: `That was all the ${sessionType} on ${sanitizeSsml(topic)}. So, let me know if you want to hear them again, or do something else?`,
+                  text: `That was all the ${sessionType} on ${topic}. So, let me know if you want to hear them again, or do something else?`,
                 }),
               ],
             ],
@@ -397,7 +398,7 @@ const showSession = ({session, prefixes, postfixes, buttonText,
       title: '',
     };
   }
-  session.description = session.description || `Hmm, I can't find that session's description.`,
+  session.description = session.description || `Hmm, I can't find the description for that.`,
   prefixes = prefixes || [
     new SimpleResponse({
       speech: `<speak>That one sounds really cool. Here's more about it.<break time="250ms"/></speak>`,
@@ -576,6 +577,41 @@ const showScheduleSession = ({session}) => {
   return showSession({session, postfixes, buttonText, pivotSuggestion});
 };
 
+const askSessionType = () => {
+  return {
+    'askSessionType': {
+      'firstTime/repeat': {
+        'screen/speaker': [
+          {
+            'elements': [
+              [
+                new SimpleResponse({
+                  speech: `<speak>Now, I can help you browse for sessions, or office hours. Which would you like?</speak>`,
+                  text: `Now, I can help you browse for sessions, or office hours. Which would you like?`,
+                }),
+              ],
+            ],
+            'suggestions': {
+              'required': [
+                'Browse sessions',
+                'Office hours',
+              ],
+            },
+            'fallback': [
+              {
+                'elements': [`Sorry, did you want me to help you find sessions, or office hours on this topic?`],
+              },
+              {
+                'elements': [`I'm still not sure. Do did you want me to help you find sessions, or office hours on this topic?`],
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+};
+
 module.exports = {
   'browse-topics': browseTopics,
   'browse-topics-next': browseTopicsNext,
@@ -585,4 +621,5 @@ module.exports = {
   'show-session': showSession,
   'show-schedule-session': showScheduleSession,
   'show-session-repeat': showSessionRepeat,
+  'ask-type': askSessionType,
 };

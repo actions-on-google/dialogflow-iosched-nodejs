@@ -1,39 +1,44 @@
 {
-  "id": "52028621-a35e-400a-ae17-1d8068b50031",
-  "name": "browse-sessions",
+  "id": "0f8d6e74-201c-4b87-a2f6-955cb75db950",
+  "parentId": "52028621-a35e-400a-ae17-1d8068b50031",
+  "rootParentId": "52028621-a35e-400a-ae17-1d8068b50031",
+  "name": "check-type",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "browse-sessions-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "browse-sessions.browse-sessions-custom",
       "affectedContexts": [
+        {
+          "name": "browse-sessions-followup",
+          "parameters": {},
+          "lifespan": 2
+        },
         {
           "name": "browse-topics-followup",
           "parameters": {},
           "lifespan": 0
         },
         {
-          "name": "show-schedule-followup",
-          "parameters": {},
-          "lifespan": 0
-        },
-        {
-          "name": "browse-sessions-followup",
+          "name": "type-checked",
           "parameters": {},
           "lifespan": 2
         }
       ],
       "parameters": [
         {
-          "id": "774b0840-ca79-4410-8943-41d769b66702",
+          "id": "82bb187e-5916-4d75-8c95-fe255a112370",
           "required": true,
-          "dataType": "@topics",
-          "name": "topic",
-          "value": "$topic",
+          "dataType": "@sessionType",
+          "name": "sessionType",
+          "value": "$sessionType",
           "prompts": [
             {
               "lang": "en",
-              "value": "Which topic do you want to hear about?"
+              "value": "Are you interested in sessions, office hours, or app reviews?"
             }
           ],
           "isList": false
@@ -43,7 +48,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+          "speech": []
         }
       ],
       "defaultResponsePlatforms": {},
@@ -53,7 +58,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524548996,
+  "lastUpdate": 1524622792,
   "fallbackIntent": false,
   "events": []
 }

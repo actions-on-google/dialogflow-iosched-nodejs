@@ -37,6 +37,78 @@ class ConferenceData {
   }
 
   /**
+   * Groups the sessions of repeating office hours.
+   * @private
+   *
+   * @param {Object} data Session data.
+   * @return {Object} Mapping from office hours to number of sessions.
+   */
+  getRepeatingOfficeHours_(data) {
+    const officeHoursMap = {};
+    for (const key in data.sessions) {
+      if (key) {
+        const session = data.sessions[key];
+        if (session.type === 'Office Hours') {
+          if (officeHoursMap[session.title]) {
+            const value = officeHoursMap[session.title];
+            value.push(session);
+          } else {
+            officeHoursMap[session.title] = [session];
+          }
+        }
+      }
+    }
+    return officeHoursMap;
+  }
+
+  /**
+   * Method for filtering title headers from data.
+   * @private
+   *
+   * @param {object} data Office hour session data.
+   */
+  dedupeOfficeHours_(data) {
+    const officeHoursMap = this.getRepeatingOfficeHours_(data);
+
+    // Sort office hours by start time
+    for (const key in officeHoursMap) {
+      if (key) {
+        officeHoursMap[key].sort((a, b) =>
+          a.startTimestamp < b.startTimestamp ? -1 : 1);
+      }
+    };
+
+    // Modify duplicate session titles
+    for (const key in officeHoursMap) {
+      if (key) {
+        const officeHoursList = officeHoursMap[key];
+        if (officeHoursList.length > 1) {
+          let count = 1;
+          officeHoursList.forEach((officeHours) => {
+            officeHours.title += ` (Day ${count++})`;
+          });
+        }
+      }
+    }
+  };
+
+  /**
+   * Method for filtering title headers from data.
+   * @private
+   *
+   * @param {Object} data Session data.
+   */
+  modifyTitles_(data) {
+    const headers = ['[Session] ', '[Office Hour] '];
+    // Modify title headers
+    data.sessions.forEach((session) => {
+      headers.forEach((header) => {
+        session.title = `${session.title.replace(header, '')}`;
+      });
+    });
+  }
+
+  /**
    * Method for fetching session data.
    * @private
    *
@@ -50,6 +122,8 @@ class ConferenceData {
       request.get(DATA_SOURCE, (error, response, body) => {
         if (!error) {
           this.data = JSON.parse(body);
+          this.dedupeOfficeHours_(this.data);
+          this.modifyTitles_(this.data);
           successCallback(this.data);
         } else {
           if (errorCallback) {
@@ -158,18 +232,20 @@ class ConferenceData {
    * Method for fetching session data by tag ID.
    *
    * @param {string} tag
+   * @param {string} sessionType
    * @return {Promise} A promise that resolves with the complete list of
-   *     Sessions (not incl Office Hours, Codelabs, etc)
+   *     Sessions.
    */
-  sessions(tag) {
+  sessions(tag, sessionType) {
     return new Promise((resolve, reject) => {
       this.data_((data) => {
         resolve(data.sessions.filter((session) => {
-          session.title = session.title.replace('[Session] ', '');
-          return session.tagNames.includes(tag) && session.type === 'Sessions';
+          return session.tagNames.includes(tag) &&
+            session.type.toLowerCase() === sessionType.toLowerCase();
         }));
       }, (error) => {
-        console.error(`Error getting complete session list: ${error}`);
+        console.error(`Error getting complete list of data for session type, ` +
+          `${sessionType}: ${error}`);
         reject(error);
       });
     });
@@ -192,7 +268,6 @@ class ConferenceData {
           console.error(reason);
           reject(reason);
         } else {
-          returnSession.title = returnSession.title.replace('[Session] ', '');
           resolve(returnSession);
         }
       }, (error) => {

@@ -1,6 +1,6 @@
 [
   {
-    "id": "e1b24668-b9f2-4af4-a23c-1908ae2b3ef7",
+    "id": "23345c18-dd46-4c6e-98e0-d430c2875b76",
     "data": [
       {
         "text": "give me directions",
@@ -9,30 +9,6 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1524540458
-  },
-  {
-    "id": "05eb3277-66e2-440b-8a3b-6465dfc638fc",
-    "data": [
-      {
-        "text": "tell me about office hours",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524540458
-  },
-  {
-    "id": "86b3a331-966f-4451-80b1-83846c5fb539",
-    "data": [
-      {
-        "text": "office hours",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0,
-    "updated": 1524540458
+    "updated": 1524769852
   }
 ]

@@ -119,6 +119,8 @@ app.intent('show-schedule-session', menu);
 
 app.intent('show-schedule-session-repeat', menu);
 
+app.intent('check-type', menu);
+
 app.intent('cancel', goodbye);
 
 app.intent('no-input', noInput);

@@ -21,8 +21,9 @@ const sortByName = (a, b) => a.name < b.name ? -1 : 1;
 const randomSort = () => Math.random() - 0.5;
 const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
 
-const browseTopics = (conv) => {
-  console.log('Browsing for topics');
+const browseTopics = (conv, {sessionType}) => {
+  console.log(`Browsing for topics`);
+  conv.data.sessionType = sessionType;
   const prompts = require('./'+conv.phase+'.js')['browse-topics'];
   return browse({
     conv,
@@ -55,45 +56,65 @@ const browseTopicsRepeat = (conv) => {
 };
 
 const browseTopicsOption = (conv) => {
+  console.log('Browse Topics Option');
   if (conv.arguments.get('OPTION')) {
-    const tagID = conv.arguments.get('OPTION');
-    return conv.conference.tag(tagID).then((tag) => browseSessions(conv, tag));
+    const tagId = conv.arguments.get('OPTION');
+    conv.data.tagId = tagId;
+    if (conv.data.sessionType) {
+      return checkSessionType(conv, {sessionType: conv.data.sessionType});
+    } else {
+      return askSessionType(conv);
+    }
   } else {
     fallback(conv);
   }
 };
 
 const browseSessionsByTopic = (conv, {topic}) => {
+  console.log('Browse Sessions by Topic');
   if (topic) {
     return conv.conference.tagByName(topic)
-      .then((tag) => browseSessions(conv, tag));
+      .then((tag) => {
+        conv.data.tagId = tag.tag;
+        if (conv.data.sessionType) {
+          return checkSessionType(conv, {sessionType: conv.data.sessionType});
+        } else {
+          return askSessionType(conv);
+        }
+      });
   } else {
     fallback(conv);
   }
 };
 
-const browseSessions = (conv, tag) => {
-  console.log(`Browsing for sessions with tag: ${tag.tag}`);
-  const prompts = require('./'+conv.phase+'.js')['browse-sessions-first-set'];
-  conv.data.sessionsTag = tag.name;
-  return conv.conference.sessions(tag.tag).then((sessions) => {
-    return browse({
-      conv,
-      itemsPromise: Promise.resolve(sessions),
-      prompts: prompts(tag.name, sessions.length),
-      sort: sortByTimestamp,
-      maxAudio: 2,
+const browseSessions = (conv) => {
+  console.log(`Browsing for sessions`);
+  return conv.conference.tag(conv.data.tagId).then((tag) => {
+    const prompts = require('./'+conv.phase+'.js')['browse-sessions-first-set'];
+    conv.data.sessionsTag = tag.name;
+    return conv.conference.sessions(tag.tag, conv.data.sessionType)
+      .then((sessions) => {
+        return browse({
+          conv,
+          itemsPromise: Promise.resolve(sessions),
+          prompts: prompts(tag.name, sessions.length, conv.data.sessionType),
+          sort: sortByTimestamp,
+          maxAudio: 2,
+        });
     });
   });
 };
 
 const browseSessionsNext = (conv) => {
   console.log(`Browsing next set of sessions`);
+  if (!conv.data.sessionType) {
+    return fallback(conv);
+  }
   const prompts = require('./'+conv.phase+'.js')['browse-sessions-next'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
-    prompts: prompts(conv.data.sessionsTag),
+    prompts: prompts(conv.data.sessionsTag, conv.data.sessionType),
     sort: sortByTimestamp,
     maxAudio: 2,
   });
@@ -101,11 +122,14 @@ const browseSessionsNext = (conv) => {
 
 const browseSessionsRepeat = (conv) => {
   console.log('Repeating previously browsed sessions');
+  if (!conv.data.sessionType) {
+    return fallback(conv);
+  }
   const prompts = require('./'+conv.phase+'.js')['browse-sessions-repeat'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
-    prompts: prompts(conv.data.sessionsTag),
+    prompts: prompts(conv.data.sessionsTag, conv.data.sessionType),
     sort: sortByTimestamp,
     maxAudio: 2,
   });
@@ -162,6 +186,25 @@ const showSessionRepeat = (conv) => {
   }
 };
 
+const askSessionType = (conv) => {
+  console.log('Ask session type');
+  const prompts = require('./'+conv.phase+'.js')['ask-type'];
+  return parse(conv, prompts().askSessionType);
+};
+
+const checkSessionType = (conv, {sessionType}) => {
+  console.log('Checking for session type');
+  conv.contexts.output['type-checked'] = {
+    lifespan: 2,
+  };
+  conv.data.sessionType = sessionType;
+  if (conv.data.sessionType && conv.data.tagId) {
+    return browseSessions(conv);
+  } else {
+    return fallback(conv);
+  }
+};
+
 const intents = {
   'browse-topics': browseTopics,
   'browse-topics-next': browseTopicsNext,
@@ -174,6 +217,7 @@ const intents = {
   'show-session-repeat': showSessionRepeat,
   'show-schedule-session': showScheduleSession,
   'show-schedule-session-repeat': showSessionRepeat,
+  'check-type': checkSessionType,
 };
 
 module.exports = (conv, ...args) => {

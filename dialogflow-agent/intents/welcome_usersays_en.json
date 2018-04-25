@@ -1,6 +1,6 @@
 [
   {
-    "id": "af04951a-532b-49d1-9dc7-fb395e030489",
+    "id": "fcace26b-46bf-41a7-86a2-b8ebda4d9157",
     "data": [
       {
         "text": "test welcome intent",
@@ -8,7 +8,7 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523250369
   }
 ]

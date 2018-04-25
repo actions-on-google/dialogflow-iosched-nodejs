@@ -5,3 +5,4 @@ node_modules
 oauthClientKey.json
 eventsServiceKey.json
 dialogflow-agent.zip
+package-lock.json

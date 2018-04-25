@@ -5,7 +5,8 @@
   "name": "browse-sessions-repeat",
   "auto": true,
   "contexts": [
-    "browse-sessions-followup"
+    "browse-sessions-followup",
+    "type-checked"
   ],
   "responses": [
     {
@@ -33,7 +34,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237570,
+  "lastUpdate": 1524677399,
   "fallbackIntent": false,
   "events": []
 }

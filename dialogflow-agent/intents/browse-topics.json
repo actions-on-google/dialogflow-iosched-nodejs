@@ -23,7 +23,16 @@
           "lifespan": 0
         }
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "id": "999287d1-0bfa-4a49-a941-b9105b2d2062",
+          "required": false,
+          "dataType": "@sessionType",
+          "name": "sessionType",
+          "value": "$sessionType",
+          "isList": false
+        }
+      ],
       "messages": [
         {
           "type": 0,
@@ -38,7 +47,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524548965,
+  "lastUpdate": 1524684539,
   "fallbackIntent": false,
   "events": []
 }

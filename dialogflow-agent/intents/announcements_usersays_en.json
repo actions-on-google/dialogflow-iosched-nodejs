@@ -1,6 +1,6 @@
 [
   {
-    "id": "8b8003a1-bed9-4c40-a1b9-35e7616f4ae3",
+    "id": "7ad368f9-30bf-4c76-a531-0603ab3a2ee2",
     "data": [
       {
         "text": "announcements",
@@ -8,11 +8,11 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523648827
   },
   {
-    "id": "719b94a8-3930-4164-aba5-35bf92ff404c",
+    "id": "c341d6cd-c26f-4361-9e55-a44d530137e3",
     "data": [
       {
         "text": "Tell me the biggest news",
@@ -20,11 +20,11 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523637709
   },
   {
-    "id": "79d1b989-bc79-4fa0-8976-4c5a8dbfb65b",
+    "id": "e5484e81-67a0-47ee-acde-a9af63fcb3e4",
     "data": [
       {
         "text": "I want to learn about the announcements for ",
@@ -38,11 +38,11 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523637709
   },
   {
-    "id": "63b04f79-0051-440d-a564-354a830c1cad",
+    "id": "99a78f3d-7fe8-483f-8042-349a81f7b5f6",
     "data": [
       {
         "text": "What is the biggest release?",
@@ -50,11 +50,11 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523637709
   },
   {
-    "id": "d44b646b-97c8-40ad-a552-c90221120af5",
+    "id": "a75fcaa5-f1bb-417a-a8fc-ae06b4284788",
     "data": [
       {
         "text": "What is the new announcement?",
@@ -62,11 +62,11 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523637709
   },
   {
-    "id": "eb5e677c-4c0a-45a2-886c-ee85ad61572a",
+    "id": "7e52679c-442d-4242-8ab6-051a97138a6c",
     "data": [
       {
         "text": "What is being announced?",
@@ -74,7 +74,7 @@
       }
     ],
     "isTemplate": false,
-    "count": 0,
+    "count": 1,
     "updated": 1523637709
   }
 ]

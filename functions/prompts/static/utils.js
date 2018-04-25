@@ -17,5 +17,28 @@ const {
 
 exports.prompt = (conv) => {
   const prompts = require('./'+conv.phase+'.js');
+  conv.contexts.output['browse-sessions-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['browse-topics-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['browse-schedule-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-schedule-session-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-schedule-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-session-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['type-checked'] = {
+    lifespan: 0,
+  };
+  delete conv.data.sessionType;
+  delete conv.data.tagId;
   parse(conv, prompts[conv.intent]);
 };
