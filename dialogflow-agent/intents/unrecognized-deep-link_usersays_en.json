@@ -1,0 +1,16 @@
+[
+  {
+    "id": "9b82536b-f666-4e0e-9ab5-fe9ef8e6f335",
+    "data": [
+      {
+        "text": "anything",
+        "alias": "any",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1524685886
+  }
+]

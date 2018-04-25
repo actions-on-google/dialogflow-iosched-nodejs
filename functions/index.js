@@ -73,6 +73,8 @@ app.intent('food', static.prompt);
 
 app.intent('swag', static.prompt);
 
+app.intent('unrecognized-deep-link', static.prompt);
+
 app.intent('afterParty', static.prompt);
 
 app.intent('watchRemotely', static.prompt);

@@ -296,4 +296,12 @@ module.exports = {
       }),
     ]),
   },
+  'unrecognized-deep-link': {
+    'firstTime': menuFirstTime([
+      `I don't know anything about that, but here's what I can help you with.`,
+    ]),
+    'repeat': menuRepeat([
+      `I don't know anything about that, but here's what I can help you with.`,
+    ]),
+  },
 };

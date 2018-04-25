@@ -1,0 +1,62 @@
+{
+  "id": "8d8fa88b-546b-4995-a6a2-93177c3b61ef",
+  "name": "unrecognized-deep-link",
+  "auto": true,
+  "contexts": [
+    "google_assistant_welcome"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "979197fb-603b-47c8-bd75-4100bc7094ba",
+          "dataType": "@sys.any",
+          "name": "any",
+          "value": "$any",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "lang": "en",
+          "suggestions": [
+            {
+              "title": "Browse topics"
+            },
+            {
+              "title": "Manage my schedule"
+            },
+            {
+              "title": "Is there swag?"
+            },
+            {
+              "title": "How can I watch remotely?"
+            },
+            {
+              "title": "Keynotes"
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I don\u0027t know anything about that, but can I help you with something else?"
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1524685886,
+  "fallbackIntent": false,
+  "events": []
+}
