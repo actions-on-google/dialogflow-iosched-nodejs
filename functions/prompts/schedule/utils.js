@@ -63,7 +63,11 @@ const showSchedule = (conv) => {
     });
   } else {
     conv.user.storage.uid = undefined;
-    conv.ask(new SignIn());
+    if (conv.screen) {
+      conv.ask(new SignIn());
+    } else {
+      return parse(conv, prompts['sign-in-user-on-speaker']);
+    }
   }
 };
 

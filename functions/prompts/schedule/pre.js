@@ -53,7 +53,7 @@ const showScheduleFirstSet = (totalItems) => {
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
   };
   return (items) => showSchedule(items, spokenIntro, displayIntro,
-    speakerItems(items));
+    speakerItems(items), totalItems === 1 ? 'only' : 'last');
 };
 
 const showScheduleNext = () => {
@@ -84,7 +84,7 @@ const showScheduleRepeat = () => {
     speakerItems(items));
 };
 
-const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems) => {
+const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastItemPrefix='last') => {
   spokenIntro = spokenIntro || {
     speech: `Here's your schedule`,
     text: `Here's your schedule`,
@@ -105,8 +105,8 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems) => {
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `The last session on your schedule is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
-                  text: `The last session on your schedule is called ${items[0].title}. Do you want to hear more about it?`,
+                  speech: `The ${lastItemPrefix} session on your schedule is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  text: `The ${lastItemPrefix} session on your schedule is called ${items[0].title}. Do you want to hear more about it?`,
                 }),
               ],
             ],
@@ -304,7 +304,6 @@ module.exports = {
           'suggestions': {
             'required': [
               'Search for talks',
-              'Manage my schedule',
             ],
             'randomized': [
               'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
@@ -330,7 +329,6 @@ module.exports = {
           'suggestions': {
             'required': [
               'Search for talks',
-              'Manage my schedule',
             ],
             'randomized': [
               'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
@@ -356,7 +354,31 @@ module.exports = {
           'suggestions': {
             'required': [
               'Search for talks',
-              'Manage my schedule',
+            ],
+            'randomized': [
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
+            ],
+          },
+        },
+      ],
+    },
+  },
+  'sign-in-user-on-speaker': {
+    'firstTime/repeat': {
+      'screen/speaker': [
+        {
+          'elements': [
+            [
+              new SimpleResponse({
+                speech: `<speak>To do that, first you'll need to link IO 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the IO 2018 app for Android or I OS.<break time="1s"/> Is there something else I can help you with?</speak>`,
+                text: `To do that, first you'll need to link I/O 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the I/O 2018 app for Android or iOS. Is there something else I can help you with?`,
+              }),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              'Search for talks',
             ],
             'randomized': [
               'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
