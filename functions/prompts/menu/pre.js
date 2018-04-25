@@ -25,7 +25,7 @@ const {sanitizeSsml} = require('../common/utils');
 /* eslint-disable max-len*/
 const browseTopics = (items=[], spokenIntro) => {
   spokenIntro = spokenIntro || {
-    speech: `<speak>Here's a taste of what's coming at I O. They've got<break time="500ms"/></speak>`,
+    speech: `Here's a taste of what's coming at I O. <break time="500ms"/><emphasis level="moderate">They've got</emphasis><break time="500ms"/>`,
     text: `Here's a taste of what's coming at I/O. They've got`,
   };
   const screenItems = items.reduce((itemsObj, topic) => {
@@ -87,8 +87,8 @@ const browseTopics = (items=[], spokenIntro) => {
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `<speak>${spokenIntro.speech} ${speakerItems}. Which of those sound good?</speak>`,
-                  text: `${spokenIntro.speech} ${speakerItems}. Which of those sound good?`,
+                  speech: `<speak>${spokenIntro.speech} ${speakerItems}. Do any of those sound good?</speak>`,
+                  text: `${spokenIntro.text} ${speakerItems}. Do any of those interest you?`,
                 }),
               ],
             ],
@@ -179,7 +179,7 @@ const browseSessionsFirstSet = (topic, totalItems) => {
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
   };
   return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items));
+    displayIntro, itemsToSpeech(items), totalItems === 1 ? 'only' : 'last');
 };
 
 const browseSessionsNext = (topic='that topic') => {
@@ -211,7 +211,7 @@ const browseSessionsRepeat = (topic='that topic') => {
 };
 
 const browseSessions = (items=[], topic='that topic',
-  spokenIntro, displayIntro, speakerItems) => {
+  spokenIntro, displayIntro, speakerItems, lastItemPrefix='last') => {
   spokenIntro = spokenIntro || {
     speech: `Here are some sessions`,
     text: `Here are some sessions`,
@@ -232,8 +232,8 @@ const browseSessions = (items=[], topic='that topic',
             'elements': [
               [
                 new SimpleResponse({
-                  speech: `The only session on ${sanitizeSsml(topic)} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
-                  text: `The only session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  speech: `The ${lastItemPrefix} session on ${sanitizeSsml(topic)} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
+                  text: `The ${lastItemPrefix} session on ${topic} is called ${sanitizeSsml(items[0].title)}. Do you want to hear more about it?`,
                 }),
               ],
             ],
