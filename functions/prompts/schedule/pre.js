@@ -196,7 +196,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
                 'Manage my schedule',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -222,7 +222,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
                 'Not now',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -248,7 +248,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
                 'Not now',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -281,7 +281,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -306,7 +306,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -331,7 +331,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -346,8 +346,8 @@ module.exports = {
           'elements': [
             [
               new SimpleResponse({
-                speech: `<speak>Before I can do that, you'll need to download the IO 2018 app for Android or i OS and login with your Google Account. Then I'll be able to help with your schedule.<break time="1s"/>Is there something else I can help you with?</speak>`,
-                text: `Before I can do that, you'll need to download the I/O 2018 app for Android or iOS and login with your Google Account. Then I'll be able to help with your schedule. Is there something else I can help you with?`,
+                speech: `<speak>Before I can do that, you'll need to download the IO 2018 app for Android and login with your Google Account. Then I'll be able to help with your schedule.<break time="1s"/>Is there something else I can help you with?</speak>`,
+                text: `Before I can do that, you'll need to download the I/O 2018 app for Android and login with your Google Account. Then I'll be able to help with your schedule. Is there something else I can help you with?`,
               }),
             ],
           ],
@@ -356,7 +356,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -371,8 +371,8 @@ module.exports = {
           'elements': [
             [
               new SimpleResponse({
-                speech: `<speak>To do that, first you'll need to link IO 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the IO 2018 app for Android or I OS.<break time="1s"/> Is there something else I can help you with?</speak>`,
-                text: `To do that, first you'll need to link I/O 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the I/O 2018 app for Android or iOS. Is there something else I can help you with?`,
+                speech: `<speak>To do that, first you'll need to link IO 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the IO 2018 app for Android.<break time="1s"/> Is there something else I can help you with?</speak>`,
+                text: `To do that, first you'll need to link I/O 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the I/O 2018 app for Android. Is there something else I can help you with?`,
               }),
             ],
           ],
@@ -381,7 +381,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },

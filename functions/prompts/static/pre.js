@@ -99,7 +99,7 @@ const menuRepeat = (prefixPrompts) => {
             'Browse topics',
           ],
           'randomized': [
-            'Find office hours',
+
           ],
         },
       },
@@ -134,7 +134,7 @@ const menuRepeat = (prefixPrompts) => {
             'Browse topics',
           ],
           'randomized': [
-            'Find office hours',
+
             'Keynotes',
           ],
         },
@@ -160,7 +160,7 @@ const welcomeReentry = (prefixPrompts) => [
         'Manage my schedule',
       ],
       'randomized': [
-        'Where is it?', 'How can I watch remotely?', 'Keynotes', `Find office hours`,
+        'Where is it?', 'How can I watch remotely?', 'Keynotes',
         'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
       ],
     },
@@ -181,7 +181,7 @@ const welcomeReentry = (prefixPrompts) => [
         'Browse topics',
       ],
       'randomized': [
-        'Where is it?', 'How can I watch remotely?', `Find office hours`,
+        'Where is it?', 'How can I watch remotely?',
         'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
       ],
     },
