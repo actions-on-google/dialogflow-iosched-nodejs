@@ -90,7 +90,7 @@ class ConferenceData {
         }
       }
     }
-  };
+  }
 
   /**
    * Method for filtering title headers from data.
@@ -109,6 +109,24 @@ class ConferenceData {
   }
 
   /**
+   * Method for resolving session room name data.
+   * @private
+   *
+   * @param {Object} data Session data
+   */
+  resolveRoomNames_(data) {
+    for (const key in data.sessions) {
+      if (key) {
+        const session = data.sessions[key];
+        const room = data.rooms.find((room) => {
+          return room.id === session.room;
+        });
+        session.roomName = room.name;
+      }
+    }
+  }
+
+  /**
    * Method for fetching session data.
    * @private
    *
@@ -124,6 +142,7 @@ class ConferenceData {
           this.data = JSON.parse(body);
           this.dedupeOfficeHours_(this.data);
           this.modifyTitles_(this.data);
+          this.resolveRoomNames_(this.data);
           successCallback(this.data);
         } else {
           if (errorCallback) {
