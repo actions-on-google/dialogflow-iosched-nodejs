@@ -39,16 +39,16 @@ const getSuggestions = (suggestions = {}) => {
 // defer to the default fallback prompts from a prompt phase.
 exports.fallback = (conv) => {
   const prompts = require('./'+conv.phase+'.js');
-  const fallbackCount = conv.data.fallbackCount;
   let responses = conv.data.fallbackResponses;
   if (!responses || !Array.isArray(responses) || responses.length !== 2) {
     responses = prompts.defaultFallbackPrompts;
   }
-  if (fallbackCount < 2) {
-    conv.ask(...responses[fallbackCount].elements);
-    conv.ask(getSuggestions(responses[fallbackCount].suggestions));
+  const countSum = conv.data.fallbackCount + conv.data.noInputCount;
+  if (countSum < 2) {
+    conv.ask(...responses[countSum].elements);
+    conv.ask(getSuggestions(responses[countSum].suggestions));
   } else {
-    conv.close(...prompts.defaultFallbackPrompts[fallbackCount].elements);
+    conv.close(...prompts.defaultFallbackPrompts[countSum].elements);
   }
   conv.data.fallbackCount++;
 };
@@ -62,12 +62,13 @@ exports.noInput = (conv) => {
   if (!responses || !Array.isArray(responses) || responses.length !== 2) {
     responses = prompts.defaultNoInputPrompts;
   }
-  const noInputCount = conv.arguments.get('REPROMPT_COUNT') || 0;
-  if (noInputCount < 2) {
-    conv.ask(responses[noInputCount]);
+  const countSum = conv.data.fallbackCount + conv.data.noInputCount;
+  if (countSum < 2) {
+    conv.ask(responses[countSum]);
   } else {
-    conv.close(prompts.defaultNoInputPrompts[noInputCount]);
+    conv.close(prompts.defaultNoInputPrompts[countSum]);
   }
+  conv.data.noInputCount++;
 };
 
 exports.goodbye = (conv) => {
