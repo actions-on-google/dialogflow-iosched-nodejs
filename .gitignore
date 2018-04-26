@@ -4,5 +4,5 @@ node_modules
 .firebaserc
 oauthClientKey.json
 eventsServiceKey.json
-dialogflow-agent.zip
+*.zip
 package-lock.json
