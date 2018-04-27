@@ -32,6 +32,7 @@ const app = dialogflow({
   init: () => ({
     data: {
       fallbackCount: 0,
+      noInputCount: 0,
       noInputResponses: [],
       fallbackResponses: [],
     },
@@ -48,6 +49,7 @@ app.middleware((conv) => {
     'repeat' : 'firstTime';
   if (!(conv.intent === 'fallback' || conv.intent === 'no-input')) {
     conv.data.fallbackCount = 0;
+    conv.data.noInputCount = 0;
     conv.data.fallbackResponses = [];
     conv.data.noInputResponses = [];
   }
