@@ -145,4 +145,5 @@ exports.browse = ({conv, itemsPromise, prompts,
     });
 };
 
-exports.sanitizeSsml = (str) => str.replace('&', 'and').replace('AR', 'A R');
+exports.sanitizeSsml =
+  (str) => str.replace(/&/g, 'and').replace(/AR/g, 'A R');

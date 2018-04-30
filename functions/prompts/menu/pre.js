@@ -494,7 +494,7 @@ const showSession = ({session, prefixes, postfixes, buttonText,
             'elements': [
               prefixes.map((prefix) => {
                 return prefix.textToSpeech
-                  .replace('</speak>', `${session.description}</speak>`);
+                  .replace('</speak>', `${sanitizeSsml(session.description)}</speak>`);
               }),
               postfixes.speaker,
             ],
