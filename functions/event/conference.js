@@ -12,6 +12,8 @@
 // limitations under the License.
 
 const request = require('request');
+const moment = require('moment-timezone');
+const {getDay} = require('./../utils');
 
 // The JSON file of I/O session data
 const DATA_SOURCE = 'https://firebasestorage.googleapis.com/v0/b/io2018-festivus/o/sessions.json?alt=media&token=019af2ec-9fd1-408e-9b86-891e4f66e674';
@@ -34,58 +36,51 @@ class ConferenceData {
      * @type {Object}
     */
     this.data = null;
+    this.repeatingSessionMap = {};
   }
 
   /**
-   * Groups the sessions of repeating office hours.
+   * Groups repeating sessions by session title.
    * @private
    *
-   * @param {Object} data Session data.
-   * @return {Object} Mapping from office hours to number of sessions.
+   * @param {Object} session Session data.
    */
-  getRepeatingOfficeHours_(data) {
-    const officeHoursMap = {};
-    for (const key in data.sessions) {
-      if (key) {
-        const session = data.sessions[key];
-        if (session.type === 'Office Hours') {
-          if (officeHoursMap[session.title]) {
-            const value = officeHoursMap[session.title];
-            value.push(session);
-          } else {
-            officeHoursMap[session.title] = [session];
-          }
-        }
-      }
+  groupWithRepeatingSessions_(session) {
+    if (this.repeatingSessionMap[session.title]) {
+      const sessionList = this.repeatingSessionMap[session.title];
+      sessionList.push(session);
+    } else {
+      this.repeatingSessionMap[session.title] = [session];
     }
-    return officeHoursMap;
   }
 
   /**
    * Method for filtering title headers from data.
    * @private
    *
-   * @param {object} data Office hour session data.
+   * @param {Object} data Session data.
    */
-  dedupeOfficeHours_(data) {
-    const officeHoursMap = this.getRepeatingOfficeHours_(data);
-
+  dedupeSessions_(data) {
     // Sort office hours by start time
-    for (const key in officeHoursMap) {
+    for (const key in this.repeatingSessionMap) {
       if (key) {
-        officeHoursMap[key].sort((a, b) =>
+        this.repeatingSessionMap[key].sort((a, b) =>
           a.startTimestamp < b.startTimestamp ? -1 : 1);
       }
     };
-
     // Modify duplicate session titles
-    for (const key in officeHoursMap) {
+    for (const key in this.repeatingSessionMap) {
       if (key) {
-        const officeHoursList = officeHoursMap[key];
-        if (officeHoursList.length > 1) {
-          let count = 1;
-          officeHoursList.forEach((officeHours) => {
-            officeHours.title += ` (Day ${count++})`;
+        const sessionList = this.repeatingSessionMap[key];
+        if (sessionList.length > 1) {
+          sessionList.forEach((session) => {
+            let day = getDay(session.startTimestamp);
+            if (day != 0) {
+              session.title += ` (Day ${day}` +
+              `${session.type === 'Codelabs' ?
+              ` ${moment(session.startTimestamp).tz('America/Los_Angeles')
+              .format('h:mmA')}` : ''})`;
+            }
           });
         }
       }
@@ -93,37 +88,47 @@ class ConferenceData {
   }
 
   /**
-   * Method for filtering title headers from data.
+   * Method for removing the title header from a session title.
    * @private
    *
-   * @param {Object} data Session data.
+   * @param {Object} session Session data.
    */
-  modifyTitles_(data) {
+  modifyTitle_(session) {
     const headers = ['[Session] ', '[Office Hour] '];
-    // Modify title headers
-    data.sessions.forEach((session) => {
-      headers.forEach((header) => {
-        session.title = `${session.title.replace(header, '')}`;
-      });
+    // Modify title header
+    headers.forEach((header) => {
+      session.title = `${session.title.replace(header, '')}`;
     });
   }
 
   /**
-   * Method for resolving session room name data.
+   * Method for resolving a session's room name.
    * @private
    *
-   * @param {Object} data Session data
+   * @param {Object} session Session data
+   * @param {Object} rooms Room data
    */
-  resolveRoomNames_(data) {
+  resolveRoomName_(session, rooms) {
+    const room = rooms.find((room) => {
+      return room.id === session.room;
+    });
+    session.roomName = room.name;
+  }
+
+  /**
+   * Clean up session data.
+   * @param {Object} data
+   */
+  cleanUpSessionData_(data) {
     for (const key in data.sessions) {
       if (key) {
         const session = data.sessions[key];
-        const room = data.rooms.find((room) => {
-          return room.id === session.room;
-        });
-        session.roomName = room.name;
+        this.groupWithRepeatingSessions_(session);
+        this.modifyTitle_(session);
+        this.resolveRoomName_(session, data.rooms);
       }
     }
+    this.dedupeSessions_(data);
   }
 
   /**
@@ -140,9 +145,7 @@ class ConferenceData {
       request.get(DATA_SOURCE, (error, response, body) => {
         if (!error) {
           this.data = JSON.parse(body);
-          this.dedupeOfficeHours_(this.data);
-          this.modifyTitles_(this.data);
-          this.resolveRoomNames_(this.data);
+          this.cleanUpSessionData_(this.data);
           successCallback(this.data);
         } else {
           if (errorCallback) {
