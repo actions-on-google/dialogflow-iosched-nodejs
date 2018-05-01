@@ -20,7 +20,7 @@
         {
           "name": "browse-sessions-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         }
       ],
       "parameters": [],
@@ -38,7 +38,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237600,
+  "lastUpdate": 1525198384,
   "fallbackIntent": false,
   "events": [
     {

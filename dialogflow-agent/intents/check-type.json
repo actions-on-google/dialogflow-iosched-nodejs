@@ -15,7 +15,7 @@
         {
           "name": "browse-sessions-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         },
         {
           "name": "browse-topics-followup",
@@ -25,7 +25,7 @@
         {
           "name": "type-checked",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         }
       ],
       "parameters": [
@@ -58,7 +58,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524622792,
+  "lastUpdate": 1525198303,
   "fallbackIntent": false,
   "events": []
 }

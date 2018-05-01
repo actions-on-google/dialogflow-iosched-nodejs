@@ -15,7 +15,7 @@
         {
           "name": "browse-topics-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         }
       ],
       "parameters": [],
@@ -33,7 +33,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237610,
+  "lastUpdate": 1525198393,
   "fallbackIntent": false,
   "events": []
 }

@@ -15,7 +15,7 @@
         {
           "name": "show-schedule-session-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 3
         },
         {
           "name": "show-schedule-followup",
@@ -55,7 +55,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524605162,
+  "lastUpdate": 1525198425,
   "fallbackIntent": false,
   "events": [
     {

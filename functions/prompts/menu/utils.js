@@ -195,7 +195,7 @@ const askSessionType = (conv) => {
 const checkSessionType = (conv, {sessionType}) => {
   console.log('Checking for session type');
   conv.contexts.output['type-checked'] = {
-    lifespan: 2,
+    lifespan: 3,
   };
   conv.data.sessionType = sessionType;
   if (conv.data.sessionType && conv.data.tagId) {
