@@ -28,7 +28,7 @@ const defaultFallbackPrompts = [
         'Tell me about sessions',
       ],
       'randomized': [
-        'Where is it?', 'How can I watch remotely?',
+        'Where is it?', 'How can I watch remotely?', `Find office hours`,
         'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
       ],
     },
@@ -44,7 +44,7 @@ const defaultFallbackPrompts = [
         'Browse sessions',
       ],
       'randomized': [
-        'Where is it?', 'How can I watch remotely?',
+        'Where is it?', 'How can I watch remotely?', `Find office hours`,
         'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
       ],
     },
