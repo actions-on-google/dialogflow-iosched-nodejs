@@ -23,7 +23,7 @@ const {sanitizeSsml} = require('../common/utils');
 const sanitizedTitleWithStatus = (items=[]) => {
   return items.map((session) => {
     sanitizeSsml(session.title);
-    let sessionString = session.title + `<break time="250ms"/>`;
+    let sessionString = session.title + `<break time="450ms"/>`;
     if (session.isStarred && session.reservationstatus === 'RESERVED') {
       sessionString += ` You've starred and reserved it`;
     } else if (session.isStarred && session.reservationstatus === 'WAITLISTED') {
@@ -31,7 +31,7 @@ const sanitizedTitleWithStatus = (items=[]) => {
     } else if (session.reservationstatus === 'RESERVED') {
       sessionString += ` You reserved a seat for it`;
     } else if (session.reservationstatus === 'WAITLISTED') {
-      sessionString += ` You're waitlisted for a reservation.`;
+      sessionString += ` You're waitlisted for a reservation`;
     } else if (session.isStarred) {
       sessionString += ` You've starred that one`;
     }
