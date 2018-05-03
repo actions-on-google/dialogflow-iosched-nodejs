@@ -7,16 +7,7 @@
     {
       "resetContexts": false,
       "affectedContexts": [],
-      "parameters": [
-        {
-          "id": "3123ddf8-ebbe-4bd7-9460-4fdb0a59a71a",
-          "required": false,
-          "dataType": "@sys.date-period",
-          "name": "date-period",
-          "value": "$date-period",
-          "isList": false
-        }
-      ],
+      "parameters": [],
       "messages": [
         {
           "type": 0,
@@ -31,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237512,
+  "lastUpdate": 1525374106,
   "fallbackIntent": false,
   "events": []
 }

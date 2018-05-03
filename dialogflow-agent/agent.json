@@ -5,9 +5,29 @@
   "googleAssistant": {
     "googleAssistantCompatible": true,
     "welcomeIntentSignInRequired": false,
-    "startIntents": [],
+    "startIntents": [
+      {
+        "intentId": "bd843816-1a6b-49ae-a26c-5eacfae9f3de",
+        "signInRequired": false
+      },
+      {
+        "intentId": "d5377046-81dc-454f-ad29-ccfb8f8ee943",
+        "signInRequired": false
+      },
+      {
+        "intentId": "08b90989-d636-49af-ab49-1056b524c8d7",
+        "signInRequired": false
+      },
+      {
+        "intentId": "6e748fb3-5365-45a9-85eb-35314e0fc401",
+        "signInRequired": false
+      }
+    ],
     "systemIntents": [],
-    "endIntentIds": [],
+    "endIntentIds": [
+      "d23156bc-191a-4b98-b34a-8948d98177cf",
+      "dd2a4b12-f307-4abc-bd3b-dd7602e53ffa"
+    ],
     "oAuthLinking": {
       "required": false,
       "grantType": "AUTH_CODE_GRANT"
@@ -15,7 +35,8 @@
     "voiceType": "MALE_1",
     "capabilities": [],
     "protocolVersion": "V2",
-    "autoPreviewEnabled": true
+    "autoPreviewEnabled": true,
+    "isDeviceAgent": false
   },
   "defaultTimezone": "America/Denver",
   "webhook": {
