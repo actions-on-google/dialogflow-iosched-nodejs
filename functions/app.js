@@ -58,33 +58,43 @@ app.middleware((conv) => {
     .has('actions.capability.SCREEN_OUTPUT');
 });
 
-app.intent('menu', static.prompt);
+app.intent('menu', static);
 
-app.intent('welcome', static.prompt);
+app.intent('welcome', static);
 
-app.intent('date', static.prompt);
+app.intent('thingsToDoMenu', static);
 
-app.intent('keynote', static.prompt);
+app.intent('relaxMenu', static);
 
-app.intent('codelabs', static.prompt);
+app.intent('date', static);
 
-app.intent('appReview', static.prompt);
+app.intent('keynote', static);
 
-app.intent('food', static.prompt);
+app.intent('codelabs', static);
 
-app.intent('swag', static.prompt);
+app.intent('appReview', static);
 
-app.intent('unrecognized-deep-link', static.prompt);
+app.intent('food', static);
 
-app.intent('afterParty', static.prompt);
+app.intent('swag', static);
 
-app.intent('watchRemotely', static.prompt);
+app.intent('unrecognized-deep-link', static);
 
-app.intent('announcements', static.prompt);
+app.intent('afterParty', static);
 
-app.intent('lostAndFound', static.prompt);
+app.intent('watchRemotely', static);
 
-app.intent('whatToWear', static.prompt);
+app.intent('announcements', static);
+
+app.intent('lostAndFound', static);
+
+app.intent('whatToWear', static);
+
+app.intent('ask-attending-yes', static);
+
+app.intent('ask-attending-no', static);
+
+app.intent('welcome', static);
 
 app.intent('browse-topics', menu);
 

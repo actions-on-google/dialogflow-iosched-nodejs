@@ -1,12 +1,16 @@
 {
-  "id": "6f59ad71-6ea2-4112-9cd9-57e7a0285edd",
-  "name": "welcome",
+  "id": "e2093484-4c7c-457f-9a73-6331df415207",
+  "parentId": "6f59ad71-6ea2-4112-9cd9-57e7a0285edd",
+  "rootParentId": "6f59ad71-6ea2-4112-9cd9-57e7a0285edd",
+  "name": "ask-attending-no",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "welcome-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.welcome",
+      "action": "welcome.welcome-custom",
       "affectedContexts": [
         {
           "name": "welcome-followup",
@@ -19,7 +23,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": "As the Keeper of I/O Specific Knowledge, consider me your guide. So, what do you want to know about I/O?"
+          "speech": []
         }
       ],
       "defaultResponsePlatforms": {},
@@ -29,11 +33,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525376748,
+  "lastUpdate": 1525392634,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "WELCOME"
-    }
-  ]
+  "events": []
 }

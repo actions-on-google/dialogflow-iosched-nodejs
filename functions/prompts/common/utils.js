@@ -145,5 +145,42 @@ exports.browse = ({conv, itemsPromise, prompts,
     });
 };
 
+resetConversationContext = (conv) => {
+  conv.contexts.output['ask-attending-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['browse-sessions-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['browse-topics-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['browse-schedule-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-schedule-session-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-schedule-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['show-session-followup'] = {
+    lifespan: 0,
+  };
+  conv.contexts.output['type-checked'] = {
+    lifespan: 0,
+  };
+};
+
+resetConversationData = (conv) => {
+  delete conv.data.sessionType;
+  delete conv.data.tagId;
+};
+
+exports.resetConversation = (conv) => {
+  resetConversationContext(conv);
+  resetConversationData(conv);
+};
+
 exports.sanitizeSsml =
   (str) => str.replace(/&/g, 'and').replace(/AR/g, 'A R');

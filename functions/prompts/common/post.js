@@ -73,6 +73,17 @@ const defaultNoInputPrompts = [
   }),
 ];
 
+exports.goodbye = [
+  new SimpleResponse({
+    speech: `<speak><prosody rate="fast">OK.</prosody> Hope to talk to you again soon.</speak>`,
+    text: `OK. Hope to talk to you again soon.`,
+  }),
+  new SimpleResponse({
+    speech: `Come back if there's anything else IO you'd like to know.`,
+    text: `Come back if there's anything else I/O you'd like to know.`,
+  }),
+];
+
 module.exports = {
   defaultFallbackPrompts,
   defaultNoInputPrompts,

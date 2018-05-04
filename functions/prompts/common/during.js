@@ -18,14 +18,15 @@ const {
 /* eslint-disable max-len*/
 const defaultFallbackPrompts = [
   {
-    'response': new SimpleResponse({
-      speech: `I'm getting a 4 O 4 error. What did you want to know about IO?`,
-      text: `That's a 404. What did you want to know about I/O?`,
+    'elements': new SimpleResponse({
+      speech: `I'm getting a 4 0 4 error. Which did you want?`,
+      text: `That's a 404. What did you want help with?`,
     }),
     'suggestions': {
       'required': [
-        'Tell me about keynotes',
-        'Tell me about sessions',
+        'Manage my schedule',
+        'Find things to do',
+        'Get directions',
       ],
       'randomized': [
         'Where is it?', 'How can I watch remotely?', `Find office hours`,
@@ -34,25 +35,22 @@ const defaultFallbackPrompts = [
     },
   },
   {
-    'response': new SimpleResponse({
-      speech: `Sorry. That's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
-      text: `Sorry, that's beyond my expertise.\u00a0Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
+    'elements': new SimpleResponse({
+      speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
+      text: `Sorry, that's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
     }),
     'suggestions': {
       'required': [
-        'Tell me about keynotes',
-        'Browse sessions',
-      ],
-      'randomized': [
-        'Where is it?', 'How can I watch remotely?', `Find office hours`,
-        'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
+        'Manage my schedule',
+        'Find things to do',
+        'Get directions',
       ],
     },
   },
   {
-    'response': new SimpleResponse({
+    'elements': new SimpleResponse({
       speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+      text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
     }),
   },
 ];
@@ -60,16 +58,27 @@ const defaultFallbackPrompts = [
 // No Input Prompts should work only on speaker surfaces
 const defaultNoInputPrompts = [
   new SimpleResponse({
-    speech: `You're sending an empty signal here. What do you want to know about IO?`,
-    text: `You're sending an empty signal here. What do you want to know about I/O?`,
+    speech: `You’re sending an empty signal here. I can manage your schedule, help you find things to do, or give you directions. Which do you need?`,
+    text: `What can I help you with?`,
   }),
   new SimpleResponse({
-    speech: `I can tell you about the keynotes, sessions, or anything else about IO. What would you like to know?`,
-    text: `I can tell you about the keynotes, sessions, or anything else about I/O. What would you like to know?`,
+    speech: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
+    text: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
   }),
   new SimpleResponse({
     speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-    text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+    text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+  }),
+];
+
+exports.goodbye = [
+  new SimpleResponse({
+    speech: `<speak><prosody rate="fast">OK.</prosody> Hope to talk to you again soon.</speak>`,
+    text: `OK. Hope to talk to you again soon.`,
+  }),
+  new SimpleResponse({
+    speech: `Come back if there's anything else IO you'd like to know.`,
+    text: `Come back if there's anything else I/O you'd like to know.`,
   }),
 ];
 

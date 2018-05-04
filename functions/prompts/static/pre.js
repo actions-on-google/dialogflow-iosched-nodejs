@@ -204,6 +204,12 @@ module.exports = {
   'menu': {
     'firstTime/repeat': menuRepeat(),
   },
+  'thingsToDoMenu': {
+    'firstTime/repeat': menuRepeat(),
+  },
+  'relaxMenu': {
+    'firstTime/repeat': menuRepeat(),
+  },
   'date': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({

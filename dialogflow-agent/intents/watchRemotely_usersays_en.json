@@ -75,7 +75,7 @@
     "id": "7e570ce7-497f-49f6-afbb-14bfd9a7a718",
     "data": [
       {
-        "text": "How can I watch IO remotely",
+        "text": "how can i watch live?",
         "userDefined": false
       }
     ],
@@ -87,7 +87,7 @@
     "id": "69e4ffb6-b793-4a8f-a2bb-ec9aadae62f5",
     "data": [
       {
-        "text": "Will there be a livestream?",
+        "text": "watching live",
         "userDefined": false
       }
     ],
@@ -99,7 +99,7 @@
     "id": "e507cd9b-2453-4d73-b201-5b9b7d6a3faa",
     "data": [
       {
-        "text": "How can I watch remotely?",
+        "text": "watching the livestream",
         "userDefined": false
       }
     ],
@@ -111,7 +111,79 @@
     "id": "7b0b2426-d248-47f9-9e74-50ca38489656",
     "data": [
       {
-        "text": "I want to rewatch a talk, is that possible?",
+        "text": "watching remotely",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525453564
+  },
+  {
+    "id": "1d00b989-1b2c-472f-9875-2d2e4665ea7e",
+    "data": [
+      {
+        "text": "livestream",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525453564
+  },
+  {
+    "id": "53dd5cc8-7e8a-4e9d-9da7-1f4415c40ba7",
+    "data": [
+      {
+        "text": "the livestream",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525453564
+  },
+  {
+    "id": "7e570ce7-497f-49f6-afbb-14bfd9a7a718",
+    "data": [
+      {
+        "text": "whats I/O extended?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525394790
+  },
+  {
+    "id": "63b540e7-fdea-454d-8d7c-6badff292796",
+    "data": [
+      {
+        "text": "whats IO extended?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525394790
+  },
+  {
+    "id": "0e59a13a-4ee5-4af4-9f29-de26eb4c3a93",
+    "data": [
+      {
+        "text": "Will there be a livestream?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525394790
+  },
+  {
+    "id": "c5e55aaf-29f4-4b89-9da6-5bd6d8d71409",
+    "data": [
+      {
+        "text": "How can I watch remotely?",
         "userDefined": false
       }
     ],
@@ -123,7 +195,7 @@
     "id": "82a00543-4ca9-4294-a154-cad003e7ff03",
     "data": [
       {
-        "text": "Are there recordings?",
+        "text": "I want to rewatch a talk, is that possible?",
         "userDefined": false
       }
     ],
@@ -135,7 +207,7 @@
     "id": "c2221890-623b-4f08-b919-f9d687aae799",
     "data": [
       {
-        "text": "Will it be on youtube?",
+        "text": "Are there recordings?",
         "userDefined": false
       }
     ],
@@ -147,7 +219,7 @@
     "id": "b6703329-c7a6-4932-9562-35334018fd59",
     "data": [
       {
-        "text": "I can\u0027t go, can I watch the sessions?",
+        "text": "Will it be on youtube?",
         "userDefined": false
       }
     ],
@@ -159,7 +231,7 @@
     "id": "b642e548-7c30-4d5f-963e-b62ccc88e20c",
     "data": [
       {
-        "text": "Can I watch sessions later?",
+        "text": "I can\u0027t go, can I watch the sessions?",
         "userDefined": false
       }
     ],
@@ -171,7 +243,7 @@
     "id": "50500801-a606-42fc-bde7-a2366d08509e",
     "data": [
       {
-        "text": "Tell me about the live stream",
+        "text": "Can I watch sessions later?",
         "userDefined": false
       }
     ],
@@ -183,7 +255,7 @@
     "id": "d4163b64-f7a3-4e9f-b413-58fae1ee5829",
     "data": [
       {
-        "text": "Are the sessions recorded?",
+        "text": "Tell me about the live stream",
         "userDefined": false
       }
     ],

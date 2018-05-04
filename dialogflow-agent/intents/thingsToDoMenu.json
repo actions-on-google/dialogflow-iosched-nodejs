@@ -1,6 +1,6 @@
 {
-  "id": "0d5ab049-831c-4b6c-82a3-a17d34d7275e",
-  "name": "afterParty",
+  "id": "e6b1c0f9-3a50-40f5-8c8e-2cbafe45eca3",
+  "name": "thingsToDoMenu",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -12,7 +12,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+          "speech": []
         }
       ],
       "defaultResponsePlatforms": {},
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525392979,
+  "lastUpdate": 1525390028,
   "fallbackIntent": false,
   "events": []
 }

@@ -13,32 +13,27 @@
 
 const {
  parse,
+ resetConversation,
 } = require('../common/utils');
 
-exports.prompt = (conv) => {
+const {
+  duringPrompt,
+} = require('./utilsDuring');
+
+const parsePromptByIntentName = (conv, prompts) => {
+  return parse(conv, prompts[conv.intent]);
+};
+
+const prompt = (conv) => {
   const prompts = require('./'+conv.phase+'.js');
-  conv.contexts.output['browse-sessions-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['browse-topics-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['browse-schedule-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-schedule-session-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-schedule-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-session-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['type-checked'] = {
-    lifespan: 0,
-  };
-  delete conv.data.sessionType;
-  delete conv.data.tagId;
-  parse(conv, prompts[conv.intent]);
+  return parsePromptByIntentName(conv, prompts);
+};
+
+module.exports = (conv, ...args) => {
+  resetConversation(conv);
+  if (conv.phase === 'during') {
+    return duringPrompt(conv, ...args);
+  } else {
+    return prompt(conv, ...args);
+  }
 };
