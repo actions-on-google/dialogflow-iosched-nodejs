@@ -1,0 +1,28 @@
+{
+  "id": "32c31253-4e9c-4fb7-ba1c-bcef9c5a83e8",
+  "name": "scavenger-hunt",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1525750219,
+  "fallbackIntent": false,
+  "events": []
+}

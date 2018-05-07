@@ -1,0 +1,33 @@
+{
+  "id": "84a020c8-1fea-4218-addb-21e332c10062",
+  "parentId": "8792a72a-5819-477a-9e18-1301e8e8c011",
+  "rootParentId": "8792a72a-5819-477a-9e18-1301e8e8c011",
+  "name": "popular-phantogram-songs",
+  "auto": true,
+  "contexts": [
+    "concert-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "concert.concert-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1525743379,
+  "fallbackIntent": false,
+  "events": []
+}

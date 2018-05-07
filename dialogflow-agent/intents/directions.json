@@ -1,0 +1,43 @@
+{
+  "id": "0b08fa62-0ad3-484b-b5be-32249a0d8b80",
+  "name": "directions",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "directions-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "cbd9f1ef-6b2e-47c2-b567-c266810f1d0c",
+          "required": false,
+          "dataType": "@room",
+          "name": "room",
+          "value": "$room",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1525751403,
+  "fallbackIntent": false,
+  "events": []
+}

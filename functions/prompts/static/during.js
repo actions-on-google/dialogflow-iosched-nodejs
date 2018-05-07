@@ -12,10 +12,56 @@
 // limitations under the License.
 
 const {
+  BasicCard,
+  Button,
+  BrowseCarouselItem,
+  BrowseCarousel,
+  Image,
   SimpleResponse,
 } = require('actions-on-google');
 
 /* eslint-disable max-len*/
+const getYouTubeURL = (videoId) => {
+  return `https://www.youtube.com/watch?v=${videoId}`;
+};
+
+const getYouTubeThumbnail = (videoId) => {
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+};
+
+const carouselSong = (title, videoId) => {
+  return new BrowseCarouselItem({
+    title: title,
+    url: getYouTubeURL(videoId),
+    image: new Image({
+      url: getYouTubeThumbnail(videoId),
+      alt: title,
+    }),
+  });
+};
+
+const popularJusticeSongsCarousel = () => {
+  return new BrowseCarousel({
+    items: [
+      carouselSong(`Justice - Genesis - †`, `VKzWLUQizz8`),
+      carouselSong(`Justice - D.A.N.C.E. - †`, `tCnBrrnOefs`),
+      carouselSong(`Justice - Phantom Pt II - †`, `5QCBkwmsOk0`),
+      carouselSong(`Justice - Let There Be Light - †`, `_0-tWLi0Kp4`),
+    ],
+  });
+};
+
+const popularPhantogramSongsCarousel = () => {
+  return new BrowseCarousel({
+    items: [
+      carouselSong(`Phantogram "When I'm Small"`, `28tZ-S1LFok`),
+      carouselSong(`Phantogram - You Don’t Get Me High Anymore`, `jryzEU7WAlg`),
+      carouselSong(`Phantogram - Fall In Love`, `RsQjC5zVnt8`),
+      carouselSong(`Phantogram - Same Old Blues (Official Audio)`, `WcS6MA9fu-I`),
+    ],
+  });
+};
+
 const menuPrompts = {
   attending: {
     firstTime: [
@@ -122,6 +168,8 @@ const menuPrompts = {
         `When's the after party?`,
         'Codelabs and sandboxes',
         'Lost and found',
+        'Scavenger Hunt',
+        'Concert',
       ],
     },
     noInput: [
@@ -355,6 +403,73 @@ const menuPrompts = {
       },
     ],
   },
+  directions: {
+    firstTime: [
+      [
+        new SimpleResponse({
+          speech: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
+          text: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
+        }),
+      ],
+    ],
+    repeat: [
+      [
+        new SimpleResponse({
+          speech: `What are you looking for?`,
+          text: `What are you looking for?`,
+        }),
+      ],
+    ],
+    suggestions: {
+      'required': [
+        `Bathrooms`,
+        `Community Lounge`,
+        'Codelabs Building',
+      ],
+      'randomized': [
+        'Stage 1', 'Stage 3', 'Stage 5',
+        'Stage 8', 'Stage 2', 'Stage 6',
+        'Stage 7', 'Stage 4',
+        'Tent A', 'Tent H', 'Tent C',
+        'Tent F', 'Tent E', 'Tent D',
+        'Tent G', 'Tent B', 'Tent I',
+      ],
+    },
+    noInput: [
+      new SimpleResponse({
+        speech: `What directions do you need?`,
+        text: `What directions do you need?`,
+      }),
+      new SimpleResponse({
+        speech: `Where do you need directions to?`,
+        text: `Where do you need directions to?`,
+      }),
+      new SimpleResponse({
+        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+      }),
+    ],
+    fallback: [
+      {
+        'elements': new SimpleResponse({
+          speech: `Sorry, where do you need directions to?`,
+          text: `Sorry, where do you need directions to?`,
+        }),
+      },
+      {
+        'elements': new SimpleResponse({
+          speech: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+          text: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+        }),
+      },
+      {
+        'elements': new SimpleResponse({
+          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        }),
+      },
+    ],
+  },
 };
 
 const menu = (prompts, suggestions, noInput, fallback, prefixPrompts) => {
@@ -384,7 +499,7 @@ const menuRepeat = (prompts, prefixPrompts) => {
 const attendingReentry = (prefixPrompts) => [
   {
     'elements': [
-      prefixPrompts,
+      ...prefixPrompts,
       [
         new SimpleResponse({
           speech: `Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?`,
@@ -405,7 +520,7 @@ const attendingReentry = (prefixPrompts) => [
 const notAttendingReentry = (prefixPrompts) => [
   {
     'elements': [
-      prefixPrompts,
+      ...prefixPrompts,
       [
         new SimpleResponse({
           speech: `Now, you can manage your schedule, search for talks, or hear about extended viewing parties. Which do you want?`,
@@ -601,6 +716,112 @@ module.exports = {
         }),
       ]),
     },
+    'directions': {
+      'firstTime': menuFirstTime(menuPrompts.directions),
+      'repeat': menuRepeat(menuPrompts.directions),
+    },
+    'scavenger-hunt':
+    {
+      'firstTime/repeat': {
+        'speaker': attendingReentry([
+          new SimpleResponse({
+            speech: `<speak>Join in the I/O Scavenger hunt to find clues and unlock puzzles to collect an Android Things Developer Kit. Start now through the IO app or g.co/iosearch</speak>`,
+            text: `Join in the I/O Scavenger hunt to find clues and unlock puzzles to collect an Android Things Developer Kit. Start now through the I/O app or g.co/iosearch`,
+          }),
+        ]),
+        'screen': attendingReentry([
+          [
+            new SimpleResponse({
+              speech: `<speak>Here's some information about the scavenger hunt.</speak>`,
+              text: `Here's some information about the scavenger hunt.`,
+            }),
+          ],
+          [
+            new BasicCard({
+              text: `Join in the I/O Scavenger hunt to find clues and unlock puzzles to collect an Android Things Developer Kit. Start now through the I/O app or g.co/iosearch`,
+              title: 'Scavenger Hunt',
+              buttons: new Button({
+                title: 'g.co/iosearch',
+                url: 'https://g.co/iosearch',
+              }),
+            }),
+          ],
+        ]),
+      },
+    },
+    'concert': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `The concert will be an exciting one, starting with a performance by Phantogram at 7:30 PM PDT on Wednesday, followed by the main act, Justice from 8:30-10 PM.`,
+                text: `The concert will be an exciting one, starting with a performance by Phantogram at 7:30 PM PDT on Wednesday, followed by the main act, Justice from 8:30-10 PM.`,
+              }),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Songs by Justice`,
+              `Songs by Phantogram`,
+              `Do something else`,
+            ],
+          },
+        },
+      ],
+    },
+    'popular-justice-songs': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `Here are popular songs by Justice.`,
+                text: `Here are popular songs by Justice.`,
+              }),
+            ],
+            [
+              popularJusticeSongsCarousel(),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Songs by Phantogram`,
+              'Do something else',
+            ],
+          },
+        },
+      ],
+    },
+    'popular-phantogram-songs': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `Here are popular songs by Phantogram.`,
+                text: `Here are popular songs by Phantogram.`,
+              }),
+            ],
+            [
+              popularPhantogramSongsCarousel(),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Songs by Justice`,
+              'Do something else',
+            ],
+          },
+        },
+      ],
+    },
   },
   'notAttending': {
     'welcome': {
@@ -768,6 +989,90 @@ module.exports = {
           text: `If you're not attending, why do you want to know what to wear? How about this. Just follow Google's dress code: You must wear clothes.`,
         }),
       ]),
+    },
+    'directions': {
+      'firstTime': menuFirstTime(menuPrompts.directions),
+      'repeat': menuRepeat(menuPrompts.directions),
+    },
+    'scavenger-hunt': {
+      'firstTime/repeat': notAttendingReentry([
+        new SimpleResponse({
+          speech: `<speak>There's a Scavenger hunt going on right now at I/O! Attendees can find clues and unlock puzzles to collect a prize.</speak>`,
+          text: `There's a Scavenger hunt going on right now at I/O! Attendees can find clues and unlock puzzles to collect a prize.`,
+        }),
+      ]),
+    },
+    'concert': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `The concert will be an exciting one, starting with a performance by Phantogram at 7:30 PM PDT on Wednesday, followed by the main act, Justice from 8:30-10 PM.`,
+                text: `The concert will be an exciting one, starting with a performance by Phantogram at 7:30 PM PDT on Wednesday, followed by the main act, Justice from 8:30-10 PM.`,
+              }),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Popular songs by Justice`,
+              `Popular songs by Phantogram`,
+            ],
+          },
+        },
+      ],
+    },
+    'popular-justice-songs': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `Here are popular songs by Justice.`,
+                text: `Here are popular songs by Justice.`,
+              }),
+            ],
+            [
+              popularJusticeSongsCarousel(),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Songs by Phantogram`,
+              'Do something else',
+            ],
+          },
+        },
+      ],
+    },
+    'popular-phantogram-songs': {
+      'firstTime/repeat':
+      [
+        {
+          'elements':
+          [
+            [
+              new SimpleResponse({
+                speech: `Here are popular songs by Phantogram.`,
+                text: `Here are popular songs by Phantogram.`,
+              }),
+            ],
+            [
+              popularPhantogramSongsCarousel(),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              `Songs by Justice`,
+              'Do something else',
+            ],
+          },
+        },
+      ],
     },
   },
 };

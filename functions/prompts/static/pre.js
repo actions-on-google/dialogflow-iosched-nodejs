@@ -221,8 +221,8 @@ module.exports = {
   'keynote': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak>There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. <prosody rate="110%">If you're attending, the best seats will be assigned on a first-come, first-served basis, during badge pickup.</prosody> So, plan to arrive early. <break time="750ms"/>If you're not attending, get the best view by watching the livestream.<break time="750ms"/></speak>`,
-        text: `There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. If you're attending, the best seats will be assigned on a first-come, first-served basis during badge pickup. So, plan to arrive early. If you're not attending, get the best view by watching the livestream.`,
+        speech: `<speak>There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. <prosody rate="110%">If you're attending, the best seats will be assigned on a first-come, first-served basis, during badge pickup.</prosody> So, plan to arrive early. <break time="750ms"/>If you're not attending, get the best view by watching the livestream. The Developer Keynote, hosted by Jason Titus, starts at 12:45PM PST.<break time="750ms"/></speak>`,
+        text: `There're actually two keynotes this year. CEO Sundar Pichai will kick things off on May 8th at 10AM PST. If you're attending, the best seats will be assigned on a first-come, first-served basis during badge pickup. So, plan to arrive early. If you're not attending, get the best view by watching the livestream. The Developer Keynote, hosted by Jason Titus, starts at 12:45PM PST.`,
       }),
     ]),
   },
@@ -308,6 +308,46 @@ module.exports = {
     ]),
     'repeat': menuRepeat([
       `I don't know anything about that, but here's what I can help you with.`,
+    ]),
+  },
+  'directions': {
+    'firstTime/repeat': welcomeReentry([
+      new SimpleResponse({
+        speech: `<speak>This year’s developer festival will be held May <say-as interpret-as="ordinal">8</say-as> through <say-as interpret-as="ordinal">10</say-as> at the Shoreline Amphitheatre. Once the event starts, I can provide you with directions to help navigate you throughout the event.</speak>`,
+        text: `This year's developer festival will be held May 8-10 at the Shoreline Amphitheatre in Mountain View, CA. Once the event starts, I can provide you with directions to help navigate you throughout the event.`,
+      }),
+    ]),
+  },
+  'scavenger-hunt': {
+    'firstTime/repeat': welcomeReentry([
+      new SimpleResponse({
+        speech: `<speak>There are rumors of a Scavenger hunt this year at I/O! I guess we'll have to wait and see.</speak>`,
+        text: `There are rumors of a Scavenger hunt this year at I/O! I guess we'll have to wait and see.`,
+      }),
+    ]),
+  },
+  'concert': {
+    'firstTime': menuFirstTime([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
+    ]),
+    'repeat': menuRepeat([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
+    ]),
+  },
+  'popular-justice-songs': {
+    'firstTime': menuFirstTime([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
+    ]),
+    'repeat': menuRepeat([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
+    ]),
+  },
+  'popular-phantogram-songs': {
+    'firstTime': menuFirstTime([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
+    ]),
+    'repeat': menuRepeat([
+      `There will be a concert Wednesday night! You will have to wait till the event to see who's playing.`,
     ]),
   },
 };

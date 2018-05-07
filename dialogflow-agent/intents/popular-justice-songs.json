@@ -1,0 +1,33 @@
+{
+  "id": "62555c67-8cda-4597-a3bd-58259ba9c3f6",
+  "parentId": "8792a72a-5819-477a-9e18-1301e8e8c011",
+  "rootParentId": "8792a72a-5819-477a-9e18-1301e8e8c011",
+  "name": "popular-justice-songs",
+  "auto": true,
+  "contexts": [
+    "concert-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "concert.concert-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1525743365,
+  "fallbackIntent": false,
+  "events": []
+}

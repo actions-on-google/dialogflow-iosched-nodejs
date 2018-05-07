@@ -58,21 +58,21 @@ const getDay = (timestamp) => {
 const isFirstDay = (timestamp) => {
   if (!timestamp) return false;
   const date = moment(timestamp).tz(timezone);
-  date.isBetween(eventDay.first.start, eventDay.first.end);
+  return date.isBetween(eventDay.first.start, eventDay.first.end);
 };
 
 // Returns whether or not the given timestamp occurs on the second day
 const isSecondDay = (timestamp) => {
   if (!timestamp) return false;
   const date = moment(timestamp).tz(timezone);
-  date.isBetween(eventDay.second.start, eventDay.second.end);
+  return date.isBetween(eventDay.second.start, eventDay.second.end);
 };
 
 // Returns whether or not the given timestamp occurs on the third day
 const isThirdDay = (timestamp) => {
   if (!timestamp) return false;
   const date = moment(timestamp).tz(timezone);
-  date.isBetween(eventDay.third.start, eventDay.third.end);
+  return date.isBetween(eventDay.third.start, eventDay.third.end);
 };
 
 // Returns whether or not the given timestamp occurs before the event

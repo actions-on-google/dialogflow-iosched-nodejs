@@ -68,6 +68,8 @@ app.intent('relaxMenu', static);
 
 app.intent('date', static);
 
+app.intent('directions', static);
+
 app.intent('keynote', static);
 
 app.intent('codelabs', static);
@@ -95,6 +97,14 @@ app.intent('ask-attending-yes', static);
 app.intent('ask-attending-no', static);
 
 app.intent('welcome', static);
+
+app.intent('concert', static);
+
+app.intent('popular-justice-songs', static);
+
+app.intent('popular-phantogram-songs', static);
+
+app.intent('scavenger-hunt', static);
 
 app.intent('browse-topics', menu);
 
