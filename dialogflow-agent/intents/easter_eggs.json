@@ -10,19 +10,49 @@
       "parameters": [],
       "messages": [
         {
+          "type": "simple_response",
+          "platform": "google",
+          "lang": "en",
+          "textToSpeech": "I can manage your viewing schedule or help you look for talks. What can I help you with?"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "lang": "en",
+          "suggestions": [
+            {
+              "title": "Announcements"
+            },
+            {
+              "title": "Keynotes"
+            },
+            {
+              "title": "Where is the food"
+            },
+            {
+              "title": "Codelabs and Sandboxes"
+            },
+            {
+              "title": "Search for talks"
+            }
+          ]
+        },
+        {
           "type": 0,
           "lang": "en",
           "speech": "My favorite kind is easter eggs."
         }
       ],
-      "defaultResponsePlatforms": {},
+      "defaultResponsePlatforms": {
+        "google": true
+      },
       "speech": []
     }
   ],
   "priority": 500000,
   "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524526617,
+  "lastUpdate": 1525749166,
   "fallbackIntent": false,
   "events": []
 }
