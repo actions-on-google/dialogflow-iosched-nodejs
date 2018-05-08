@@ -26,7 +26,7 @@ const {
   isBeforeKeynotes,
   isAfterKeynotes,
   isBetweenKeynotes,
-} = require('../../utils');
+} = require('../../timeUtils');
 
 const duringPrompts = require('./during.js');
 

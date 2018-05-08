@@ -16,7 +16,7 @@ const {
 } = require('actions-on-google');
 
 /* eslint-disable max-len*/
-const defaultFallbackPrompts = [
+exports.defaultFallbackPrompts = [
   {
     'elements': new SimpleResponse({
       speech: `I'm getting a 4 0 4 error. Which did you want?`,
@@ -56,7 +56,7 @@ const defaultFallbackPrompts = [
 ];
 
 // No Input Prompts should work only on speaker surfaces
-const defaultNoInputPrompts = [
+exports.defaultNoInputPrompts = [
   new SimpleResponse({
     speech: `You’re sending an empty signal here. I can manage your schedule, help you find things to do, or give you directions. Which do you need?`,
     text: `What can I help you with?`,
@@ -81,8 +81,3 @@ exports.goodbye = [
     text: `Come back if there's anything else I/O you'd like to know.`,
   }),
 ];
-
-module.exports = {
-  defaultFallbackPrompts,
-  defaultNoInputPrompts,
-};

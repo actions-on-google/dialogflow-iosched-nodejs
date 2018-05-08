@@ -240,8 +240,8 @@ const menuPrompts = {
     ],
     suggestions: {
       'required': [
-        'yes',
-        'no',
+        'Yes!',
+        'No',
       ],
     },
     noInput: [
@@ -558,7 +558,17 @@ module.exports = {
             text: `Welcome to your launchpad for all things Google I/O.`,
           }),
         ]),
-      'repeat': menuRepeat(menuPrompts.attending),
+      'repeat': menuRepeat(menuPrompts.attending,
+        [
+          new SimpleResponse({
+            speech: `Hi again.`,
+            text: `Hi again.`,
+          }),
+          new SimpleResponse({
+            speech: `Welcome back.`,
+            text: `Welcome back.`,
+          }),
+        ]),
     },
     'menu': {
       'firstTime/repeat': menuRepeat(menuPrompts.attending),
@@ -832,7 +842,17 @@ module.exports = {
             text: `Welcome to your launchpad for all things Google I/O.`,
           }),
         ]),
-      'repeat': menuRepeat(menuPrompts.notAttending),
+      'repeat': menuRepeat(menuPrompts.notAttending,
+        [
+          new SimpleResponse({
+            speech: `Hi again.`,
+            text: `Hi again.`,
+          }),
+          new SimpleResponse({
+            speech: `Welcome back.`,
+            text: `Welcome back.`,
+          }),
+        ]),
     },
     'menu': {
       'firstTime/repeat': menuRepeat(menuPrompts.notAttending),

@@ -18,7 +18,7 @@ const {
   Button,
 } = require('actions-on-google');
 
-const moment = require('moment-timezone');
+const {getMoment} = require('../../timeUtils');
 
 const {sanitizeSsml} = require('../common/utils');
 
@@ -220,7 +220,7 @@ const browseSessions = (items=[], topic='that topic',
   const screenItems = items.reduce((itemsObj, session) => {
     itemsObj[session.id] = {
       title: session.title,
-      description: `${moment(session.startTimestamp).tz('America/Los_Angeles').format('ddd MMM D h:mmA')} / ${session.roomName}`,
+      description: `${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} / ${session.roomName}`,
     };
     return itemsObj;
   }, {});
@@ -449,7 +449,7 @@ const showSession = ({session, prefixes, postfixes, buttonText,
               [
                 new BasicCard({
                   title: session.title,
-                  subtitle: `${moment(session.startTimestamp).tz('America/Los_Angeles').format('ddd MMM D h:mmA')} / ${session.roomName}`,
+                  subtitle: `${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} / ${session.roomName}`,
                   text: session.description,
                   buttons: [
                     new Button({

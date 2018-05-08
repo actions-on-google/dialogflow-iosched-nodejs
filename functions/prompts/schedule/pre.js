@@ -93,7 +93,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
   const screenItems = items.reduce((itemsObj, session) => {
     itemsObj[session.id] = {
       title: (session.isStarred ? '★ ' : '') + session.title,
-      description: `${(session.reservationStatus ? `${session.reservationStatus} ` : '')} ${moment(session.startTimestamp).tz('America/Los_Angeles').format('ddd MMM D h:mmA')} /  ${session.roomName}`,
+      description: `${(session.reservationStatus ? `${session.reservationStatus} ` : '')} ${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} /  ${session.roomName}`,
     };
     return itemsObj;
   }, {});

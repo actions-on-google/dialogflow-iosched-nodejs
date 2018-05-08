@@ -25,7 +25,7 @@ const eventDay = {
   },
   third: {
     start: moment.tz('2018-05-10 00:00', timezone),
-    end: moment.tz('2018-05-10 23:59', timezone),
+    end: moment.tz('2018-05-10 17:00', timezone),
   },
 };
 
@@ -74,6 +74,7 @@ const isThirdDay = (timestamp) => {
   const date = moment(timestamp).tz(timezone);
   return date.isBetween(eventDay.third.start, eventDay.third.end);
 };
+const getMoment = (timestamp) => moment(timestamp).tz(timezone);
 
 // Returns whether or not the given timestamp occurs before the event
 const isPreEvent = (timestamp) => {
@@ -128,4 +129,5 @@ module.exports = {
   isBeforeKeynotes,
   isAfterKeynotes,
   isBetweenKeynotes,
+  getMoment,
 };

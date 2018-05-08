@@ -12,8 +12,10 @@
 // limitations under the License.
 
 const request = require('request');
-const moment = require('moment-timezone');
-const {getDay} = require('./../utils');
+const {
+  getMoment,
+  getDay,
+} = require('./../timeUtils');
 
 // The JSON file of I/O session data
 const DATA_SOURCE = 'https://firebasestorage.googleapis.com/v0/b/io2018-festivus/o/sessions.json?alt=media&token=019af2ec-9fd1-408e-9b86-891e4f66e674';
@@ -78,8 +80,7 @@ class ConferenceData {
             if (day != 0) {
               session.title += ` (Day ${day}` +
               `${session.type === 'Codelabs' ?
-              ` ${moment(session.startTimestamp).tz('America/Los_Angeles')
-              .format('h:mmA')}` : ''})`;
+              ` ${getMoment(session.startTimestamp).format('h:mmA')}` : ''})`;
             }
           });
         }

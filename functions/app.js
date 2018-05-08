@@ -16,7 +16,7 @@ const {
 } = require('actions-on-google');
 const {
   getPhase,
-} = require('./utils');
+} = require('./timeUtils');
 const static = require('./prompts/static/utils');
 const menu = require('./prompts/menu/utils');
 const {
