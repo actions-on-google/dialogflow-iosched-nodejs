@@ -15,7 +15,8 @@ const {
   SimpleResponse,
   List,
 } = require('actions-on-google');
-const moment = require('moment-timezone');
+
+const {getMoment} = require('../../timeUtils');
 
 const {sanitizeSsml} = require('../common/utils');
 
