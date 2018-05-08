@@ -1,0 +1,53 @@
+[
+  {
+    "id": "442036eb-509a-4a27-a51d-99959f2385bb",
+    "data": [
+      {
+        "text": "Find my next ",
+        "userDefined": false
+      },
+      {
+        "text": "session",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525803972
+  },
+  {
+    "id": "76efba7e-c1c6-4a2f-8c39-87f3ae35d5f0",
+    "data": [
+      {
+        "text": "Get me to my next ",
+        "userDefined": false
+      },
+      {
+        "text": "session",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525803972
+  },
+  {
+    "id": "dde93700-d200-44de-9cf7-a749ea333d17",
+    "data": [
+      {
+        "text": "Where\u0027s my next ",
+        "userDefined": false
+      },
+      {
+        "text": "session",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525803972
+  }
+]

@@ -86,8 +86,8 @@ const directionsPrompt = (room, screen) => {
       'firstTime/repeat': screen ? [
         [
           new SimpleResponse({
-            speech: 'Sure, here you go.',
-            text: 'Sure, here you go.',
+            speech: `Sure, here are the directions to ${rooms[room].name}.`,
+            text: `Sure, here are the directions to ${rooms[room].name}.`,
           }),
         ],
         [
@@ -188,6 +188,7 @@ const menuPrompts = {
             'Manage my schedule',
             'Find things to do',
             'Get directions',
+            `Where's my next session?`,
           ],
         },
       },
@@ -201,6 +202,7 @@ const menuPrompts = {
             'Manage my schedule',
             'Find things to do',
             'Get directions',
+            `Where's my next session?`,
           ],
         },
       },
@@ -588,6 +590,7 @@ const prefixPromptReentry = (prefixPrompts, reentryResponse) => [
         `Manage my schedule`,
         `Find things to do`,
         `Get directions`,
+        `Where's my next session?`,
       ],
     },
   },
@@ -609,6 +612,7 @@ const multiPrefixPromptReentry = (prefixPrompts, reentryResponse) => [
         `Manage my schedule`,
         `Find things to do`,
         `Get directions`,
+        `Where's my next session?`,
       ],
     },
   },

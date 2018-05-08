@@ -144,6 +144,10 @@ app.intent('show-schedule-session', menu);
 
 app.intent('show-schedule-session-repeat', menu);
 
+app.intent('next-session-directions', schedule);
+
+app.intent('next-session-directions-sign-in', schedule);
+
 app.intent('check-type', menu);
 
 app.intent('cancel', goodbye);

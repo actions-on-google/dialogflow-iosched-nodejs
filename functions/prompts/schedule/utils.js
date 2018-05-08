@@ -21,7 +21,48 @@ const {getFirebaseUser} = require('../../auth/user');
 const getGoogleEmail = require('../../auth/oauth');
 const {UserData} = require('../../auth/user');
 
+const {getMoment} = require('../../timeUtils');
+
+const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
+
 const showSchedule = (conv) => {
+  const prompts = require('./'+conv.phase+'.js');
+  return schedule(conv, (sessions) => {
+    return browse({
+      conv,
+      itemsPromise: Promise.resolve(sessions),
+      prompts: prompts['show-schedule-first-set'](sessions.length),
+      maxAudio: 2,
+      sort: sortByTimestamp,
+    });
+  });
+};
+
+const nextSessionDirections = (conv) => {
+  const prompts = require('./'+conv.phase+'.js');
+  return schedule(conv, (sessions) => {
+    if (sessions.length === 0) {
+      parse(conv, prompts['next-session-empty']);
+    } else {
+      sessions.sort(sortByTimestamp);
+      for (const session of sessions) {
+        if (getMoment(session.endTimestamp).
+          isAfter(getMoment(conv.currentTime))) {
+            const duringPrompts = require('../static/during');
+            const prompts = conv.user.storage.isAttending ?
+              duringPrompts.attending :
+              duringPrompts.notAttending;
+            const roomId = session.room;
+            return parse(conv,
+              prompts['session-directions'](roomId, conv.screen));
+        }
+      }
+      parse(conv, prompts['next-session-finished']);
+    }
+  });
+};
+
+const schedule = (conv, callback) => {
   console.log('Showing the user their schedule');
   const prompts = require('./'+conv.phase+'.js');
   if (conv.user.storage.uid && conv.user.access.token) {
@@ -46,13 +87,7 @@ const showSchedule = (conv) => {
             session.isStarred = scheduleSession.isStarred;
           }
         }
-        return browse({
-          conv,
-          itemsPromise: Promise.resolve(sessions),
-          prompts: prompts['show-schedule-first-set'](schedule.length),
-          maxAudio: 2,
-          sort: (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1,
-        });
+        return callback(sessions);
       }).catch((error) => {
         console.error(`Error getting session data for user schedule ${error}`);
         parse(conv, prompts['show-schedule']().error);
@@ -100,7 +135,15 @@ const showScheduleRepeat = (conv) => {
   });
 };
 
-const signIn = (conv) => {
+const nextSessionDirectionsSignIn = (conv) => {
+  return signIn(conv, nextSessionDirections);
+};
+
+const scheduleSignIn = (conv) => {
+  return signIn(conv, showSchedule);
+};
+
+const signIn = (conv, callback) => {
   console.log('Handling SIGN_IN intent');
   const prompts = require('./'+conv.phase+'.js');
   if (conv.arguments.get('SIGN_IN').status === 'OK' &&
@@ -108,7 +151,7 @@ const signIn = (conv) => {
     return getGoogleEmail(conv.user.access.token).then((email) => {
       return getFirebaseUser(email).then((uid) => {
         conv.user.storage.uid = uid;
-        return showSchedule(conv);
+        return callback(conv);
       }).catch((error) => {
         console.error(`Error finding Firebase user: ${error}`);
         return parse(conv, prompts['sign-in-user-not-found']);
@@ -134,7 +177,7 @@ const doSomethingElse = (conv) => {
 
 const intents = {
   'show-schedule': showSchedule,
-  'schedule-sign-in': signIn,
+  'schedule-sign-in': scheduleSignIn,
   'show-schedule-browse-topics-yes': (conv, ...args) => {
     conv.contexts.output['browse-topics-followup'] = {
       lifespan: 3,
@@ -145,6 +188,8 @@ const intents = {
   'show-schedule-browse-topics-no': doSomethingElse,
   'show-schedule-next': showScheduleNext,
   'show-schedule-repeat': showScheduleRepeat,
+  'next-session-directions': nextSessionDirections,
+  'next-session-directions-sign-in': nextSessionDirectionsSignIn,
 };
 
 module.exports = (conv, ...args) => {
