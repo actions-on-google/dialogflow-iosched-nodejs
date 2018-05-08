@@ -12,11 +12,6 @@
 // limitations under the License.
 
 const {
-  BasicCard,
-  SimpleResponse,
-} = require('actions-on-google');
-
-const {
   parse,
  } = require('../common/utils');
 
@@ -32,42 +27,48 @@ const duringPrompts = require('./during.js');
 
 // Retrieves the appropriate keynote prompt
 const keynotePrompt = (conv) => {
-  const currentTime = Date.now();
+  const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.keynote.default;
+  prompts = prompts.keynote;
   if (isBeforeKeynotes(currentTime)) {
     prompts = prompts.before;
   } else if (isBetweenKeynotes(currentTime)) {
     prompts = prompts.during;
   } else if (isAfterKeynotes(currentTime)) {
     prompts = prompts.after;
+  } else {
+    prompts = prompts.default;
   }
   return parse(conv, prompts);
 };
 
 // Retrieves the appropriate after party prompt
 const afterPartyPrompt = (conv) => {
-  const currentTime = Date.now();
+  const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.afterParty.default;
+  prompts = prompts.afterParty;
   if (isFirstDay(currentTime)) {
     prompts = prompts.firstDay;
   } else if (isSecondDay(currentTime)) {
     prompts = prompts.secondDay;
+  } else {
+    prompts = prompts.default;
   }
   return parse(conv, prompts);
 };
 
 // Retrieves the appropriate announcements prompt
 const announcementsPrompt = (conv) => {
-  const currentTime = Date.now();
+  const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.announcements.default;
+  prompts = prompts.announcements;
   if (isAfterKeynotes(currentTime)) {
     prompts = prompts.afterKeynote;
+  } else {
+    prompts = prompts.default;
   }
   return parse(conv, prompts);
 };
@@ -104,73 +105,15 @@ const welcomePrompt = (conv) => {
 
 // Checks if the user specified a room, and prompts them with directions
 const directionsPrompt = (conv, params) => {
-  if (params.room) {
-    return directionsFollowupPrompt(conv, params);
-  }
   const prompts = conv.user.storage.isAttending ? duringPrompts.attending :
-  duringPrompts.notAttending;
-  prompt = prompts.directions;
-  return parse(conv, prompt);
-};
-
-// Prompt the user for which room they would like directions for
-const directionsFollowupPrompt = (conv, params) => {
-  const rooms = require('../../event/map').rooms;
-  let directions = `Sorry, I'm not familiar with that room.`;
-  let prompt = {
-    'firstTime/repeat': {
-      'screen/speaker': [
-        {
-          'elements': [
-            [
-              new SimpleResponse({
-                speech: directions,
-                text: directions,
-              }),
-            ],
-          ],
-        },
-      ],
-    },
-  };
+    duringPrompts.notAttending;
   if (params.room) {
-    const room = rooms[params.room];
-    directions = room.directions;
-    prompt = {
-      'firstTime/repeat': {
-        'screen': [
-          {
-            'elements': [
-              [
-                new SimpleResponse({
-                  speech: directions,
-                  text: directions,
-                }),
-              ],
-              [
-                new BasicCard({
-                  text: directions,
-                  title: room.name,
-                }),
-              ],
-            ],
-          },
-        ],
-        'speaker': [
-          {
-            'elements': [
-              [
-                new SimpleResponse({
-                  speech: directions,
-                  text: directions,
-                }),
-              ],
-            ],
-          },
-        ],
-      },
-    };
+    return parse(conv, prompts['session-directions'](params.room, conv.screen));
+  } else if (conv.data.sessionShown) {
+    const roomId = conv.data.sessionShown.room;
+    return parse(conv, prompts['session-directions'](roomId, conv.screen));
   }
+  prompt = prompts.directions;
   return parse(conv, prompt);
 };
 
@@ -202,6 +145,8 @@ const intents = {
   'directions': directionsPrompt,
   'scavenger-hunt': generalPrompt,
   'concert': generalPrompt,
+  'show-session-directions': directionsPrompt,
+  'show-schedule-session-directions': directionsPrompt,
   'popular-justice-songs': generalPrompt,
   'popular-phantogram-songs': generalPrompt,
 };

@@ -48,7 +48,7 @@
         {
           "type": 0,
           "lang": "en",
-          "speech": []
+          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
         }
       ],
       "defaultResponsePlatforms": {},
@@ -58,7 +58,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524622792,
+  "lastUpdate": 1525758705,
   "fallbackIntent": false,
   "events": []
 }

@@ -1,18 +1,23 @@
 {
-  "id": "2c9479b2-7720-4683-a03b-9715c0c7b385",
-  "name": "whatToWear",
+  "id": "c39ede76-e3aa-44f7-9995-d5c9f03f4936",
+  "parentId": "211730b7-0419-4e5f-a612-82f1efab70d0",
+  "rootParentId": "30982b77-069d-4cde-9634-a46cddaaa295",
+  "name": "show-schedule-session-directions",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "show-schedule-session-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "show-schedule.show-schedule-custom.show-schedule-session-custom",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
           "type": 0,
           "lang": "en",
-          "speech": "Sorry, I\u0027m getting an unexpected error, so I can\u0027t help with that right now. Is there something else I can tell you about IO?"
+          "speech": []
         }
       ],
       "defaultResponsePlatforms": {},
@@ -22,7 +27,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524636394,
+  "lastUpdate": 1525767721,
   "fallbackIntent": false,
   "events": []
 }

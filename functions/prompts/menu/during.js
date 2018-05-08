@@ -463,6 +463,7 @@ const showSession = ({session, prefixes, postfixes, buttonText,
             ],
             'suggestions': {
               'required': [
+                'Get directions',
                 pivotSuggestion || 'Other topics',
                 'Do something else',
               ],

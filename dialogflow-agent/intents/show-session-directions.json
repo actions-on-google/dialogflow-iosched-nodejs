@@ -1,11 +1,17 @@
 {
-  "id": "2c9479b2-7720-4683-a03b-9715c0c7b385",
-  "name": "whatToWear",
+  "id": "83e461f1-49bc-4ea5-b39a-01c41c62d529",
+  "parentId": "ab9b8005-6468-4242-a630-e6124fbf2bcd",
+  "rootParentId": "52028621-a35e-400a-ae17-1d8068b50031",
+  "name": "show-session-directions",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "show-session-followup",
+    "show-session-followup-2"
+  ],
   "responses": [
     {
       "resetContexts": false,
+      "action": "browse-sessions.browse-sessions-custom.show-session-custom",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
@@ -22,7 +28,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524636394,
+  "lastUpdate": 1525758764,
   "fallbackIntent": false,
   "events": []
 }

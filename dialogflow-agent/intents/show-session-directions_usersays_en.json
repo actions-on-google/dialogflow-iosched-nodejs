@@ -1,0 +1,62 @@
+[
+  {
+    "id": "53811a2c-5a36-4385-a757-e348286a0927",
+    "data": [
+      {
+        "text": "how do i get there?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525758544
+  },
+  {
+    "id": "f5d82283-4746-4675-9147-e9560018ffc4",
+    "data": [
+      {
+        "text": "find me directions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525758544
+  },
+  {
+    "id": "c9dd3999-f0f5-457b-994e-66eaa78f3589",
+    "data": [
+      {
+        "text": "get me there",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525758544
+  },
+  {
+    "id": "9f5585f6-b74c-45d9-99f0-1f5a2642aa6f",
+    "data": [
+      {
+        "text": "directions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525758544
+  },
+  {
+    "id": "88ecea3e-d0f6-428c-be99-138d70e28196",
+    "data": [
+      {
+        "text": "Get directions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525758544
+  }
+]

@@ -106,6 +106,10 @@ app.intent('popular-phantogram-songs', static);
 
 app.intent('scavenger-hunt', static);
 
+app.intent('show-session-directions', static);
+
+app.intent('show-schedule-session-directions', static);
+
 app.intent('browse-topics', menu);
 
 app.intent('browse-topics-next', menu);

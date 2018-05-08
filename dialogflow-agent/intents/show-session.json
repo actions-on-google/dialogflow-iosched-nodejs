@@ -22,6 +22,11 @@
           "name": "browse-sessions-followup",
           "parameters": {},
           "lifespan": 0
+        },
+        {
+          "name": "show-session-followup-2",
+          "parameters": {},
+          "lifespan": 2
         }
       ],
       "parameters": [

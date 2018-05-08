@@ -20,6 +20,11 @@ const {
   SimpleResponse,
 } = require('actions-on-google');
 
+const {
+  defaultFallbackPrompts,
+  defaultNoInputPrompts,
+} = require('../common/during');
+
 /* eslint-disable max-len*/
 const getYouTubeURL = (videoId) => {
   return `https://www.youtube.com/watch?v=${videoId}`;
@@ -60,6 +65,48 @@ const popularPhantogramSongsCarousel = () => {
       carouselSong(`Phantogram - Same Old Blues (Official Audio)`, `WcS6MA9fu-I`),
     ],
   });
+};
+
+const directionsPrompt = (room, screen) => {
+  const rooms = require('../../event/map').rooms;
+  let directions = `Sorry, I'm not familiar with that room.`;
+  let prompt = {
+    'firstTime/repeat': [
+      [
+        new SimpleResponse({
+          speech: directions,
+          text: directions,
+        }),
+      ],
+    ],
+  };
+  if (room) {
+    directions = rooms[room].directions;
+    prompt = {
+      'firstTime/repeat': screen ? [
+        [
+          new SimpleResponse({
+            speech: directions,
+            text: directions,
+          }),
+        ],
+        [
+          new BasicCard({
+            text: directions,
+            title: rooms[room].name,
+          }),
+        ],
+      ] : [
+        [
+          new SimpleResponse({
+            speech: directions,
+            text: directions,
+          }),
+        ],
+      ],
+    };
+  }
+  return prompt;
 };
 
 const menuPrompts = {
@@ -480,29 +527,29 @@ const menu = (prompts, suggestions, noInput, fallback, prefixPrompts) => {
     'screen/speaker': [
       {
         'elements': prompts,
-        'suggestions': suggestions,
-        'noInput': noInput,
-        'fallback': fallback,
+        'suggestions': suggestions || [],
+        'noInput': noInput || defaultNoInputPrompts,
+        'fallback': fallback || defaultFallbackPrompts,
       },
     ],
   };
 };
 
 const menuFirstTime = (prompts, prefixPrompts) => {
-  return menu(prompts.firstTime, prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
+  return menu(prompts.firstTime || prompts['firstTime/repeat'], prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
 };
 
 const menuRepeat = (prompts, prefixPrompts) => {
-  return menu(prompts.repeat, prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
+  return menu(prompts.repeat || prompts['firstTime/repeat'], prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
 };
 
-const attendingReentry = (prefixPrompts) => [
+const prefixPromptReentry = (prefixPrompts, reentryResponse) => [
   {
     'elements': [
-      ...prefixPrompts,
+      prefixPrompts,
       [
         new SimpleResponse({
-          speech: `Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?`,
+          speech: reentryResponse,
           text: `Now, what else can I help you with?`,
         }),
       ],
@@ -517,13 +564,13 @@ const attendingReentry = (prefixPrompts) => [
   },
 ];
 
-const notAttendingReentry = (prefixPrompts) => [
+const multiPrefixPromptReentry = (prefixPrompts, reentryResponse) => [
   {
     'elements': [
       ...prefixPrompts,
       [
         new SimpleResponse({
-          speech: `Now, you can manage your schedule, search for talks, or hear about extended viewing parties. Which do you want?`,
+          speech: reentryResponse,
           text: `Now, what else can I help you with?`,
         }),
       ],
@@ -531,12 +578,21 @@ const notAttendingReentry = (prefixPrompts) => [
     'suggestions': {
       'required': [
         `Manage my schedule`,
-        `Search for talks`,
-        `What's I/O extended?`,
+        `Find things to do`,
+        `Get directions`,
       ],
     },
   },
 ];
+
+const attendingReentry = (prefixPrompts) =>
+  prefixPromptReentry(prefixPrompts, `Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?`);
+
+const notAttendingReentry = (prefixPrompts) =>
+  prefixPromptReentry(prefixPrompts, `Now, you can manage your schedule, search for talks, or hear about extended viewing parties. Which do you want?`);
+
+const scavengerHuntAttendingReentry = (prefixPrompts) =>
+  multiPrefixPromptReentry(prefixPrompts, `Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?`);
 
 module.exports = {
   'checkAttending': {
@@ -730,6 +786,12 @@ module.exports = {
       'firstTime': menuFirstTime(menuPrompts.directions),
       'repeat': menuRepeat(menuPrompts.directions),
     },
+    'session-directions': (room, screen) => {
+      return {
+        'firstTime': menuFirstTime(directionsPrompt(room, screen)),
+        'repeat': menuRepeat(directionsPrompt(room, screen)),
+      };
+    },
     'scavenger-hunt':
     {
       'firstTime/repeat': {
@@ -739,7 +801,7 @@ module.exports = {
             text: `Join in the I/O Scavenger hunt to find clues and unlock puzzles to collect an Android Things Developer Kit. Start now through the I/O app or g.co/iosearch`,
           }),
         ]),
-        'screen': attendingReentry([
+        'screen': scavengerHuntAttendingReentry([
           [
             new SimpleResponse({
               speech: `<speak>Here's some information about the scavenger hunt.</speak>`,
@@ -1013,6 +1075,12 @@ module.exports = {
     'directions': {
       'firstTime': menuFirstTime(menuPrompts.directions),
       'repeat': menuRepeat(menuPrompts.directions),
+    },
+    'session-directions': (room, screen) => {
+      return {
+        'firstTime': menuFirstTime(directionsPrompt(room, screen)),
+        'repeat': menuRepeat(directionsPrompt(room, screen)),
+      };
     },
     'scavenger-hunt': {
       'firstTime/repeat': notAttendingReentry([
