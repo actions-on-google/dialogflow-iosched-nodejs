@@ -86,14 +86,20 @@ const directionsPrompt = (room, screen) => {
       'firstTime/repeat': screen ? [
         [
           new SimpleResponse({
-            speech: directions,
-            text: directions,
+            speech: 'Sure, here you go.',
+            text: 'Sure, here you go.',
           }),
         ],
         [
           new BasicCard({
             text: directions,
             title: rooms[room].name,
+          }),
+        ],
+        [
+          new SimpleResponse({
+            speech: 'Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?',
+            text: 'Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?',
           }),
         ],
       ] : [
@@ -103,7 +109,30 @@ const directionsPrompt = (room, screen) => {
             text: directions,
           }),
         ],
+        [
+          new SimpleResponse({
+            speech: 'Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?',
+            text: 'Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?',
+          }),
+        ],
       ],
+      'suggestions': {
+        'required': [
+          `Manage my schedule`,
+          `Search for talks`,
+        ],
+        'randomized': [
+          'Announcements',
+          'Keynotes',
+          `Find office hours`,
+          `Where is the food?`,
+          `What's the swag?`,
+          `When's the after party?`,
+          'Codelabs and sandboxes',
+          'Scavenger Hunt',
+          'Concert',
+        ],
+      },
     };
   }
   return prompt;
