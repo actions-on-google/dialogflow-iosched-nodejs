@@ -452,10 +452,14 @@ const showSession = ({session, prefixes, postfixes, buttonText,
                   subtitle: `${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} / ${session.roomName}`,
                   text: session.description,
                   buttons: [
-                    new Button({
-                      title: buttonText || 'Add to my schedule',
-                      url: `https://events.google.com/io/schedule/?sid=${session.id}`,
-                    }),
+                    getMoment(session.startTimestamp).isAfter(Date.now()) ?
+                      new Button({
+                        title: buttonText || 'Add to my schedule',
+                        url: `https://events.google.com/io/schedule/?sid=${session.id}`,
+                      }) : session.livestream ? new Button({
+                          title: 'Watch live',
+                          url: session.youtubeUrl,
+                        }) : undefined,
                   ],
                 }),
               ],
