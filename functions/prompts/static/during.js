@@ -94,6 +94,10 @@ const directionsPrompt = (room, screen) => {
           new BasicCard({
             text: directions,
             title: rooms[room].name,
+            buttons: new Button({
+              title: 'Check out the map',
+              url: 'https://events.google.com/io/map',
+            }),
           }),
         ],
         [
