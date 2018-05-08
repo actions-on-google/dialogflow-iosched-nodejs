@@ -109,7 +109,9 @@ const directionsPrompt = (conv, params) => {
     duringPrompts.notAttending;
   if (params.room) {
     return parse(conv, prompts['session-directions'](params.room, conv.screen));
-  } else if (conv.data.sessionShown) {
+  } else if (conv.data.sessionShown &&
+    (conv.contexts.input['show-session-followup'] ||
+      conv.contexts.input['show-schedule-session-followup'])) {
     const roomId = conv.data.sessionShown.room;
     return parse(conv, prompts['session-directions'](roomId, conv.screen));
   }
