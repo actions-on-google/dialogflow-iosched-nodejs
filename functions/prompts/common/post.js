@@ -20,44 +20,38 @@ exports.defaultFallbackPrompts = [
   {
     'elements': [
       new SimpleResponse({
-        speech: `I'm getting a 4 O 4 error. What did you want to know about IO?`,
-        text: `That's a 404. What did you want to know about I/O?`,
+        speech: `Well that's a 4 0 4. Can I interest you in info on the keynotes, the sessions, or how to watch the recordings?`,
+        text: `Can I interest you in info on the keynotes, the sessions, or how to watch the recordings?`,
       }),
     ],
     'suggestions': {
       'required': [
-        'Tell me about keynotes',
-        'Tell me about sessions',
+        'Keynotes',
+        'Browse sessions',
       ],
-      'randomized': [
-        'Where is it?', 'How can I watch remotely?', `Find office hours`,
-        'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
-      ],
+      'randomized': [],
     },
   },
   {
     'elements': [
       new SimpleResponse({
-        speech: `Sorry. That's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
-        text: `Sorry, that's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
+        speech: `Sorry. That's beyond my expertise. Do you want to hear about the keynotes, browse sessions, or learn where you can watch the recordings?`,
+        text: `Do you want to hear about the keynotes, browse sessions, or learn where you can watch the recordings?`,
       }),
     ],
     'suggestions': {
       'required': [
-        'Tell me about keynotes',
+        'Keynotes',
         'Browse sessions',
       ],
-      'randomized': [
-        'Where is it?', 'How can I watch remotely?', `Find office hours`,
-        'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
-      ],
+      'randomized': [],
     },
   },
   {
     'elements': [
       new SimpleResponse({
         speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
       }),
     ],
   },
@@ -67,25 +61,21 @@ exports.defaultFallbackPrompts = [
 exports.defaultNoInputPrompts = [
   new SimpleResponse({
     speech: `You're sending an empty signal here. What do you want to know about IO?`,
-    text: `You're sending an empty signal here. What do you want to know about I/O?`,
+    text: `What do you want to know about IO?`,
   }),
   new SimpleResponse({
     speech: `I can tell you about the keynotes, sessions, or anything else about IO. What would you like to know?`,
-    text: `I can tell you about the keynotes, sessions, or anything else about I/O. What would you like to know?`,
+    text: `What would you like to know?`,
   }),
   new SimpleResponse({
     speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-    text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+    text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
   }),
 ];
 
 exports.goodbye = [
   new SimpleResponse({
-    speech: `<speak><prosody rate="fast">OK.</prosody> Hope to talk to you again soon.</speak>`,
-    text: `OK. Hope to talk to you again soon.`,
-  }),
-  new SimpleResponse({
-    speech: `Come back if there's anything else IO you'd like to know.`,
-    text: `Come back if there's anything else I/O you'd like to know.`,
+    speech: `<speak><prosody rate="fast">OK.</prosody> Goodbye.</speak>`,
+    text: `OK. Goodbye.`,
   }),
 ];

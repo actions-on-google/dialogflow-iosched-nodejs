@@ -44,6 +44,7 @@ app.middleware((conv) => {
   conv.phase = getPhase(conv.currentTime);
   if (conv.phase === 'post') {
     conv.user.storage.uid = undefined;
+    conv.data.sessionType = 'sessions';
   }
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
     'repeat' : 'firstTime';

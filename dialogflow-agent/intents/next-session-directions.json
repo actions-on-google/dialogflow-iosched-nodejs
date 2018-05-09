@@ -2,7 +2,9 @@
   "id": "637751ed-bca5-4537-9ec1-f74fe2134f86",
   "name": "next-session-directions",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "pre-or-during-io"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -28,7 +30,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525803992,
+  "lastUpdate": 1525993859,
   "fallbackIntent": false,
   "events": []
 }

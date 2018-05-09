@@ -14,9 +14,6 @@
 const {
   BasicCard,
   Button,
-  BrowseCarouselItem,
-  BrowseCarousel,
-  Image,
   SimpleResponse,
 } = require('actions-on-google');
 
@@ -25,48 +22,12 @@ const {
   defaultNoInputPrompts,
 } = require('../common/during');
 
+const {
+  popularJusticeSongsCarousel,
+  popularPhantogramSongsCarousel,
+} = require('../common/concert');
+
 /* eslint-disable max-len*/
-const getYouTubeURL = (videoId) => {
-  return `https://www.youtube.com/watch?v=${videoId}`;
-};
-
-const getYouTubeThumbnail = (videoId) => {
-  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-};
-
-const carouselSong = (title, videoId) => {
-  return new BrowseCarouselItem({
-    title: title,
-    url: getYouTubeURL(videoId),
-    image: new Image({
-      url: getYouTubeThumbnail(videoId),
-      alt: title,
-    }),
-  });
-};
-
-const popularJusticeSongsCarousel = () => {
-  return new BrowseCarousel({
-    items: [
-      carouselSong(`Justice - Genesis - †`, `VKzWLUQizz8`),
-      carouselSong(`Justice - D.A.N.C.E. - †`, `tCnBrrnOefs`),
-      carouselSong(`Justice - Phantom Pt II - †`, `5QCBkwmsOk0`),
-      carouselSong(`Justice - Let There Be Light - †`, `_0-tWLi0Kp4`),
-    ],
-  });
-};
-
-const popularPhantogramSongsCarousel = () => {
-  return new BrowseCarousel({
-    items: [
-      carouselSong(`Phantogram "When I'm Small"`, `28tZ-S1LFok`),
-      carouselSong(`Phantogram - You Don’t Get Me High Anymore`, `jryzEU7WAlg`),
-      carouselSong(`Phantogram - Fall In Love`, `RsQjC5zVnt8`),
-      carouselSong(`Phantogram - Same Old Blues (Official Audio)`, `WcS6MA9fu-I`),
-    ],
-  });
-};
-
 const directionsPrompt = (room, screen) => {
   const rooms = require('../../event/map').rooms;
   let directions = `Sorry, I'm not familiar with that room.`;

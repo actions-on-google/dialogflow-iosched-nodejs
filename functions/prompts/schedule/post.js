@@ -194,10 +194,9 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
             'suggestions': {
               'required': [
                 'Search for talks',
-                'Manage my schedule',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -223,7 +222,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
                 'Not now',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -249,7 +248,7 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
                 'Not now',
               ],
               'randomized': [
-                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+                'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
                 'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
               ],
             },
@@ -282,7 +281,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -307,7 +306,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -332,7 +331,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -357,7 +356,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },
@@ -382,7 +381,7 @@ module.exports = {
               'Search for talks',
             ],
             'randomized': [
-              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes',
               'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
             ],
           },

@@ -2,7 +2,9 @@
   "id": "30982b77-069d-4cde-9634-a46cddaaa295",
   "name": "show-schedule",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "pre-or-during-io"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -38,7 +40,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524548945,
+  "lastUpdate": 1525993883,
   "fallbackIntent": false,
   "events": []
 }
