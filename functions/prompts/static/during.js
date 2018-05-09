@@ -183,10 +183,12 @@ const menuPrompts = {
     ],
     fallback: [
       {
-        'elements': new SimpleResponse({
-          speech: `I'm getting a 4 0 4 error. Which did you want?`,
-          text: `That's a 404. What did you want help with?`,
-        }),
+        'elements': [
+            new SimpleResponse({
+            speech: `I'm getting a 4 0 4 error. Which did you want?`,
+            text: `That's a 404. What did you want help with?`,
+          }),
+        ],
         'suggestions': {
           'required': [
             'Manage my schedule',
@@ -270,10 +272,12 @@ const menuPrompts = {
     ],
     fallback: [
       {
-        'elements': new SimpleResponse({
-          speech: `I'm getting a 4 0 4 error. What did you want help with?`,
-          text: `That's a 404. What did you want help with?`,
-        }),
+        'elements': [
+          new SimpleResponse({
+            speech: `I'm getting a 4 0 4 error. What did you want help with?`,
+            text: `That's a 404. What did you want help with?`,
+          }),
+        ],
         'suggestions': {
           'required': [
             `Manage my schedule`,
@@ -379,10 +383,12 @@ const menuPrompts = {
     ],
     fallback: [
       {
-        'elements': new SimpleResponse({
-          speech: `Well that's a 4 0 4. Which did you want?`,
-          text: `That's a 4 0 4. Which did you want?`,
-        }),
+        'elements': [
+            new SimpleResponse({
+            speech: `Well that's a 4 0 4. Which did you want?`,
+            text: `That's a 4 0 4. Which did you want?`,
+          }),
+        ],
         'suggestions': {
           'required': [
             `Learn from the experts`,
@@ -452,10 +458,12 @@ const menuPrompts = {
     ],
     fallback: [
       {
-        'elements': new SimpleResponse({
-          speech: `Well that's a 4 0 4. Which did you want?`,
-          text: `That's a 4 0 4. Which did you want?`,
-        }),
+        'elements': [
+          new SimpleResponse({
+            speech: `Well that's a 4 0 4. Which did you want?`,
+            text: `That's a 4 0 4. Which did you want?`,
+          }),
+        ],
         'suggestions': {
           'required': [
             `Tell me about the food`,
@@ -533,22 +541,28 @@ const menuPrompts = {
     ],
     fallback: [
       {
-        'elements': new SimpleResponse({
-          speech: `Sorry, where do you need directions to?`,
-          text: `Sorry, where do you need directions to?`,
-        }),
+        'elements': [
+          new SimpleResponse({
+            speech: `Sorry, where do you need directions to?`,
+            text: `Sorry, where do you need directions to?`,
+          }),
+        ],
       },
       {
-        'elements': new SimpleResponse({
-          speech: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
-          text: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
-        }),
+        'elements': [
+          new SimpleResponse({
+            speech: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+            text: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+          }),
+        ],
       },
       {
-        'elements': new SimpleResponse({
-          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        }),
+        'elements': [
+          new SimpleResponse({
+            speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+            text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          }),
+        ],
       },
     ],
   },

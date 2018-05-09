@@ -18,10 +18,12 @@ const {
 /* eslint-disable max-len*/
 exports.defaultFallbackPrompts = [
   {
-    'response': new SimpleResponse({
-      speech: `I'm getting a 4 O 4 error. What did you want to know about IO?`,
-      text: `That's a 404. What did you want to know about I/O?`,
-    }),
+    'elements': [
+      new SimpleResponse({
+        speech: `I'm getting a 4 O 4 error. What did you want to know about IO?`,
+        text: `That's a 404. What did you want to know about I/O?`,
+      }),
+    ],
     'suggestions': {
       'required': [
         'Tell me about keynotes',
@@ -34,10 +36,12 @@ exports.defaultFallbackPrompts = [
     },
   },
   {
-    'response': new SimpleResponse({
-      speech: `Sorry. That's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
-      text: `Sorry, that's beyond my expertise.\u00a0Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
-    }),
+    'elements': [
+      new SimpleResponse({
+        speech: `Sorry. That's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
+        text: `Sorry, that's beyond my expertise. Can I interest you in info on the keynotes, the sessions, or how to watch remotely?`,
+      }),
+    ],
     'suggestions': {
       'required': [
         'Tell me about keynotes',
@@ -50,10 +54,12 @@ exports.defaultFallbackPrompts = [
     },
   },
   {
-    'response': new SimpleResponse({
-      speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-    }),
+    'elements': [
+      new SimpleResponse({
+        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+      }),
+    ],
   },
 ];
 

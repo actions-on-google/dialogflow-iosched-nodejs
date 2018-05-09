@@ -18,10 +18,12 @@ const {
 /* eslint-disable max-len*/
 exports.defaultFallbackPrompts = [
   {
-    'elements': new SimpleResponse({
-      speech: `I'm getting a 4 0 4 error. Which did you want?`,
-      text: `That's a 404. What did you want help with?`,
-    }),
+    'elements': [
+        new SimpleResponse({
+        speech: `I'm getting a 4 0 4 error. Which did you want?`,
+        text: `That's a 404. What did you want help with?`,
+      }),
+    ],
     'suggestions': {
       'required': [
         'Manage my schedule',
@@ -35,10 +37,12 @@ exports.defaultFallbackPrompts = [
     },
   },
   {
-    'elements': new SimpleResponse({
-      speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
-      text: `Sorry, that's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
-    }),
+    'elements': [
+        new SimpleResponse({
+        speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
+        text: `Sorry, that's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
+      }),
+    ],
     'suggestions': {
       'required': [
         'Manage my schedule',
@@ -48,10 +52,12 @@ exports.defaultFallbackPrompts = [
     },
   },
   {
-    'elements': new SimpleResponse({
-      speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-    }),
+    'elements': [
+      new SimpleResponse({
+        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        text: `Since I'm having trouble, I'm going to call IT, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+      }),
+    ],
   },
 ];
 
