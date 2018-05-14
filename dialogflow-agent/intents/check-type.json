@@ -30,15 +30,15 @@
       ],
       "parameters": [
         {
-          "id": "82bb187e-5916-4d75-8c95-fe255a112370",
+          "id": "3a717b9e-a342-4aaa-a5c1-7da9cec61952",
           "required": true,
-          "dataType": "@sessionType",
-          "name": "sessionType",
-          "value": "$sessionType",
+          "dataType": "@session-type",
+          "name": "session-type",
+          "value": "$session-type",
           "prompts": [
             {
               "lang": "en",
-              "value": "Are you interested in sessions, office hours, or app reviews?"
+              "value": "Are you interested in sessions or office hours?"
             }
           ],
           "isList": false
@@ -58,7 +58,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525758705,
+  "lastUpdate": 1526423426,
   "fallbackIntent": false,
   "events": []
 }

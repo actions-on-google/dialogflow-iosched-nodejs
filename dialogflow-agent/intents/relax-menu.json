@@ -1,6 +1,6 @@
 {
-  "id": "2c9479b2-7720-4683-a03b-9715c0c7b385",
-  "name": "whatToWear",
+  "id": "3e237047-f8c3-453a-b93a-e9a592afa4cf",
+  "name": "relax-menu",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524636394,
+  "lastUpdate": 1526334911,
   "fallbackIntent": false,
   "events": []
 }

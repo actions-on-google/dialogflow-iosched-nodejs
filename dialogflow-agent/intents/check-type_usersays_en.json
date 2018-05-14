@@ -1,6 +1,6 @@
 [
   {
-    "id": "64d0da4f-cff4-4a27-a3b2-28802c2f69d5",
+    "id": "43ce9e4b-1d92-4d25-ba40-834476878f71",
     "data": [
       {
         "text": "Browse ",
@@ -8,41 +8,41 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1524614151
+    "updated": 1526423426
   },
   {
-    "id": "bb1d5d5b-7dfa-414d-a9be-95303067812b",
+    "id": "8fe4ed7c-24a1-4f8f-8ba9-7fea5650e987",
     "data": [
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 2,
-    "updated": 1524614151
+    "updated": 1526423426
   },
   {
-    "id": "5b439d4c-5d7a-46cb-95c8-8aeafe836c04",
+    "id": "faa583a4-9ced-49ce-9576-8384697e0771",
     "data": [
       {
         "text": "Office Hours",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1524614151
+    "updated": 1526423426
   }
 ]

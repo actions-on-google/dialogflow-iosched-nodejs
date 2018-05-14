@@ -1,6 +1,6 @@
 {
   "id": "d23156bc-191a-4b98-b34a-8948d98177cf",
-  "name": "easter_eggs",
+  "name": "easter-eggs",
   "auto": false,
   "contexts": [],
   "responses": [
@@ -52,7 +52,7 @@
   "priority": 500000,
   "webhookUsed": false,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525749166,
+  "lastUpdate": 1526334866,
   "fallbackIntent": false,
   "events": []
 }

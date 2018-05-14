@@ -204,10 +204,10 @@ module.exports = {
   'menu': {
     'firstTime/repeat': menuRepeat(),
   },
-  'thingsToDoMenu': {
+  'things-to-do-menu': {
     'firstTime/repeat': menuRepeat(),
   },
-  'relaxMenu': {
+  'relax-menu': {
     'firstTime/repeat': menuRepeat(),
   },
   'date': {
@@ -234,7 +234,7 @@ module.exports = {
       }),
     ]),
   },
-  'appReview': {
+  'app-review': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>Attendees will be able to improve their projects by getting advice and on-the-spot reviews from Googlers during office hours and app reviews. You can choose between App Consultations and Design Reviews.<break time="750ms"/></speak>`,
@@ -258,7 +258,7 @@ module.exports = {
       }),
     ]),
   },
-  'afterParty': {
+  'after-party': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>Attendees are invited to enjoy music, games, and more during the evening of May 8, and to an exclusive concert in the Amphitheatre on May 9. Food and drinks will be served on both nights, with alcoholic beverages available for those 21 and over.<break time="750ms"/></speak>`,
@@ -266,7 +266,7 @@ module.exports = {
       }),
     ]),
   },
-  'watchRemotely': {
+  'watch-remotely': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>The keynotes and sessions will be livestreamed. And the recordings will be uploaded to the Google Developers YouTube channel. You can also attend or host an extended viewing party. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
@@ -286,7 +286,7 @@ module.exports = {
       }),
     ]),
   },
-  'lostAndFound': {
+  'lost-and-found': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>The lost and found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google IO badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference! <break time="750ms"/></speak>`,
@@ -294,7 +294,7 @@ module.exports = {
       }),
     ]),
   },
-  'whatToWear': {
+  'what-to-wear': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>Google IO is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.<break time="750ms"/></speak>`,

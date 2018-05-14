@@ -30,7 +30,7 @@ const keynotePrompt = (conv) => {
   const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.keynote;
+  prompts = prompts['keynote'];
   if (isBeforeKeynotes(currentTime)) {
     prompts = prompts.before;
   } else if (isBetweenKeynotes(currentTime)) {
@@ -48,7 +48,7 @@ const afterPartyPrompt = (conv) => {
   const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.afterParty;
+  prompts = prompts['after-party'];
   if (isFirstDay(currentTime)) {
     prompts = prompts.firstDay;
   } else if (isSecondDay(currentTime)) {
@@ -64,7 +64,7 @@ const announcementsPrompt = (conv) => {
   const currentTime = conv.currentTime;
   let prompts = conv.user.storage.isAttending ? duringPrompts.attending :
     duringPrompts.notAttending;
-  prompts = prompts.announcements;
+  prompts = prompts['announcements'];
   if (isAfterKeynotes(currentTime)) {
     prompts = prompts.afterKeynote;
   } else {
@@ -130,19 +130,19 @@ const intents = {
   'ask-attending-yes': attendingPrompt,
   'ask-attending-no': notAttendingPrompt,
   'keynote': keynotePrompt,
-  'afterParty': afterPartyPrompt,
+  'after-party': afterPartyPrompt,
   'announcements': announcementsPrompt,
   'welcome': welcomePrompt,
   'menu': generalPrompt,
-  'thingsToDoMenu': generalPrompt,
-  'relaxMenu': generalPrompt,
+  'things-to-do-menu': generalPrompt,
+  'relax-menu': generalPrompt,
   'date': generalPrompt,
-  'watchRemotely': generalPrompt,
-  'lostAndFound': generalPrompt,
-  'whatToWear': generalPrompt,
+  'watch-remotely': generalPrompt,
+  'lost-and-found': generalPrompt,
+  'what-to-wear': generalPrompt,
   'codelabs': generalPrompt,
   'food': generalPrompt,
-  'appReview': generalPrompt,
+  'app-review': generalPrompt,
   'swag': generalPrompt,
   'directions': directionsPrompt,
   'scavenger-hunt': generalPrompt,

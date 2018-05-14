@@ -25,11 +25,10 @@
       ],
       "parameters": [
         {
-          "id": "999287d1-0bfa-4a49-a941-b9105b2d2062",
-          "required": false,
-          "dataType": "@sessionType",
-          "name": "sessionType",
-          "value": "$sessionType",
+          "id": "44feff6b-e21f-442e-9e83-c51bf45c485f",
+          "dataType": "@session-type",
+          "name": "session-type",
+          "value": "$session-type",
           "isList": false
         }
       ],
@@ -47,7 +46,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525392862,
+  "lastUpdate": 1526423477,
   "fallbackIntent": false,
   "events": []
 }

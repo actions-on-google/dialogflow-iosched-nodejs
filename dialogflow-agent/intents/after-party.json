@@ -1,6 +1,6 @@
 {
-  "id": "0ebf0ac8-ac12-4d9a-9b27-956746fe73a9",
-  "name": "lostAndFound",
+  "id": "0d5ab049-831c-4b6c-82a3-a17d34d7275e",
+  "name": "after-party",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237748,
+  "lastUpdate": 1526334832,
   "fallbackIntent": false,
   "events": []
 }

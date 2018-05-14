@@ -1,6 +1,6 @@
 [
   {
-    "id": "2e0995c6-c6f2-4da1-a7f0-235d4332e058",
+    "id": "24604f41-bb84-4de3-9779-18b5aaa9aedd",
     "data": [
       {
         "text": "browse topics",
@@ -9,10 +9,10 @@
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1525453607
+    "updated": 1526423082
   },
   {
-    "id": "24245cc8-e424-4526-a95f-1e84869afaa3",
+    "id": "9778a014-672d-480c-911d-62a2c521a866",
     "data": [
       {
         "text": "What are the talks at IO ",
@@ -30,10 +30,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525453607
+    "updated": 1526423082
   },
   {
-    "id": "2dfa2815-7d1e-4f09-99b2-48fcde44faae",
+    "id": "67e75fcf-2433-4bf8-8750-305c309f1e2c",
     "data": [
       {
         "text": "learn from the experts",
@@ -42,10 +42,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "60579593-76da-490b-8ef9-4c6bdfb5f818",
+    "id": "0748fb4f-745f-43e0-b13a-7857f41bd3a6",
     "data": [
       {
         "text": "experts",
@@ -54,10 +54,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "07e8d4c4-d3bf-443a-9773-ee0b506ab93b",
+    "id": "b0795c0d-1065-459e-8d10-166cb2da8f7b",
     "data": [
       {
         "text": "topics",
@@ -66,10 +66,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "8f3cb7d5-2cc2-4f5d-8e8e-7ecd8ac6b155",
+    "id": "e046fef4-3d6c-43b9-b054-5e48f0d1a4d3",
     "data": [
       {
         "text": "browse ",
@@ -77,31 +77,31 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423477
   },
   {
-    "id": "766349b1-ebb5-426f-90b2-0184b9fd147a",
+    "id": "2f1a3e10-cf17-4728-9b2e-81fba21435dd",
     "data": [
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1524684428
+    "updated": 1526423477
   },
   {
-    "id": "966bddba-df46-450d-8268-22ca9ad4cdb1",
+    "id": "1c6ca965-a364-434b-aca5-c9df199957f0",
     "data": [
       {
         "text": "tell me about",
@@ -110,10 +110,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "837cc90b-5f25-426a-a648-7a10ccaebe37",
+    "id": "a226ccc6-6d7d-4652-9125-6ba2f3ed0d48",
     "data": [
       {
         "text": "other topics",
@@ -122,10 +122,10 @@
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "2e5cd12e-7245-4d76-ab97-19d3564e3383",
+    "id": "8e3f7245-71f3-41b5-b19c-48d926c93a57",
     "data": [
       {
         "text": "about other ",
@@ -133,17 +133,17 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423477
   },
   {
-    "id": "b030b5b3-fa30-4179-8320-4738e638b73b",
+    "id": "9714b83e-7bf3-4073-82dd-8564a837309e",
     "data": [
       {
         "text": "other ",
@@ -151,17 +151,17 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 0,
-    "updated": 1525392862
+    "updated": 1526423082
   },
   {
-    "id": "b8588a3a-5800-411d-95a6-7ad1874ec48b",
+    "id": "4fa3fb7e-2d1c-407d-bd2c-73ae74025226",
     "data": [
       {
         "text": "browse",
@@ -173,21 +173,21 @@
     "updated": 1525392862
   },
   {
-    "id": "602e1c7c-ca95-473d-9ccf-5132d84e60ac",
+    "id": "ce232efe-fcea-49d3-8d4d-2591ca612385",
     "data": [
       {
         "text": "office hours",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": false
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1524684428
+    "updated": 1526423082
   },
   {
-    "id": "450904b3-d8af-4725-a4b9-f19fbe8c3030",
+    "id": "d3dd8c0c-a54f-4a81-abdf-0531dc6e3d54",
     "data": [
       {
         "text": "Search for talks",
@@ -199,7 +199,7 @@
     "updated": 1525453640
   },
   {
-    "id": "bc2a4b3b-2ce4-44c9-be37-1088742e1444",
+    "id": "bd4c716e-0703-4f79-9400-6e5f13c5f9b1",
     "data": [
       {
         "text": "Browse",
@@ -211,7 +211,7 @@
     "updated": 1525453640
   },
   {
-    "id": "b069f84e-c3c6-4de1-b019-5e9c488c4934",
+    "id": "6de0fe18-3b1b-4cf2-9cee-f82b8ce514cd",
     "data": [
       {
         "text": "about the talks",
@@ -223,7 +223,7 @@
     "updated": 1525453640
   },
   {
-    "id": "4b995b22-f7d1-41eb-9a13-ff56f56fe48f",
+    "id": "a48f57be-589c-4cd2-a27b-7184bc42f2eb",
     "data": [
       {
         "text": "about the ",
@@ -231,17 +231,17 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1525453640
+    "updated": 1526423082
   },
   {
-    "id": "3e12b29c-5b39-442c-b700-7882f4321254",
+    "id": "4f4abfd2-5892-4600-b4df-71143e21222b",
     "data": [
       {
         "text": "find a ",
@@ -249,17 +249,17 @@
       },
       {
         "text": "session",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1525453640
+    "updated": 1526423082
   },
   {
-    "id": "2bf8641a-a653-4837-98fd-e349d26369b1",
+    "id": "8304a316-c3d1-47f6-a7ff-78274a9714b9",
     "data": [
       {
         "text": "find a talk",
@@ -271,7 +271,7 @@
     "updated": 1525453640
   },
   {
-    "id": "83724b6f-5dd7-4123-a765-37b223d8a3cb",
+    "id": "c853b496-b578-482f-9a11-70d3c49ca51a",
     "data": [
       {
         "text": "search for ",
@@ -279,17 +279,17 @@
       },
       {
         "text": "sessions",
-        "alias": "sessionType",
-        "meta": "@sessionType",
+        "alias": "session-type",
+        "meta": "@session-type",
         "userDefined": true
       }
     ],
     "isTemplate": false,
     "count": 1,
-    "updated": 1525453640
+    "updated": 1526423082
   },
   {
-    "id": "8d473aa4-ec02-41c1-afb5-cd5a911d7dae",
+    "id": "e24a33cb-1a23-4902-a191-22193648876c",
     "data": [
       {
         "text": "search for talks",
@@ -301,7 +301,7 @@
     "updated": 1525453640
   },
   {
-    "id": "dc1d9268-ae76-492c-a47f-bb17b2475084",
+    "id": "66f2f299-3b8a-4876-9f06-781a50807779",
     "data": [
       {
         "text": "talks",
@@ -313,7 +313,7 @@
     "updated": 1525453640
   },
   {
-    "id": "bca69b59-4b84-4105-a3f8-525a71a618ba",
+    "id": "ea75ca7c-a04f-4360-8ecf-ecf61ea28919",
     "data": [
       {
         "text": "browsing topics",

@@ -1,6 +1,6 @@
 {
-  "id": "0d5ab049-831c-4b6c-82a3-a17d34d7275e",
-  "name": "afterParty",
+  "id": "4de5b3fa-0c20-45b3-8fff-9a2d61c72012",
+  "name": "app-review",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525392979,
+  "lastUpdate": 1526334842,
   "fallbackIntent": false,
   "events": []
 }

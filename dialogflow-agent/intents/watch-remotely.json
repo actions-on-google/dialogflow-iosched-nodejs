@@ -1,6 +1,6 @@
 {
-  "id": "4de5b3fa-0c20-45b3-8fff-9a2d61c72012",
-  "name": "appReview",
+  "id": "6e748fb3-5365-45a9-85eb-35314e0fc401",
+  "name": "watch-remotely",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1524237518,
+  "lastUpdate": 1526334970,
   "fallbackIntent": false,
   "events": []
 }

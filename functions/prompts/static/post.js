@@ -127,10 +127,10 @@ module.exports = {
   'menu': {
     'firstTime/repeat': menuRepeat(),
   },
-  'thingsToDoMenu': {
+  'things-to-do-menu': {
     'firstTime/repeat': menuRepeat(),
   },
-  'relaxMenu': {
+  'relax-menu': {
     'firstTime/repeat': menuRepeat(),
   },
   'date': {
@@ -157,7 +157,7 @@ module.exports = {
       }),
     ]),
   },
-  'appReview': {
+  'app-review': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak> Developers who attended IO were able to drop by office hours and app reviews to get advice and on-the-spot reviews from Googlers. <break time="750ms"/></speak>`,
@@ -181,7 +181,7 @@ module.exports = {
       }),
     ]),
   },
-  'afterParty': {
+  'after-party': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak> There were two after parties featuring music, games, food, drinks and more. One was an exclusive concert in the Amphitheatre.<break time="750ms"/></speak>`,
@@ -189,7 +189,7 @@ module.exports = {
       }),
     ]),
   },
-  'watchRemotely': {
+  'watch-remotely': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak>Every year, developers around the world host Google I/O Extended events. During these events, <break time="250ms"/> organizers can livestream the event <break time="250ms"/>and host their own sessions, including hackathons,<break time="250ms"/> codelabs, <break time="250ms"/>demos, and more.<break time="750ms"/></speak>`,
@@ -205,7 +205,7 @@ module.exports = {
       }),
     ]),
   },
-  'lostAndFound': {
+  'lost-and-found': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak> There was a lost & found station at the conference help desk. Any items left overnight were turned over to the conference security office.<break time="750ms"/></speak>`,
@@ -213,7 +213,7 @@ module.exports = {
       }),
     ]),
   },
-  'whatToWear': {
+  'what-to-wear': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
         speech: `<speak> Let me get this straight. You want to know what to wear to an event that already happened? In that case, why not wear something that matches your time machine?<break time="750ms"/></speak>`,

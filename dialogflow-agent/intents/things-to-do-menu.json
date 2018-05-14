@@ -1,6 +1,6 @@
 {
   "id": "e6b1c0f9-3a50-40f5-8c8e-2cbafe45eca3",
-  "name": "thingsToDoMenu",
+  "name": "things-to-do-menu",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525758689,
+  "lastUpdate": 1526334951,
   "fallbackIntent": false,
   "events": []
 }

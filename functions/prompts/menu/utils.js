@@ -21,9 +21,9 @@ const sortByName = (a, b) => a.name < b.name ? -1 : 1;
 const randomSort = () => Math.random() - 0.5;
 const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
 
-const browseTopics = (conv, {sessionType}) => {
+const browseTopics = (conv, params) => {
   console.log(`Browsing for topics`);
-  conv.data.sessionType = sessionType;
+  conv.data.sessionType = params['session-type'];
   const prompts = require('./'+conv.phase+'.js')['browse-topics'];
   return browse({
     conv,
@@ -61,7 +61,7 @@ const browseTopicsOption = (conv) => {
     const tagId = conv.arguments.get('OPTION');
     conv.data.tagId = tagId;
     if (conv.data.sessionType) {
-      return checkSessionType(conv, {sessionType: conv.data.sessionType});
+      return checkSessionType(conv, {'session-type': conv.data.sessionType});
     } else {
       return askSessionType(conv);
     }
@@ -77,7 +77,9 @@ const browseSessionsByTopic = (conv, {topic}) => {
       .then((tag) => {
         conv.data.tagId = tag.tag;
         if (conv.data.sessionType) {
-          return checkSessionType(conv, {sessionType: conv.data.sessionType});
+          return checkSessionType(conv, {
+            'session-type': conv.data.sessionType,
+          });
         } else {
           return askSessionType(conv);
         }
@@ -192,12 +194,12 @@ const askSessionType = (conv) => {
   return parse(conv, prompts().askSessionType);
 };
 
-const checkSessionType = (conv, {sessionType}) => {
+const checkSessionType = (conv, params) => {
   console.log('Checking for session type');
   conv.contexts.output['type-checked'] = {
     lifespan: 3,
   };
-  conv.data.sessionType = sessionType;
+  conv.data.sessionType = params['session-type'];
   if (conv.data.sessionType && conv.data.tagId) {
     return browseSessions(conv);
   } else {

@@ -607,7 +607,7 @@ const scavengerHuntAttendingReentry = (prefixPrompts) =>
   multiPrefixPromptReentry(prefixPrompts, `Now, I can manage your schedule, help you find things to do, or give you directions. So, which do you need?`);
 
 module.exports = {
-  'checkAttending': {
+  checkAttending: {
     'firstTime': menuFirstTime(menuPrompts.checkAttending,
       [
         new SimpleResponse({
@@ -617,7 +617,7 @@ module.exports = {
       ]),
     'repeat': menuRepeat(menuPrompts.checkAttending),
   },
-  'attending': {
+  attending: {
     'welcome': {
       'firstTime': menuFirstTime(menuPrompts.attending,
         [
@@ -644,11 +644,11 @@ module.exports = {
     'ask-attending-yes': {
       'firstTime/repeat': menuRepeat(menuPrompts.attending),
     },
-    'thingsToDoMenu': {
+    'things-to-do-menu': {
       'firstTime': menuFirstTime(menuPrompts.thingsToDo),
       'repeat': menuRepeat(menuPrompts.thingsToDo),
     },
-    'relaxMenu': {
+    'relax-menu': {
       'firstTime': menuFirstTime(menuPrompts.relax),
       'repeat': menuRepeat(menuPrompts.relax),
     },
@@ -702,7 +702,7 @@ module.exports = {
         }),
       ]),
     },
-    'appReview': {
+    'app-review': {
       'firstTime/repeat': attendingReentry([
         new SimpleResponse({
           speech: `<speak>Attendees will be able to improve their projects by getting advice and on-the-spot reviews from Googlers during office hours and app reviews. You can choose between App Consultations and Design Reviews.<break time="750ms"/></speak>`,
@@ -726,7 +726,7 @@ module.exports = {
         }),
       ]),
     },
-    'afterParty': {
+    'after-party': {
       'firstDay': {
         'firstTime/repeat': attendingReentry([
           new SimpleResponse({
@@ -752,7 +752,7 @@ module.exports = {
         ]),
       },
     },
-    'watchRemotely': {
+    'watch-remotely': {
       'firstTime/repeat': attendingReentry([
         new SimpleResponse({
           speech: `<speak>Developers around the world are hosting Google I/O Extended events where they livestream the event <break time="250ms"/>and host their own hackathons,<break time="250ms"/> codelabs, <break time="250ms"/>and demos. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
@@ -778,7 +778,7 @@ module.exports = {
         ]),
       },
     },
-    'lostAndFound': {
+    'lost-and-found': {
       'firstTime/repeat': attendingReentry([
         new SimpleResponse({
           speech: `<speak> The lost and found station is located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google I/O badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference!<break time="750ms"/></speak>`,
@@ -786,7 +786,7 @@ module.exports = {
         }),
       ]),
     },
-    'whatToWear': {
+    'what-to-wear': {
       'firstTime/repeat': attendingReentry([
         new SimpleResponse({
           speech: `<speak> Google I/O is an outdoor developer event, so I recommend something casual and comfortable. The Bay Area can be hot during the day and chilly in the evenings, so it's best to wear layers.<break time="750ms"/></speak>`,
@@ -907,7 +907,7 @@ module.exports = {
       ],
     },
   },
-  'notAttending': {
+  notAttending: {
     'welcome': {
       'firstTime': menuFirstTime(menuPrompts.notAttending,
         [
@@ -934,11 +934,11 @@ module.exports = {
     'ask-attending-no': {
       'firstTime/repeat': menuRepeat(menuPrompts.notAttending),
     },
-    'thingsToDoMenu': {
+    'things-to-do-menu': {
       'firstTime': menuFirstTime(menuPrompts.thingsToDo),
       'repeat': menuRepeat(menuPrompts.thingsToDo),
     },
-    'relaxMenu': {
+    'relax-menu': {
       'firstTime': menuFirstTime(menuPrompts.relax),
       'repeat': menuRepeat(menuPrompts.relax),
     },
@@ -992,7 +992,7 @@ module.exports = {
         }),
       ]),
     },
-    'appReview': {
+    'app-review': {
       'firstTime/repeat': notAttendingReentry([
         new SimpleResponse({
           speech: `<speak> Developers attending IO can drop by office hours and app reviews to get advice and on-the-spot reviews from Googlers.<break time="750ms"/></speak>`,
@@ -1016,7 +1016,7 @@ module.exports = {
         }),
       ]),
     },
-    'afterParty': {
+    'after-party': {
       'firstDay': {
         'firstTime/repeat': notAttendingReentry([
           new SimpleResponse({
@@ -1042,7 +1042,7 @@ module.exports = {
         ]),
       },
     },
-    'watchRemotely': {
+    'watch-remotely': {
       'firstTime/repeat': notAttendingReentry([
         new SimpleResponse({
           speech: `<speak>Developers around the world are hosting Google I/O Extended events where they livestream the event <break time="250ms"/>and host their own hackathons,<break time="250ms"/> codelabs, <break time="250ms"/>and demos. Find out more at events.google.com/IO.<break time="750ms"/></speak>`,
@@ -1068,7 +1068,7 @@ module.exports = {
         ]),
       },
     },
-    'lostAndFound': {
+    'lost-and-found': {
       'firstTime/repeat': notAttendingReentry([
         new SimpleResponse({
           speech: `<speak> The lost and found station will be located at the Conference Help Desk during event hours. Any items left overnight will be turned over to the Conference Security Office. One important detail: Google I/O badges aren’t replaceable, so don't lose yours, or you won’t be readmitted to the conference!<break time="750ms"/></speak>`,
@@ -1076,7 +1076,7 @@ module.exports = {
         }),
       ]),
     },
-    'whatToWear': {
+    'what-to-wear': {
       'firstTime/repeat': notAttendingReentry([
         new SimpleResponse({
           speech: `<speak> If you're not attending, why do you want to know what to wear? How about this. Just follow Google's dress code, which is. You must wear clothes.<break time="750ms"/></speak>`,

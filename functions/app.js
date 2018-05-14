@@ -63,9 +63,9 @@ app.intent('menu', static);
 
 app.intent('welcome', static);
 
-app.intent('thingsToDoMenu', static);
+app.intent('things-to-do-menu', static);
 
-app.intent('relaxMenu', static);
+app.intent('relax-menu', static);
 
 app.intent('date', static);
 
@@ -75,7 +75,7 @@ app.intent('keynote', static);
 
 app.intent('codelabs', static);
 
-app.intent('appReview', static);
+app.intent('app-review', static);
 
 app.intent('food', static);
 
@@ -83,15 +83,15 @@ app.intent('swag', static);
 
 app.intent('unrecognized-deep-link', static);
 
-app.intent('afterParty', static);
+app.intent('after-party', static);
 
-app.intent('watchRemotely', static);
+app.intent('watch-remotely', static);
 
 app.intent('announcements', static);
 
-app.intent('lostAndFound', static);
+app.intent('lost-and-found', static);
 
-app.intent('whatToWear', static);
+app.intent('what-to-wear', static);
 
 app.intent('ask-attending-yes', static);
 

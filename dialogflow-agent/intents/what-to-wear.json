@@ -1,6 +1,6 @@
 {
-  "id": "6e748fb3-5365-45a9-85eb-35314e0fc401",
-  "name": "watchRemotely",
+  "id": "2c9479b2-7720-4683-a03b-9715c0c7b385",
+  "name": "what-to-wear",
   "auto": true,
   "contexts": [],
   "responses": [
@@ -22,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525454017,
+  "lastUpdate": 1526334988,
   "fallbackIntent": false,
   "events": []
 }
