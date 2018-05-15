@@ -53,6 +53,12 @@ app.middleware((conv) => {
     conv.data.noInputCount = 0;
     conv.data.fallbackResponses = [];
     conv.data.noInputResponses = [];
+    conv.data.currentItems = [];
+    conv.data.nextItems = [];
+    conv.data.sessionType = null;
+    conv.data.sessionShown = null;
+    conv.data.sessionsTag = null;
+    conv.data.tagId = null;
   }
   conv.conference = new ConferenceData();
   conv.screen = conv.surface.capabilities
