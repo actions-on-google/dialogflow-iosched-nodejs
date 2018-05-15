@@ -96,10 +96,8 @@ exports.parse = (conv, prompts) => {
     }
     // Choose a random variant within the dimensions
     const responseVariant = getSingleRandom(responseVariations);
-    for (element in responseVariant.elements) {
-      if (responseVariant.elements.hasOwnProperty(element)) {
-        conv.ask(getSingleRandom(responseVariant.elements[element]));
-      }
+    for (const element of responseVariant.elements) {
+      conv.ask(getSingleRandom(element));
     }
     if (responseVariant.suggestions) {
       conv.ask(getSuggestions(responseVariant.suggestions));

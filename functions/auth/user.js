@@ -66,17 +66,12 @@ exports.UserData = class UserData {
     return db.collection('users').doc(this.uid).collection('events').
       get().then((events) => {
         const schedule = [];
-        events.forEach((event) => {
-          if (event.data().isStarred ||
-            event.data().reservationStatus === 'RESERVED' ||
-            event.data().reservationStatus === 'WAITLISTED') {
-              schedule.push({
-                id: event.id,
-                reservationStatus: event.data().reservationStatus,
-                isStarred: event.data().isStarred,
-              });
-            }
-        });
+        for (const event of events) {
+          const {id, isStarred, reservationStatus: status} = event.data();
+          if (isStarred || status === 'RESERVED' || status === 'WAITLISTED') {
+            schedule.push({id, reservationStatus: status, isStarred});
+          }
+        }
         return schedule;
     }).catch((error) => {
       console.error(`Error getting user schedule: ${error}`);

@@ -99,7 +99,11 @@ const browseSessions = (conv) => {
         return browse({
           conv,
           itemsPromise: Promise.resolve(sessions),
-          prompts: prompts(tag.name, sessions.length, conv.data.sessionType),
+          prompts: prompts({
+            topic: tag.name,
+            totalItems: sessions.length,
+            sessionType: conv.data.sessionType,
+          }),
           sort: sortByTimestamp,
           maxAudio: 2,
         });

@@ -164,7 +164,7 @@ const browseTopicsNext = (items) => {
   return browseTopics(items, spokenIntro);
 };
 
-const browseSessionsFirstSet = (topic, totalItems, sessionType) => {
+const browseSessionsFirstSet = ({topic, totalItems, sessionType}) => {
   const spokenIntro = {
     speech: `There's ${totalItems} ${sessionType} on ${topic}. Here's the first two.`,
     text: `There's ${totalItems} ${sessionType} on ${topic}. Here's the first two.`,
@@ -178,8 +178,15 @@ const browseSessionsFirstSet = (topic, totalItems, sessionType) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `One's called <break time="250ms"/>${spokenNames[0]}.<break time="750ms"/> The other's called <break time="250ms"/>${spokenNames[1]}`;
   };
-  return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items), sessionType, totalItems === 1 ? 'only' : 'last');
+  return (items) => browseSessions({
+    items,
+    topic,
+    spokenIntro,
+    displayIntro,
+    speakerItems: itemsToSpeech(items),
+    sessionType,
+    totalItems: (totalItems === 1) ? 'only' : 'last',
+  });
 };
 
 const browseSessionsNext = (topic='that topic', sessionType) => {
@@ -192,8 +199,14 @@ const browseSessionsNext = (topic='that topic', sessionType) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
-  return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items), sessionType);
+  return (items) => browseSessions({
+    items,
+    topic,
+    spokenIntro,
+    displayIntro,
+    speakerItems: itemsToSpeech(items),
+    sessionType,
+  });
 };
 
 const browseSessionsRepeat = (topic='that topic', sessionType) => {
@@ -206,12 +219,26 @@ const browseSessionsRepeat = (topic='that topic', sessionType) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
-  return (items) => browseSessions(items, topic, spokenIntro,
-    displayIntro, itemsToSpeech(items), sessionType);
+  return (items) =>
+    browseSessions({
+    items,
+    topic,
+    spokenIntro,
+    displayIntro,
+    speakerItems: itemsToSpeech(items),
+    sessionType,
+  });
 };
 
-const browseSessions = (items=[], topic='that topic',
-  spokenIntro, displayIntro, speakerItems, sessionType='sessions', lastItemPrefix='last') => {
+const browseSessions = ({
+  items=[],
+  topic='that topic',
+  spokenIntro,
+  displayIntro,
+  speakerItems,
+  sessionType='sessions',
+  lastItemPrefix='last',
+}) => {
   spokenIntro = spokenIntro || {
     speech: `Here are some sessions`,
     text: `Here are some sessions`,
@@ -451,16 +478,18 @@ const showSession = ({session, prefixes, postfixes, buttonText,
                   title: session.title,
                   subtitle: `${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} / ${session.roomName}`,
                   text: session.description,
-                  buttons: [
-                    getMoment(session.startTimestamp).isAfter(Date.now()) ?
+                  buttons:
+                    getMoment(session.startTimestamp).isAfter(Date.now()) ? [
                       new Button({
                         title: buttonText || 'Add to my schedule',
                         url: `https://events.google.com/io/schedule/?sid=${session.id}`,
-                      }) : session.livestream ? new Button({
+                      }),
+                    ] : session.livestream ? [
+                        new Button({
                           title: 'Watch live',
                           url: session.youtubeUrl,
-                        }) : undefined,
-                  ],
+                        }),
+                    ] : undefined,
                 }),
               ],
               postfixes.screen,

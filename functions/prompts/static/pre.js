@@ -85,8 +85,9 @@ const menuRepeat = (prefixPrompts) => {
     ],
   ];
   if (prefixPrompts) {
-    elementList.forEach((element) =>
-      element.unshift(prefixPrompts));
+    for (const element of elementList) {
+      element.unshift(prefixPrompts);
+    }
   }
   return {
     'screen/speaker': [

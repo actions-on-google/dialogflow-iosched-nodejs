@@ -74,11 +74,11 @@ const schedule = (conv, callback) => {
         };
       }
       const sessionIds = [];
-      for (let session of schedule) {
+      for (const session of schedule) {
         sessionIds.push(session.id);
       }
       return conv.conference.sessionsById(sessionIds).then((sessions) => {
-        for (let session of sessions) {
+        for (const session of sessions) {
           const scheduleSession = schedule.find((scheduleItem) => {
             return scheduleItem.id === session.id;
           });

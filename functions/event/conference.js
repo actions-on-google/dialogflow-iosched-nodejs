@@ -75,14 +75,14 @@ class ConferenceData {
       if (key) {
         const sessionList = this.repeatingSessionMap[key];
         if (sessionList.length > 1) {
-          sessionList.forEach((session) => {
+          for (const session of sessionList) {
             let day = getDay(session.startTimestamp);
             if (day != 0) {
               session.title += ` (Day ${day}` +
               `${session.type === 'Codelabs' ?
               ` ${getMoment(session.startTimestamp).format('h:mmA')}` : ''})`;
             }
-          });
+          }
         }
       }
     }
@@ -97,9 +97,9 @@ class ConferenceData {
   modifyTitle_(session) {
     const headers = ['[Session] ', '[Office Hour] '];
     // Modify title header
-    headers.forEach((header) => {
+    for (const header of headers) {
       session.title = `${session.title.replace(header, '')}`;
-    });
+    }
   }
 
   /**
@@ -121,13 +121,10 @@ class ConferenceData {
    * @param {Object} data
    */
   cleanUpSessionData_(data) {
-    for (const key in data.sessions) {
-      if (key) {
-        const session = data.sessions[key];
-        this.groupWithRepeatingSessions_(session);
-        this.modifyTitle_(session);
-        this.resolveRoomName_(session, data.rooms);
-      }
+    for (const session of data.sessions) {
+      this.groupWithRepeatingSessions_(session);
+      this.modifyTitle_(session);
+      this.resolveRoomName_(session, data.rooms);
     }
     this.dedupeSessions_(data);
   }
@@ -315,7 +312,7 @@ class ConferenceData {
         const returnSessions = data.sessions.filter((dataSession) => {
           return ids.includes(dataSession.id);
         });
-        for (let returnSession of returnSessions) {
+        for (const returnSession of returnSessions) {
           returnSession.title = returnSession.title.replace('[Session] ', '');
         }
         resolve(returnSessions);
