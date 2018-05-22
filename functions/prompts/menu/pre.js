@@ -171,8 +171,8 @@ const browseSessionsFirstSet = ({topic, totalItems, sessionType}) => {
   };
   const displayIntro = (items=[]) =>
     new SimpleResponse({
-      speech: `There's ${totalItems} ${sessionType} on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
-      text: `There's ${totalItems} ${sessionType} on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+      speech: `There's ${totalItems} ${sessionType} on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which one would you like to hear more about?`,
+      text: `There's ${totalItems} ${sessionType} on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which one would you like to hear more about?`,
     });
   const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
