@@ -2,7 +2,9 @@
   "id": "3e237047-f8c3-453a-b93a-e9a592afa4cf",
   "name": "relax-menu",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "pre-or-during-io"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -22,7 +24,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1526334911,
+  "lastUpdate": 1526959362,
   "fallbackIntent": false,
   "events": []
 }

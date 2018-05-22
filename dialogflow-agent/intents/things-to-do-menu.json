@@ -2,7 +2,9 @@
   "id": "e6b1c0f9-3a50-40f5-8c8e-2cbafe45eca3",
   "name": "things-to-do-menu",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "pre-or-during-io"
+  ],
   "responses": [
     {
       "resetContexts": false,
@@ -22,7 +24,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1526334951,
+  "lastUpdate": 1526959345,
   "fallbackIntent": false,
   "events": []
 }

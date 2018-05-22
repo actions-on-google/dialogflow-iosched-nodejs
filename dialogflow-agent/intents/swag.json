@@ -7,24 +7,7 @@
     {
       "resetContexts": false,
       "affectedContexts": [],
-      "parameters": [
-        {
-          "id": "044ad6d3-11f6-4869-9d15-7fd206f83997",
-          "required": false,
-          "dataType": "@sys.date-period",
-          "name": "date-period",
-          "value": "$date-period",
-          "isList": false
-        },
-        {
-          "id": "0a5eab5a-c8a4-43cf-ad34-4f19c23bdfdd",
-          "required": false,
-          "dataType": "@sys.given-name",
-          "name": "given-name",
-          "value": "$given-name",
-          "isList": false
-        }
-      ],
+      "parameters": [],
       "messages": [
         {
           "type": 0,
@@ -39,7 +22,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1525392941,
+  "lastUpdate": 1526959318,
   "fallbackIntent": false,
   "events": []
 }
