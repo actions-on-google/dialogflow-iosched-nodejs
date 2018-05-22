@@ -43,7 +43,7 @@ app.middleware((conv) => {
   conv.currentTime = Date.now();
   conv.phase = getPhase(conv.currentTime);
   if (conv.phase === 'post') {
-    conv.user.storage.uid = undefined;
+    delete conv.user.storage.uid;
     conv.data.sessionType = 'sessions';
   }
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
@@ -61,101 +61,62 @@ app.middleware((conv) => {
     conv.data.tagId = null;
   }
   conv.conference = new ConferenceData();
-  conv.screen = conv.surface.capabilities
-    .has('actions.capability.SCREEN_OUTPUT');
 });
 
-app.intent('menu', static);
+app.intent([
+  'menu',
+  'welcome',
+  'things-to-do-menu',
+  'relax-menu',
+  'date',
+  'directions',
+  'keynote',
+  'codelabs',
+  'app-review',
+  'food',
+  'swag',
+  'unrecognized-deep-link',
+  'after-party',
+  'watch-remotely',
+  'announcements',
+  'lost-and-found',
+  'what-to-wear',
+  'ask-attending-yes',
+  'ask-attending-no',
+  'welcome',
+  'concert',
+  'popular-justice-songs',
+  'popular-phantogram-songs',
+  'scavenger-hunt',
+  'show-session-directions',
+  'show-schedule-session-directions',
+], static);
 
-app.intent('welcome', static);
+app.intent([
+  'browse-topics',
+  'browse-topics-next',
+  'browse-topics-repeat',
+  'browse-topics-OPTION',
+  'browse-sessions',
+  'browse-sessions-repeat',
+  'browse-sessions-next',
+  'show-session',
+  'show-session-repeat',
+  'show-schedule-session',
+  'show-schedule-session-repeat',
+  'check-type',
+], menu);
 
-app.intent('things-to-do-menu', static);
-
-app.intent('relax-menu', static);
-
-app.intent('date', static);
-
-app.intent('directions', static);
-
-app.intent('keynote', static);
-
-app.intent('codelabs', static);
-
-app.intent('app-review', static);
-
-app.intent('food', static);
-
-app.intent('swag', static);
-
-app.intent('unrecognized-deep-link', static);
-
-app.intent('after-party', static);
-
-app.intent('watch-remotely', static);
-
-app.intent('announcements', static);
-
-app.intent('lost-and-found', static);
-
-app.intent('what-to-wear', static);
-
-app.intent('ask-attending-yes', static);
-
-app.intent('ask-attending-no', static);
-
-app.intent('welcome', static);
-
-app.intent('concert', static);
-
-app.intent('popular-justice-songs', static);
-
-app.intent('popular-phantogram-songs', static);
-
-app.intent('scavenger-hunt', static);
-
-app.intent('show-session-directions', static);
-
-app.intent('show-schedule-session-directions', static);
-
-app.intent('browse-topics', menu);
-
-app.intent('browse-topics-next', menu);
-
-app.intent('browse-topics-repeat', menu);
-
-app.intent('browse-topics-OPTION', menu);
-
-app.intent('browse-sessions', menu);
-
-app.intent('browse-sessions-repeat', menu);
-
-app.intent('browse-sessions-next', menu);
-
-app.intent('show-session', menu);
-
-app.intent('show-session-repeat', menu);
-
-app.intent('show-schedule', schedule);
-
-app.intent('schedule-sign-in', schedule);
-
-app.intent('show-schedule-browse-topics-yes', schedule);
-
-app.intent('show-schedule-browse-topics-no', schedule);
-
-app.intent('show-schedule-next', schedule);
-
-app.intent('show-schedule-repeat', schedule);
-
-app.intent('show-schedule-session', menu);
-
-app.intent('show-schedule-session-repeat', menu);
-
-app.intent('next-session-directions', schedule);
-
-app.intent('next-session-directions-sign-in', schedule);
-
-app.intent('check-type', menu);
+app.intent([
+  'show-schedule',
+  'schedule-sign-in',
+  'show-schedule-browse-topics-yes',
+  'show-schedule-browse-topics-no',
+  'show-schedule-next',
+  'show-schedule-repeat',
+  'next-session-directions',
+  'next-session-directions-sign-in',
+], schedule);
 
 app.intent('cancel', goodbye);
 

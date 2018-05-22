@@ -13,6 +13,8 @@
 
 const {
     SimpleResponse,
+    BasicCard,
+    Button,
   } = require('actions-on-google');
 
 const {
@@ -35,7 +37,15 @@ const menuFirstTime = (prefixPrompts) => {
       'Search for talks',
       'Keynotes',
     ],
-    'randomized': [],
+    'randomized': [
+      'Codelabs',
+      'App reviews',
+      'Who played the concert?',
+      'What was announced?',
+      'Watching remotely',
+      'Scavenger Hunt',
+      'What was the swag?',
+    ],
   };
   return menu(elements, suggestions, prefixPrompts);
 };
@@ -54,7 +64,15 @@ const menuRepeat = (prefixPrompts) => {
       'Search for talks',
       'Keynotes',
     ],
-    'randomized': [],
+    'randomized': [
+      'Codelabs',
+      'App reviews',
+      'Who played the concert?',
+      'What was announced?',
+      'Watching remotely',
+      'Scavenger Hunt',
+      'What was the swag?',
+    ],
   };
   return menu(elements, suggestions, prefixPrompts);
 };
@@ -73,43 +91,55 @@ const menu = (elements, suggestions, prefixPrompts) => {
   };
 };
 
-const welcomeReentry = (prefixPrompts) => [
-  {
-    'elements': [
-      prefixPrompts,
-      [
+const welcomeReentry = (...prefixPrompts) => {
+  return [
+    {
+      'elements': prefixPrompts.concat([[
         new SimpleResponse({
           speech: `Now, you can search for talks, find out how to watch the recordings, or ask me anything else you want to know about IO.`,
           text: `Now, you can ask me anything else you want to know about I/O.`,
         }),
-      ],
-    ],
-    'suggestions': {
-      'required': [
-        'Search for talks',
-      ],
-      'randomized': [],
+      ]]),
+      'suggestions': {
+        'required': [
+          'Search for talks',
+        ],
+        'randomized': [
+          'Codelabs',
+          'App reviews',
+          'Who played the concert?',
+          'What was announced?',
+          'Watching remotely',
+          'Scavenger Hunt',
+          'What was the swag?',
+        ],
+      },
     },
-  },
-  {
-    'elements': [
-      prefixPrompts,
-      [
+    {
+      'elements': prefixPrompts.concat([[
         new SimpleResponse({
           speech: `Now, you can ask about the keynotes or sessions, or anything else you want to know about IO.`,
           text: `Now, you can ask anything else you want to know about I/O.`,
         }),
-      ],
-    ],
-    'suggestions': {
-      'required': [
-        'Keynotes',
-        'Browse sessions',
-      ],
-      'randomized': [],
+      ]]),
+      'suggestions': {
+        'required': [
+          'Keynotes',
+          'Browse sessions',
+        ],
+        'randomized': [
+          'Codelabs',
+          'App reviews',
+          'Who played the concert?',
+          'What was announced?',
+          'Watching remotely',
+          'Scavenger Hunt',
+          'What was the swag?',
+        ],
+      },
     },
-  },
-];
+  ];
+};
 
 module.exports = {
   'welcome': {
@@ -143,24 +173,46 @@ module.exports = {
   },
   'keynote': {
     'firstTime/repeat': welcomeReentry([
-      new SimpleResponse({
-        speech: `<speak> There were so many announcements Google wanted to share with developers that there were two keynotes. You can watch them both on the Google Developers YouTube channel.<break time="750ms"/></speak>`,
-        text: `There were two keynotes. You can watch them both on the Google Developers YouTube channel.`,
-      }),
-    ]),
+        new SimpleResponse({
+          speech: `<speak>There were so many announcements Google wanted to share with developers that there were two keynotes. You can watch them both on the Google Developers YouTube channel.<break time="750ms"/></speak>`,
+          text: `There were two keynotes.`,
+        }),
+      ], [
+        new BasicCard({
+          text: 'You can watch them both on the Google Developers YouTube channel.',
+          buttons: [
+            new Button({
+              title: 'Watch Keynote 1',
+              url: `https://www.youtube.com/watch?v=ogfYd705cRs`,
+            }),
+          ],
+        }),
+      ]
+    ),
   },
   'codelabs': {
     'firstTime/repeat': welcomeReentry([
-      new SimpleResponse({
-        speech: `<speak>Codelabs and Sandboxes are all about hands-on inspiration, and demoing the latest interactive experiences built on the Google developer platform. Codelabs are free, self-paced, online modules, so you can try them yourself at codelabs.developers.google.com <break time="750ms"/></speak>`,
-        text: `Codelabs and Sandboxes are all about hands-on inspiration. You can try these free, self-paced, online modules at codelabs.developers.google.com`,
-      }),
-    ]),
+        new SimpleResponse({
+          speech: `<speak>Codelabs and Sandboxes are all about hands-on inspiration, and demoing the latest interactive experiences built on the Google developer platform. Codelabs are free, self-paced, online modules, so you can try them yourself at codelabs.developers.google.com <break time="750ms"/></speak>`,
+          text: `Codelabs and Sandboxes are all about hands-on inspiration.`,
+        }),
+      ], [
+        new BasicCard({
+          text: 'You can try these free, self-paced, modules online.',
+          buttons: [
+            new Button({
+              title: 'Try the codelabs!',
+              url: `https://codelabs.developers.google.com/`,
+            }),
+          ],
+        }),
+      ]
+    ),
   },
   'app-review': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> Developers who attended IO were able to drop by office hours and app reviews to get advice and on-the-spot reviews from Googlers. <break time="750ms"/></speak>`,
+        speech: `<speak>Developers who attended IO were able to drop by office hours and app reviews to get advice and on-the-spot reviews from Googlers. <break time="750ms"/></speak>`,
         text: `Developers who attended I/O were able to drop by office hours and app reviews to get advice and on-the-spot reviews from Googlers.`,
       }),
     ]),
@@ -184,7 +236,7 @@ module.exports = {
   'after-party': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> There were two after parties featuring music, games, food, drinks and more. One was an exclusive concert in the Amphitheatre.<break time="750ms"/></speak>`,
+        speech: `<speak>There were two after parties featuring music, games, food, drinks and more. One was an exclusive concert in the Amphitheatre.<break time="750ms"/></speak>`,
         text: `There were two after parties featuring music, games, food, drinks and more. One was an exclusive concert in the Amphitheatre.`,
       }),
     ]),
@@ -208,7 +260,7 @@ module.exports = {
   'lost-and-found': {
     'firstTime/repeat': welcomeReentry([
       new SimpleResponse({
-        speech: `<speak> There was a lost & found station at the conference help desk. Any items left overnight were turned over to the conference security office.<break time="750ms"/></speak>`,
+        speech: `<speak>There was a lost & found station at the conference help desk. Any items left overnight were turned over to the conference security office.<break time="750ms"/></speak>`,
         text: `There was a lost & found station at the conference help desk. Any items left overnight were turned over to the conference security office.`,
       }),
     ]),
@@ -247,10 +299,10 @@ module.exports = {
   },
   'concert': {
     'firstTime': menuFirstTime([
-      `This years concert was one to remember! It opened up with a phenomenal performance by Phantogram, followed by the main act, Justice taking the stage for the remainder of the night.`,
+      `This year's concert was one to remember! It opened up with a phenomenal performance by Phantogram, followed by the main act, Justice taking the stage for the remainder of the night.`,
     ]),
     'repeat': menuRepeat([
-      `This years concert was one to remember! It opened up with a phenomenal performance by Phantogram, followed by the main act, Justice taking the stage for the remainder of the night.`,
+      `This year's concert was one to remember! It opened up with a phenomenal performance by Phantogram, followed by the main act, Justice taking the stage for the remainder of the night.`,
     ]),
   },
   'popular-justice-songs': {
