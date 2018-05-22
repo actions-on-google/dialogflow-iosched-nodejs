@@ -103,430 +103,432 @@ const directionsPrompt = (room, screen) => {
   return prompt;
 };
 
-const menuPrompts = {
-  attending: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `<speak>Congrats! As the keeper of IO specific knowledge, consider me your guide. I can manage your schedule, help you find things to do, or give you directions. So, which do you need?</speak>`,
-          text: `As the keeper of IO specific knowledge, consider me your guide. What can I help you with?`,
-        }),
+const menuPrompts = () => {
+  return {
+    attending: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `<speak>Congrats! As the keeper of IO specific knowledge, consider me your guide. I can manage your schedule, help you find things to do, or give you directions. So, which do you need?</speak>`,
+            text: `As the keeper of IO specific knowledge, consider me your guide. What can I help you with?`,
+          }),
+        ],
       ],
-    ],
-    repeat: [
-      [
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `<speak>I can manage your schedule, help you find things to do, or give you directions. So, which do you need?</speak>`,
+            text: `What can I help you with?`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          `Manage my schedule`,
+          `Find things to do`,
+          `Get directions`,
+        ],
+      },
+      noInput: [
         new SimpleResponse({
-          speech: `<speak>I can manage your schedule, help you find things to do, or give you directions. So, which do you need?</speak>`,
+          speech: `You’re sending an empty signal here. I can manage your schedule, help you find things to do, or give you directions. Which do you need?`,
           text: `What can I help you with?`,
         }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        `Manage my schedule`,
-        `Find things to do`,
-        `Get directions`,
-      ],
-    },
-    noInput: [
-      new SimpleResponse({
-        speech: `You’re sending an empty signal here. I can manage your schedule, help you find things to do, or give you directions. Which do you need?`,
-        text: `What can I help you with?`,
-      }),
-      new SimpleResponse({
-        speech: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
-        text: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
-      }),
-      new SimpleResponse({
-        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      }),
-    ],
-    fallback: [
-      {
-        'elements': [
-            new SimpleResponse({
-            speech: `I'm getting a 4 0 4 error. Which did you want?`,
-            text: `That's a 404. What did you want help with?`,
-          }),
-        ],
-        'suggestions': {
-          'required': [
-            'Manage my schedule',
-            'Find things to do',
-            'Get directions',
-            `Where's my next session?`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
-          text: `Sorry, that's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
+        new SimpleResponse({
+          speech: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
+          text: `Do you want me to manage your schedule, help you find things to do, or give you directions?`,
         }),
-        'suggestions': {
-          'required': [
-            'Manage my schedule',
-            'Find things to do',
-            'Get directions',
-            `Where's my next session?`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
+        new SimpleResponse({
           speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
           text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
         }),
-      },
-    ],
-  },
-  notAttending: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `<speak>Then I can help you stay plugged in. As the keeper of IO specific knowledge, consider me your guide. I can manage your viewing schedule, search for talks, or tell you about extended viewing parties. So, which do you need?</speak>`,
-          text: `As the Keeper of I/O-Specific Knowledge, consider me your guide. What can I help you with?`,
-        }),
       ],
-    ],
-    repeat: [
-      [
-        new SimpleResponse({
-          speech: `<speak>I can manage your viewing schedule, search for talks, or tell you about extended viewing parties. So, which do you need?</speak>`,
-          text: `What can I help you with?`,
-        }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        `Manage my schedule`,
-        `Search for talks`,
-        `What's I/O extended?`,
-      ],
-      'randomized': [
-        'Announcements',
-        'Keynotes',
-        `Find office hours`,
-        `Where is the food?`,
-        `What's the swag?`,
-        `When's the after party?`,
-        'Codelabs and sandboxes',
-        'Lost and found',
-        'Scavenger Hunt',
-        'Concert',
-      ],
-    },
-    noInput: [
-      new SimpleResponse({
-        speech: `You’re sending an empty signal here. I can manage your schedule, search for talks, or tell you about extended viewing parties. Which do you need?`,
-        text: `What can I help you with?`,
-      }),
-      new SimpleResponse({
-        speech: `Do you want me to manage your schedule, search for talks, or tell you about extended viewing parties?`,
-        text: `Do you want me to manage your schedule, search for talks, or tell you about extended viewing parties?`,
-      }),
-      new SimpleResponse({
-        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      }),
-    ],
-    fallback: [
-      {
-        'elements': [
-          new SimpleResponse({
-            speech: `I'm getting a 4 0 4 error. What did you want help with?`,
-            text: `That's a 404. What did you want help with?`,
+      fallback: [
+        {
+          'elements': [
+              new SimpleResponse({
+              speech: `I'm getting a 4 0 4 error. Which did you want?`,
+              text: `That's a 404. What did you want help with?`,
+            }),
+          ],
+          'suggestions': {
+            'required': [
+              'Manage my schedule',
+              'Find things to do',
+              'Get directions',
+              `Where's my next session?`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
+            text: `Sorry, that's beyond my expertise. Can I help you manage your schedule, find things to do, or give you directions?`,
           }),
-        ],
-        'suggestions': {
-          'required': [
-            `Manage my schedule`,
-            `Search for talks`,
-            `What's I/O extended?`,
-          ],
+          'suggestions': {
+            'required': [
+              'Manage my schedule',
+              'Find things to do',
+              'Get directions',
+              `Where's my next session?`,
+            ],
+          },
         },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, search for talks, or tell you about extended viewing parties?`,
-          text: `Sorry. That's beyond my expertise. Can I help you manage your schedule, search for talks, or tell you about extended viewing parties?`,
-        }),
-        'suggestions': {
-          'required': [
-            `Manage my schedule`,
-            `Search for talks`,
-            `What's I/O extended?`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        }),
-      },
-    ],
-  },
-  checkAttending: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `<speak>Now, so I can help you get the most out of IO, tell me, are you one of the lucky attendees?</speak>`,
-          text: `Are you one of the lucky attendees?`,
-        }),
-      ],
-    ],
-    repeat: [
-      [
-        new SimpleResponse({
-          speech: `<speak>Now, so I can help you get the most out of IO, tell me, are you one of the lucky attendees?</speak>`,
-          text: `Now, are you one of the lucky attendees?`,
-        }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        'Yes!',
-        'No',
-      ],
-    },
-    noInput: [
-      `Are you attending Google IO this year?`,
-      `So I can help you get the most out of Google IO, let me know if you'll be attending the developer festival this year.`,
-    ],
-    fallback: [
-      {
-        'elements': [`Sorry, are you attending IO?`],
-      },
-      {
-        'elements': [`Before I can help you get the most out of Google IO, I need to know if you're attending the developer festival.`],
-      },
-    ],
-  },
-  thingsToDo: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `Sure. Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
-          text: `Sure. Do you want to learn from the experts? Try some demos? Or kick back and relax? `,
-        }),
-      ],
-    ],
-    repeat: [
-      [
-        new SimpleResponse({
-          speech: `Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
-          text: `Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
-        }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        `Learn from the experts`,
-        `Try some demos`,
-        `Kick back and relax`,
-      ],
-    },
-    noInput: [
-      new SimpleResponse({
-        speech: `I'm getting an empty signal. Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
-        text: `Which did you want?`,
-      }),
-      new SimpleResponse({
-        speech: `Which sounds good? Learning from the experts, trying some demos, or kicking back and relaxing?`,
-        text: `Which sounds good? Learning from the experts, trying some demos, or kicking back and relaxing?`,
-      }),
-      new SimpleResponse({
-        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      }),
-    ],
-    fallback: [
-      {
-        'elements': [
-            new SimpleResponse({
-            speech: `Well that's a 4 0 4. Which did you want?`,
-            text: `That's a 4 0 4. Which did you want?`,
-          }),
-        ],
-        'suggestions': {
-          'required': [
-            `Learn from the experts`,
-            `Try some demos`,
-            `Kick back and relax`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Sorry. That's beyond my expertise. But I can help you learn from the experts, try some demos, or kick back and relax?`,
-          text: `Sorry. That's beyond my expertise. But I can help you learn from the experts, try some demos, or kick back and relax?`,
-        }),
-        'suggestions': {
-          'required': [
-            `Learn from the experts`,
-            `Try some demos`,
-            `Kick back and relax`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        }),
-      },
-    ],
-  },
-  relax: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `Sounds good. Do you wanna hear about the food, the swag, or the after hours parties?`,
-          text: `Sounds good. Do you wanna hear about the food, the swag, or the after hours parties?`,
-        }),
-      ],
-    ],
-    repeat: [
-      [
-        new SimpleResponse({
-          speech: `Now, I can tell you about the food, the swag, or the after hours parties.`,
-          text: `Now, I can tell you about the food, the swag, or the after hours parties.`,
-        }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        `Tell me about the food`,
-        `What's the swag?`,
-        `When's the after party?`,
-      ],
-    },
-    noInput: [
-      new SimpleResponse({
-        speech: `I'm getting an empty signal. Should I tell you about the food, swag, or after party?`,
-        text: `Which did you want?`,
-      }),
-      new SimpleResponse({
-        speech: `Which sounds good? Food, swag, or the after party?`,
-        text: `Which sounds good? Food, swag, or the after party?`,
-      }),
-      new SimpleResponse({
-        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      }),
-    ],
-    fallback: [
-      {
-        'elements': [
-          new SimpleResponse({
-            speech: `Well that's a 4 0 4. Which did you want?`,
-            text: `That's a 4 0 4. Which did you want?`,
-          }),
-        ],
-        'suggestions': {
-          'required': [
-            `Tell me about the food`,
-            `What's the swag?`,
-            `When's the after party?`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Sorry. That's beyond my expertise. But I can tell you about the food, the swag, or the after party.`,
-          text: `Sorry. I can tell you about the food, the swag, or the after party.`,
-        }),
-        'suggestions': {
-          'required': [
-            `Tell me about the food`,
-            `What's the swag?`,
-            `When's the after party?`,
-          ],
-        },
-      },
-      {
-        'elements': new SimpleResponse({
-          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        }),
-      },
-    ],
-  },
-  directions: {
-    firstTime: [
-      [
-        new SimpleResponse({
-          speech: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
-          text: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
-        }),
-      ],
-    ],
-    repeat: [
-      [
-        new SimpleResponse({
-          speech: `What are you looking for?`,
-          text: `What are you looking for?`,
-        }),
-      ],
-    ],
-    suggestions: {
-      'required': [
-        `Bathrooms`,
-        `Community Lounge`,
-        'Codelabs Building',
-      ],
-      'randomized': [
-        'Stage 1', 'Stage 3', 'Stage 5',
-        'Stage 8', 'Stage 2', 'Stage 6',
-        'Stage 7', 'Stage 4',
-        'Tent A', 'Tent H', 'Tent C',
-        'Tent F', 'Tent E', 'Tent D',
-        'Tent G', 'Tent B', 'Tent I',
-      ],
-    },
-    noInput: [
-      new SimpleResponse({
-        speech: `What directions do you need?`,
-        text: `What directions do you need?`,
-      }),
-      new SimpleResponse({
-        speech: `Where do you need directions to?`,
-        text: `Where do you need directions to?`,
-      }),
-      new SimpleResponse({
-        speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-        text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
-      }),
-    ],
-    fallback: [
-      {
-        'elements': [
-          new SimpleResponse({
-            speech: `Sorry, where do you need directions to?`,
-            text: `Sorry, where do you need directions to?`,
-          }),
-        ],
-      },
-      {
-        'elements': [
-          new SimpleResponse({
-            speech: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
-            text: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
-          }),
-        ],
-      },
-      {
-        'elements': [
-          new SimpleResponse({
+        {
+          'elements': new SimpleResponse({
             speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
             text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
           }),
+        },
+      ],
+    },
+    notAttending: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `<speak>Then I can help you stay plugged in. As the keeper of IO specific knowledge, consider me your guide. I can manage your viewing schedule, search for talks, or tell you about extended viewing parties. So, which do you need?</speak>`,
+            text: `As the Keeper of I/O-Specific Knowledge, consider me your guide. What can I help you with?`,
+          }),
+        ],
+      ],
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `<speak>I can manage your viewing schedule, search for talks, or tell you about extended viewing parties. So, which do you need?</speak>`,
+            text: `What can I help you with?`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          `Manage my schedule`,
+          `Search for talks`,
+          `What's I/O extended?`,
+        ],
+        'randomized': [
+          'Announcements',
+          'Keynotes',
+          `Find office hours`,
+          `Where is the food?`,
+          `What's the swag?`,
+          `When's the after party?`,
+          'Codelabs and sandboxes',
+          'Lost and found',
+          'Scavenger Hunt',
+          'Concert',
         ],
       },
-    ],
-  },
+      noInput: [
+        new SimpleResponse({
+          speech: `You’re sending an empty signal here. I can manage your schedule, search for talks, or tell you about extended viewing parties. Which do you need?`,
+          text: `What can I help you with?`,
+        }),
+        new SimpleResponse({
+          speech: `Do you want me to manage your schedule, search for talks, or tell you about extended viewing parties?`,
+          text: `Do you want me to manage your schedule, search for talks, or tell you about extended viewing parties?`,
+        }),
+        new SimpleResponse({
+          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        }),
+      ],
+      fallback: [
+        {
+          'elements': [
+            new SimpleResponse({
+              speech: `I'm getting a 4 0 4 error. What did you want help with?`,
+              text: `That's a 404. What did you want help with?`,
+            }),
+          ],
+          'suggestions': {
+            'required': [
+              `Manage my schedule`,
+              `Search for talks`,
+              `What's I/O extended?`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Sorry. That's beyond my expertise. Can I help you manage your schedule, search for talks, or tell you about extended viewing parties?`,
+            text: `Sorry. That's beyond my expertise. Can I help you manage your schedule, search for talks, or tell you about extended viewing parties?`,
+          }),
+          'suggestions': {
+            'required': [
+              `Manage my schedule`,
+              `Search for talks`,
+              `What's I/O extended?`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+            text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          }),
+        },
+      ],
+    },
+    checkAttending: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `<speak>Now, so I can help you get the most out of IO, tell me, are you one of the lucky attendees?</speak>`,
+            text: `Are you one of the lucky attendees?`,
+          }),
+        ],
+      ],
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `<speak>Now, so I can help you get the most out of IO, tell me, are you one of the lucky attendees?</speak>`,
+            text: `Now, are you one of the lucky attendees?`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          'Yes!',
+          'No',
+        ],
+      },
+      noInput: [
+        `Are you attending Google IO this year?`,
+        `So I can help you get the most out of Google IO, let me know if you'll be attending the developer festival this year.`,
+      ],
+      fallback: [
+        {
+          'elements': [`Sorry, are you attending IO?`],
+        },
+        {
+          'elements': [`Before I can help you get the most out of Google IO, I need to know if you're attending the developer festival.`],
+        },
+      ],
+    },
+    thingsToDo: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `Sure. Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
+            text: `Sure. Do you want to learn from the experts? Try some demos? Or kick back and relax? `,
+          }),
+        ],
+      ],
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
+            text: `Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          `Learn from the experts`,
+          `Try some demos`,
+          `Kick back and relax`,
+        ],
+      },
+      noInput: [
+        new SimpleResponse({
+          speech: `I'm getting an empty signal. Do you want to learn from the experts? Try some demos? Or kick back and relax?`,
+          text: `Which did you want?`,
+        }),
+        new SimpleResponse({
+          speech: `Which sounds good? Learning from the experts, trying some demos, or kicking back and relaxing?`,
+          text: `Which sounds good? Learning from the experts, trying some demos, or kicking back and relaxing?`,
+        }),
+        new SimpleResponse({
+          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        }),
+      ],
+      fallback: [
+        {
+          'elements': [
+              new SimpleResponse({
+              speech: `Well that's a 4 0 4. Which did you want?`,
+              text: `That's a 4 0 4. Which did you want?`,
+            }),
+          ],
+          'suggestions': {
+            'required': [
+              `Learn from the experts`,
+              `Try some demos`,
+              `Kick back and relax`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Sorry. That's beyond my expertise. But I can help you learn from the experts, try some demos, or kick back and relax?`,
+            text: `Sorry. That's beyond my expertise. But I can help you learn from the experts, try some demos, or kick back and relax?`,
+          }),
+          'suggestions': {
+            'required': [
+              `Learn from the experts`,
+              `Try some demos`,
+              `Kick back and relax`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+            text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          }),
+        },
+      ],
+    },
+    relax: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `Sounds good. Do you wanna hear about the food, the swag, or the after hours parties?`,
+            text: `Sounds good. Do you wanna hear about the food, the swag, or the after hours parties?`,
+          }),
+        ],
+      ],
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `Now, I can tell you about the food, the swag, or the after hours parties.`,
+            text: `Now, I can tell you about the food, the swag, or the after hours parties.`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          `Tell me about the food`,
+          `What's the swag?`,
+          `When's the after party?`,
+        ],
+      },
+      noInput: [
+        new SimpleResponse({
+          speech: `I'm getting an empty signal. Should I tell you about the food, swag, or after party?`,
+          text: `Which did you want?`,
+        }),
+        new SimpleResponse({
+          speech: `Which sounds good? Food, swag, or the after party?`,
+          text: `Which sounds good? Food, swag, or the after party?`,
+        }),
+        new SimpleResponse({
+          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        }),
+      ],
+      fallback: [
+        {
+          'elements': [
+            new SimpleResponse({
+              speech: `Well that's a 4 0 4. Which did you want?`,
+              text: `That's a 4 0 4. Which did you want?`,
+            }),
+          ],
+          'suggestions': {
+            'required': [
+              `Tell me about the food`,
+              `What's the swag?`,
+              `When's the after party?`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Sorry. That's beyond my expertise. But I can tell you about the food, the swag, or the after party.`,
+            text: `Sorry. I can tell you about the food, the swag, or the after party.`,
+          }),
+          'suggestions': {
+            'required': [
+              `Tell me about the food`,
+              `What's the swag?`,
+              `When's the after party?`,
+            ],
+          },
+        },
+        {
+          'elements': new SimpleResponse({
+            speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+            text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          }),
+        },
+      ],
+    },
+    directions: {
+      firstTime: [
+        [
+          new SimpleResponse({
+            speech: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
+            text: `Your time is too important to waste wandering around. Looking for a session? Need a bathroom? Wanna grab some food or stop by the lost and found? I've got the directions you need. So, what are you looking for?`,
+          }),
+        ],
+      ],
+      repeat: [
+        [
+          new SimpleResponse({
+            speech: `What are you looking for?`,
+            text: `What are you looking for?`,
+          }),
+        ],
+      ],
+      suggestions: {
+        'required': [
+          `Bathrooms`,
+          `Community Lounge`,
+          'Codelabs Building',
+        ],
+        'randomized': [
+          'Stage 1', 'Stage 3', 'Stage 5',
+          'Stage 8', 'Stage 2', 'Stage 6',
+          'Stage 7', 'Stage 4',
+          'Tent A', 'Tent H', 'Tent C',
+          'Tent F', 'Tent E', 'Tent D',
+          'Tent G', 'Tent B', 'Tent I',
+        ],
+      },
+      noInput: [
+        new SimpleResponse({
+          speech: `What directions do you need?`,
+          text: `What directions do you need?`,
+        }),
+        new SimpleResponse({
+          speech: `Where do you need directions to?`,
+          text: `Where do you need directions to?`,
+        }),
+        new SimpleResponse({
+          speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+          text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+        }),
+      ],
+      fallback: [
+        {
+          'elements': [
+            new SimpleResponse({
+              speech: `Sorry, where do you need directions to?`,
+              text: `Sorry, where do you need directions to?`,
+            }),
+          ],
+        },
+        {
+          'elements': [
+            new SimpleResponse({
+              speech: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+              text: `Sorry. That's beyond my expertise. Can I give you directions to the sessions, codelabs, sandboxes, office hours, or help you find food, or a bathroom?`,
+            }),
+          ],
+        },
+        {
+          'elements': [
+            new SimpleResponse({
+              speech: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+              text: `Since I'm having trouble, I'm going to call I T, though they'll probably just tell me to turn it off then on again. Bye for now.`,
+            }),
+          ],
+        },
+      ],
+    },
+  };
 };
 
 const menu = (prompts, suggestions, noInput, fallback, prefixPrompts) => {
@@ -546,11 +548,23 @@ const menu = (prompts, suggestions, noInput, fallback, prefixPrompts) => {
 };
 
 const menuFirstTime = (prompts, prefixPrompts) => {
-  return menu(prompts.firstTime || prompts['firstTime/repeat'], prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
+  return menu(
+    prompts.firstTime || prompts['firstTime/repeat'],
+    prompts.suggestions,
+    prompts.noInput,
+    prompts.fallback,
+    prefixPrompts
+  );
 };
 
 const menuRepeat = (prompts, prefixPrompts) => {
-  return menu(prompts.repeat || prompts['firstTime/repeat'], prompts.suggestions, prompts.noInput, prompts.fallback, prefixPrompts);
+  return menu(
+    prompts.repeat || prompts['firstTime/repeat'],
+    prompts.suggestions,
+    prompts.noInput,
+    prompts.fallback,
+    prefixPrompts
+  );
 };
 
 const prefixPromptReentry = (prefixPrompts, reentryResponse) => [
@@ -608,25 +622,25 @@ const scavengerHuntAttendingReentry = (prefixPrompts) =>
 
 module.exports = {
   checkAttending: {
-    'firstTime': menuFirstTime(menuPrompts.checkAttending,
+    'firstTime': menuFirstTime(menuPrompts().checkAttending,
       [
         new SimpleResponse({
           speech: `Welcome to your launchpad for all things Google IO.`,
           text: `Welcome to your launchpad for all things Google I/O.`,
         }),
       ]),
-    'repeat': menuRepeat(menuPrompts.checkAttending),
+    'repeat': menuRepeat(menuPrompts().checkAttending),
   },
   attending: {
     'welcome': {
-      'firstTime': menuFirstTime(menuPrompts.attending,
+      'firstTime': menuFirstTime(menuPrompts().attending,
         [
           new SimpleResponse({
             speech: `Welcome to your launchpad for all things Google IO.`,
             text: `Welcome to your launchpad for all things Google I/O.`,
           }),
         ]),
-      'repeat': menuRepeat(menuPrompts.attending,
+      'repeat': menuRepeat(menuPrompts().attending,
         [
           new SimpleResponse({
             speech: `Hi again.`,
@@ -639,18 +653,19 @@ module.exports = {
         ]),
     },
     'menu': {
-      'firstTime/repeat': menuRepeat(menuPrompts.attending),
+      'firstTime/repeat': menuRepeat(menuPrompts().attending),
     },
     'ask-attending-yes': {
-      'firstTime/repeat': menuRepeat(menuPrompts.attending),
+      'firstTime': menuFirstTime(menuPrompts().attending),
+      'repeat': menuRepeat(menuPrompts().attending),
     },
     'things-to-do-menu': {
-      'firstTime': menuFirstTime(menuPrompts.thingsToDo),
-      'repeat': menuRepeat(menuPrompts.thingsToDo),
+      'firstTime': menuFirstTime(menuPrompts().thingsToDo),
+      'repeat': menuRepeat(menuPrompts().thingsToDo),
     },
     'relax-menu': {
-      'firstTime': menuFirstTime(menuPrompts.relax),
-      'repeat': menuRepeat(menuPrompts.relax),
+      'firstTime': menuFirstTime(menuPrompts().relax),
+      'repeat': menuRepeat(menuPrompts().relax),
     },
     'date': {
       'firstTime/repeat': attendingReentry([
@@ -795,8 +810,8 @@ module.exports = {
       ]),
     },
     'directions': {
-      'firstTime': menuFirstTime(menuPrompts.directions),
-      'repeat': menuRepeat(menuPrompts.directions),
+      'firstTime': menuFirstTime(menuPrompts().directions),
+      'repeat': menuRepeat(menuPrompts().directions),
     },
     'session-directions': (room, screen) => {
       return {
@@ -909,14 +924,14 @@ module.exports = {
   },
   notAttending: {
     'welcome': {
-      'firstTime': menuFirstTime(menuPrompts.notAttending,
+      'firstTime': menuFirstTime(menuPrompts().notAttending,
         [
           new SimpleResponse({
             speech: `Welcome to your launchpad for all things Google IO.`,
             text: `Welcome to your launchpad for all things Google I/O.`,
           }),
         ]),
-      'repeat': menuRepeat(menuPrompts.notAttending,
+      'repeat': menuRepeat(menuPrompts().notAttending,
         [
           new SimpleResponse({
             speech: `Hi again.`,
@@ -929,18 +944,19 @@ module.exports = {
         ]),
     },
     'menu': {
-      'firstTime/repeat': menuRepeat(menuPrompts.notAttending),
+      'firstTime/repeat': menuRepeat(menuPrompts().notAttending),
     },
     'ask-attending-no': {
-      'firstTime/repeat': menuRepeat(menuPrompts.notAttending),
+      'firstTime': menuFirstTime(menuPrompts().notAttending),
+      'repeat': menuRepeat(menuPrompts().notAttending),
     },
     'things-to-do-menu': {
-      'firstTime': menuFirstTime(menuPrompts.thingsToDo),
-      'repeat': menuRepeat(menuPrompts.thingsToDo),
+      'firstTime': menuFirstTime(menuPrompts().thingsToDo),
+      'repeat': menuRepeat(menuPrompts().thingsToDo),
     },
     'relax-menu': {
-      'firstTime': menuFirstTime(menuPrompts.relax),
-      'repeat': menuRepeat(menuPrompts.relax),
+      'firstTime': menuFirstTime(menuPrompts().relax),
+      'repeat': menuRepeat(menuPrompts().relax),
     },
     'date': {
       'firstTime/repeat': notAttendingReentry([
@@ -1085,8 +1101,8 @@ module.exports = {
       ]),
     },
     'directions': {
-      'firstTime': menuFirstTime(menuPrompts.directions),
-      'repeat': menuRepeat(menuPrompts.directions),
+      'firstTime': menuFirstTime(menuPrompts().directions),
+      'repeat': menuRepeat(menuPrompts().directions),
     },
     'session-directions': (room, screen) => {
       return {
