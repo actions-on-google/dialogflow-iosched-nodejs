@@ -13,6 +13,7 @@
 
 const {SignIn} = require('actions-on-google');
 
+const prompts = require('./common');
 const {
   parse,
   browse,
@@ -26,7 +27,6 @@ const {getMoment} = require('../../timeUtils');
 const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
 
 const showSchedule = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
   return schedule(conv, (sessions) => {
     return browse({
       conv,
@@ -39,7 +39,6 @@ const showSchedule = (conv) => {
 };
 
 const nextSessionDirections = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
   return schedule(conv, (sessions) => {
     if (sessions.length === 0) {
       parse(conv, prompts['next-session-empty']);
@@ -64,7 +63,6 @@ const nextSessionDirections = (conv) => {
 
 const schedule = (conv, callback) => {
   console.log('Showing the user their schedule');
-  const prompts = require('./'+conv.phase+'.js');
   if (conv.user.storage.uid && conv.user.access.token) {
     const user = new UserData(conv.user.storage.uid);
     return user.schedule().then((schedule) => {
@@ -145,7 +143,6 @@ const scheduleSignIn = (conv) => {
 
 const signIn = (conv, callback) => {
   console.log('Handling SIGN_IN intent');
-  const prompts = require('./'+conv.phase+'.js');
   if (conv.arguments.get('SIGN_IN').status === 'OK' &&
     conv.user.access.token) {
     return getGoogleEmail(conv.user.access.token).then((email) => {
@@ -171,7 +168,6 @@ const signIn = (conv, callback) => {
 
 const doSomethingElse = (conv) => {
   console.log('User wants to do something else');
-  const prompts = require('./'+conv.phase+'.js');
   return parse(conv, prompts['do-something-else']);
 };
 

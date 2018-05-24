@@ -11,6 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+const prompts = require('./common');
 const {
   parse,
   fallback,
@@ -24,34 +25,33 @@ const sortByTimestamp = (a, b) => a.startTimestamp < b.startTimestamp ? -1 : 1;
 const browseTopics = (conv, params) => {
   console.log(`Browsing for topics`);
   conv.data.sessionType = params['session-type'];
-  const prompts = require('./'+conv.phase+'.js')['browse-topics'];
   return browse({
     conv,
     itemsPromise: conv.conference.topics(),
     sort: conv.screen ? sortByName : randomSort,
-    prompts,
+    prompts: conv.phase === 'post' ?
+      prompts['browse-topics-after-io'] :
+      prompts['browse-topics'],
   });
 };
 
 const browseTopicsNext = (conv) => {
   console.log('Browsing next set of topics');
-  const prompts = require('./'+conv.phase+'.js')['browse-topics-next'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
     sort: conv.screen ? sortByName : randomSort,
-    prompts,
+    prompts: prompts['browse-topics-next'],
   });
 };
 
 const browseTopicsRepeat = (conv) => {
   console.log('Repeating previously browsed topics');
-  const prompts = require('./'+conv.phase+'.js')['browse-topics'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
     sort: conv.screen ? sortByName : randomSort,
-    prompts,
+    prompts: prompts['browse-topics'],
   });
 };
 
@@ -92,14 +92,13 @@ const browseSessionsByTopic = (conv, {topic}) => {
 const browseSessions = (conv) => {
   console.log(`Browsing for sessions`);
   return conv.conference.tag(conv.data.tagId).then((tag) => {
-    const prompts = require('./'+conv.phase+'.js')['browse-sessions-first-set'];
     conv.data.sessionsTag = tag.name;
     return conv.conference.sessions(tag.tag, conv.data.sessionType)
       .then((sessions) => {
         return browse({
           conv,
           itemsPromise: Promise.resolve(sessions),
-          prompts: prompts({
+          prompts: prompts['browse-sessions-first-set']({
             topic: tag.name,
             totalItems: sessions.length,
             sessionType: conv.data.sessionType,
@@ -116,11 +115,11 @@ const browseSessionsNext = (conv) => {
   if (!conv.data.sessionType) {
     return fallback(conv);
   }
-  const prompts = require('./'+conv.phase+'.js')['browse-sessions-next'];
+  const nextSessionPrompts = prompts['browse-sessions-next'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.nextItems),
-    prompts: prompts(conv.data.sessionsTag, conv.data.sessionType),
+    prompts: nextSessionPrompts(conv.data.sessionsTag, conv.data.sessionType),
     sort: sortByTimestamp,
     maxAudio: 2,
   });
@@ -131,18 +130,18 @@ const browseSessionsRepeat = (conv) => {
   if (!conv.data.sessionType) {
     return fallback(conv);
   }
-  const prompts = require('./'+conv.phase+'.js')['browse-sessions-repeat'];
+  const repeatSessionsPrompt = prompt['browse-sessions-repeat'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
-    prompts: prompts(conv.data.sessionsTag, conv.data.sessionType),
+    prompts: repeatSessionsPrompt(conv.data.sessionsTag, conv.data.sessionType),
     sort: sortByTimestamp,
     maxAudio: 2,
   });
 };
 
-const showSession = (conv, {sessionId, ordinalChoice}, prompts) => {
-  prompts = prompts || require('./'+conv.phase+'.js')['show-session'];
+const showSession = (conv, {sessionId, ordinalChoice}, showPrompt) => {
+  showPrompt = showPrompt || prompts['show-session'];
   if (sessionId) {
     // User spoke session name directly
   } else if (conv.arguments.get('OPTION')) {
@@ -160,13 +159,13 @@ const showSession = (conv, {sessionId, ordinalChoice}, prompts) => {
   return conv.conference.session(sessionId).then((session) => {
     if (session) {
       conv.data.sessionShown = session;
-      return parse(conv, prompts({session})['presentSession']);
+      return parse(conv, showPrompt({session})['presentSession']);
     } else {
-      return parse(conv, prompts().error);
+      return parse(conv, showPrompt().error);
     }
   }).catch((error) => {
     console.error(`Error showing session: ${error}`);
-    return parse(conv, prompts().error);
+    return parse(conv, showPrompt().error);
   });
 };
 
@@ -175,27 +174,26 @@ const showBrowsedSession = (conv, {sessionId, ordinalChoice}) => {
 };
 
 const showScheduleSession = (conv, {sessionId, ordinalChoice}) => {
-  const prompts = require('./'+conv.phase+'.js')['show-schedule-session'];
-  return showSession(conv, {sessionId, ordinalChoice}, prompts);
+  return showSession(conv, {sessionId, ordinalChoice},
+    prompts['show-schedule-session']);
 };
 
 const showSessionRepeat = (conv) => {
   console.log('Repeating previously shown session');
-  const prompts = require('./'+conv.phase+'.js')['show-session-repeat'];
+  const showSessionRepeatPrompt = prompts['show-session-repeat'];
   if (conv.data.sessionShown) {
-    return parse(conv, prompts({
+    return parse(conv, showSessionRepeatPrompt({
       session: conv.data.sessionShown,
     })['presentSession']);
   } else {
     console.error(`Error repeating session: ${error}`);
-    return parse(conv, prompts().error);
+    return parse(conv, showSessionRepeatPrompt().error);
   }
 };
 
 const askSessionType = (conv) => {
   console.log('Ask session type');
-  const prompts = require('./'+conv.phase+'.js')['ask-type'];
-  return parse(conv, prompts().askSessionType);
+  return parse(conv, prompts['ask-type']().askSessionType);
 };
 
 const checkSessionType = (conv, params) => {
