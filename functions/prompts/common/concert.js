@@ -38,23 +38,19 @@ const carouselSong = (title, videoId) => {
 };
 
 exports.popularJusticeSongsCarousel = () => {
-  return new BrowseCarousel({
-    items: [
-      carouselSong(`Justice - Genesis - †`, `VKzWLUQizz8`),
-      carouselSong(`Justice - D.A.N.C.E. - †`, `tCnBrrnOefs`),
-      carouselSong(`Justice - Phantom Pt II - †`, `5QCBkwmsOk0`),
-      carouselSong(`Justice - Let There Be Light - †`, `_0-tWLi0Kp4`),
-    ],
-  });
+  return new BrowseCarousel(
+    carouselSong(`Justice - Genesis - †`, `VKzWLUQizz8`),
+    carouselSong(`Justice - D.A.N.C.E. - †`, `tCnBrrnOefs`),
+    carouselSong(`Justice - Phantom Pt II - †`, `5QCBkwmsOk0`),
+    carouselSong(`Justice - Let There Be Light - †`, `_0-tWLi0Kp4`)
+  );
 };
 
 exports.popularPhantogramSongsCarousel = () => {
-  return new BrowseCarousel({
-    items: [
-      carouselSong(`Phantogram "When I'm Small"`, `28tZ-S1LFok`),
-      carouselSong(`Phantogram - You Don’t Get Me High Anymore`, `jryzEU7WAlg`),
-      carouselSong(`Phantogram - Fall In Love`, `RsQjC5zVnt8`),
-      carouselSong(`Phantogram - Same Old Blues (Official Audio)`, `WcS6MA9fu-I`),
-    ],
-  });
+  return new BrowseCarousel(
+    carouselSong(`Phantogram "When I'm Small"`, `28tZ-S1LFok`),
+    carouselSong(`Phantogram - You Don’t Get Me High Anymore`, `jryzEU7WAlg`),
+    carouselSong(`Phantogram - Fall In Love`, `RsQjC5zVnt8`),
+    carouselSong(`Phantogram - Same Old Blues (Official Audio)`, `WcS6MA9fu-I`)
+  );
 };

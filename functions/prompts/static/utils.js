@@ -25,7 +25,7 @@ const parsePromptByIntentName = (conv, prompts) => {
 };
 
 const prompt = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
+  const prompts = require(`./${conv.phase}.js`);
   return parsePromptByIntentName(conv, prompts);
 };
 

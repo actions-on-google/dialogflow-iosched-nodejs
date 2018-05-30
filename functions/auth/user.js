@@ -11,11 +11,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const eventsAdmin = require('firebase-admin');
-eventsAdmin.initializeApp({
-  credential: eventsAdmin.credential.cert(require('../config/serviceKey.json')),
-});
-const db = eventsAdmin.firestore();
+const admin = require('firebase-admin');
+const db = null;
+try {
+  admin.initializeApp({
+    credential: admin.credential.cert(require('../config/serviceKey.json')),
+  });
+  db = admin.firestore();
+} catch (error) {
+  console.debug(`Unable to initialize Firestore access, ${error}`);
+}
 
 exports.getFirebaseUser = (email) => {
   console.log(`Fetching user from Firebase Auth`);
@@ -35,21 +40,6 @@ exports.UserData = class UserData {
    */
   constructor(uid) {
     this.uid = uid;
-  }
-
-  /**
-   * Utility for checking registered users.
-   *
-   * @return {boolean} True if user is registered to attend I/O.
-   */
-  isRegistered() {
-    console.log('Checking if user is registered');
-    return db.collection('users').doc(this.uid).get().then((user) => {
-      return user.data().registered;
-    }).catch((error) => {
-      console.error(`Error checking if user is registered: ${error}`);
-      throw error;
-    });
   }
 
   /**

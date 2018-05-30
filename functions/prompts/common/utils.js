@@ -38,7 +38,7 @@ const getSuggestions = (suggestions = {}) => {
 // If conv.data doesn't have an appropriate fallback prompt array, will
 // defer to the default fallback prompts from a prompt phase.
 exports.fallback = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
+  const prompts = require(`./${conv.phase}.js`);
   let responses = conv.data.fallbackResponses;
   if (!responses || !Array.isArray(responses) || responses.length !== 2) {
     responses = prompts.defaultFallbackPrompts;
@@ -57,7 +57,7 @@ exports.fallback = (conv) => {
 // If conv.data doesn't have an appropriate no-input prompt array, will
 // defer to the default no-input prompts from a prompt phase.
 exports.noInput = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
+  const prompts = require(`./${conv.phase}.js`);
   let responses = conv.data.noInputResponses;
   if (!responses || !Array.isArray(responses) || responses.length !== 2) {
     responses = prompts.defaultNoInputPrompts;
@@ -72,7 +72,7 @@ exports.noInput = (conv) => {
 };
 
 exports.goodbye = (conv) => {
-  const prompts = require('./'+conv.phase+'.js');
+  const prompts = require(`./${conv.phase}.js`);
   conv.close(getSingleRandom(prompts.goodbye));
 };
 

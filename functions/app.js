@@ -16,12 +16,14 @@ const {
 } = require('actions-on-google');
 
 const getConfig = () => {
+  let config;
   try {
-    return require('./config/dev.json');
+    config = require('./config/dev.json');
   } catch (error) {
     console.debug(`Using default config, ${error}`);
-    return require('./config/default.json');
+    config = require('./config/default.json');
   }
+  config.phase = config.phase || 'default';
 };
 const config = getConfig();
 
@@ -59,9 +61,8 @@ const app = dialogflow({
 
 app.middleware((conv) => {
   conv.currentTime = Date.now();
-  conv.phase = config.phase === 'default' || undefined ?
-    getPhase(conv.currentTime) :
-    config.phase;
+  conv.phase = config.phase === 'default' ?
+    getPhase(conv.currentTime) : config.phase;
   if (conv.phase === 'post') {
     delete conv.user.storage.uid;
     conv.data.sessionType = 'sessions';

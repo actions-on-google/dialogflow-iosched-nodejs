@@ -103,11 +103,11 @@ const schedule = (conv, callback) => {
 
 const showScheduleNext = (conv) => {
   console.log(`Browsing next set of schedule sessions`);
-  const prompts = require('./'+conv.phase+'.js')['show-schedule-next'];
+  const prompts = require(`./${conv.phase}.js`)['show-schedule-next'];
   if (!conv.data.nextItems || conv.data.nextItems.length === 0) {
     conv.contexts.set('schedule-empty', 3);
     return parse(conv,
-      require('./'+conv.phase+'.js')['show-schedule']().noMoreOptions);
+      require(`./${conv.phase}.js`)['show-schedule']().noMoreOptions);
   }
   return browse({
     conv,
@@ -119,7 +119,7 @@ const showScheduleNext = (conv) => {
 
 const showScheduleRepeat = (conv) => {
   console.log('Repeating previously browsed schedule sessions');
-  const prompts = require('./'+conv.phase+'.js')['show-schedule-repeat'];
+  const prompts = require(`./${conv.phase}.js`)['show-schedule-repeat'];
   return browse({
     conv,
     itemsPromise: Promise.resolve(conv.data.currentItems),
