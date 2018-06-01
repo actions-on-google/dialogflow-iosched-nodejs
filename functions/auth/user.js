@@ -13,7 +13,7 @@
 
 const eventsAdmin = require('firebase-admin');
 eventsAdmin.initializeApp({
-  credential: eventsAdmin.credential.cert(require('./eventsServiceKey.json')),
+  credential: eventsAdmin.credential.cert(require('../config/serviceKey.json')),
 });
 const db = eventsAdmin.firestore();
 
@@ -66,12 +66,12 @@ exports.UserData = class UserData {
     return db.collection('users').doc(this.uid).collection('events').
       get().then((events) => {
         const schedule = [];
-        for (const event of events) {
-          const {id, isStarred, reservationStatus: status} = event.data();
+        events.forEach((event) => {
+          const {isStarred, reservationStatus: status} = event.data();
           if (isStarred || status === 'RESERVED' || status === 'WAITLISTED') {
-            schedule.push({id, reservationStatus: status, isStarred});
+            schedule.push({id: event.id, reservationStatus: status, isStarred});
           }
-        }
+        });
         return schedule;
     }).catch((error) => {
       console.error(`Error getting user schedule: ${error}`);

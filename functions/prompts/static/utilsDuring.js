@@ -76,9 +76,7 @@ const announcementsPrompt = (conv) => {
 // Prompt to check if the user is attending the event
 const askIfAttending = (conv) => {
   const prompts = duringPrompts.checkAttending;
-  conv.contexts.output['welcome-followup'] = {
-    lifespan: 3,
-  };
+  conv.contexts.set('welcome-followup', 3);
   return parse(conv, prompts);
 };
 
