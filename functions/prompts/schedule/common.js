@@ -194,7 +194,6 @@ const showSchedule = (items=[], spokenIntro, displayIntro, speakerItems, lastIte
             'suggestions': {
               'required': [
                 'Search for talks',
-                'Manage my schedule',
               ],
               'randomized': [
                 'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
@@ -374,6 +373,56 @@ module.exports = {
               new SimpleResponse({
                 speech: `<speak>To do that, first you'll need to link IO 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the IO 2018 app for Android or I OS.<break time="1s"/> Is there something else I can help you with?</speak>`,
                 text: `To do that, first you'll need to link I/O 2018 to your Google Account. You can do that in the Google Home app. Or you can talk to me on your phone, and I'll help you through it. Then, if you haven't already, download the I/O 2018 app for Android or iOS. Is there something else I can help you with?`,
+              }),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              'Search for talks',
+            ],
+            'randomized': [
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
+            ],
+          },
+        },
+      ],
+    },
+  },
+  'next-session-empty': {
+    'firstTime/repeat': {
+      'screen/speaker': [
+        {
+          'elements': [
+            [
+              new SimpleResponse({
+                speech: `<speak>It looks like your schedule is empty. Is there something else I can help you with?</speak>`,
+                text: `It looks like your schedule is empty. Is there something else I can help you with?`,
+              }),
+            ],
+          ],
+          'suggestions': {
+            'required': [
+              'Search for talks',
+            ],
+            'randomized': [
+              'Where is it?', 'How can I watch remotely?', 'Tell me about keynotes', `Find office hours`,
+              'Will there be food?', 'Is there swag?', `When's the after party?`, 'Codelabs and sandboxes',
+            ],
+          },
+        },
+      ],
+    },
+  },
+  'next-session-finished': {
+    'firstTime/repeat': {
+      'screen/speaker': [
+        {
+          'elements': [
+            [
+              new SimpleResponse({
+                speech: `<speak>It looks like your last session is over. Is there something else I can help you with?</speak>`,
+                text: `It looks like your last session is over. Is there something else I can help you with?`,
               }),
             ],
           ],

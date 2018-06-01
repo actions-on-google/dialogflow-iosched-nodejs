@@ -63,14 +63,6 @@ const browseTopics = (items=[], spokenIntro) => {
                 'None of those',
                 'Do something else',
               ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
-              ],
             },
             'fallback': [
               {
@@ -140,20 +132,20 @@ const browseTopics = (items=[], spokenIntro) => {
               'required': [
                 'Do something else',
               ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
-              ],
             },
           },
         ],
       },
     },
   };
+};
+
+const browseTopicsAfterIO = (items) => {
+  const spokenIntro = {
+    speech: `Here are some of the topics covered at I O.<break time="500ms"/>`,
+    text: `Here are some of the topics covered at I/O.`,
+  };
+  return browseTopics(items, spokenIntro);
 };
 
 const browseTopicsNext = (items) => {
@@ -171,8 +163,8 @@ const browseSessionsFirstSet = ({topic, totalItems, sessionType}) => {
   };
   const displayIntro = (items=[]) =>
     new SimpleResponse({
-      speech: `There's ${totalItems} ${sessionType} on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
-      text: `There's ${totalItems} ${sessionType} on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which most interests you?`,
+      speech: `There's ${totalItems} ${sessionType} on ${sanitizeSsml(topic)}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which one would you like to hear more about?`,
+      text: `There's ${totalItems} ${sessionType} on ${topic}. ` + (items.length !== totalItems ? `Here are ${items.length}. ` : '') + `Which one would you like to hear more about?`,
     });
   const itemsToSpeech = (items=[]) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
@@ -219,8 +211,7 @@ const browseSessionsRepeat = (topic='that topic', sessionType) => {
     const spokenNames = items.map((session) => sanitizeSsml(session.title));
     return `<break time="250ms"/>${spokenNames[0]}<break time="500ms"/>, and <break time="100ms"/>${spokenNames[1]}<break time="1s"/>`;
   };
-  return (items) =>
-    browseSessions({
+  return (items) => browseSessions({
     items,
     topic,
     spokenIntro,
@@ -270,14 +261,6 @@ const browseSessions = ({
                 'Sure',
                 'Do something else',
               ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
-              ],
             },
             'noInput': [
               `Do you want to hear more?`,
@@ -313,14 +296,6 @@ const browseSessions = ({
               'required': [
                 'None of those',
                 'Do something else',
-              ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
               ],
             },
             'fallback': [
@@ -371,14 +346,6 @@ const browseSessions = ({
             'suggestions': {
               'required': [
               ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
-              ],
             },
           },
         ],
@@ -401,14 +368,6 @@ const browseSessions = ({
                 'Other topics',
                 'Do something else',
               ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
-              ],
             },
           },
         ],
@@ -417,8 +376,13 @@ const browseSessions = ({
   };
 };
 
-const showSession = ({session, prefixes, postfixes, buttonText,
-  pivotSuggestion}) => {
+const showSession = ({
+  session,
+  prefixes,
+  postfixes,
+  buttonText,
+  pivotSuggestion,
+}) => {
   // Note: Prefixes must be SimpleResponses which use SSML
   if (!session) {
     session = {
@@ -466,6 +430,27 @@ const showSession = ({session, prefixes, postfixes, buttonText,
       }),
     ],
   };
+
+  const buttons = [];
+  if (getMoment(session.startTimestamp).isAfter(Date.now())) {
+    buttons.push(new Button({
+      title: buttonText || 'Add to my schedule',
+      url: `https://events.google.com/io/schedule/?sid=${session.id}`,
+    }));
+  } else if (getMoment(session.startTimestamp).isBefore(Date.now()) &&
+    getMoment(session.endTimestamp).isAfter(Date.now()) &&
+    session.livestream) {
+      buttons.push(new Button({
+        title: 'Watch live',
+        url: session.youtubeUrl,
+      }));
+  } else if (session.livestream) {
+    buttons.push(new Button({
+      title: 'Watch the recording',
+      url: session.youtubeUrl,
+    }));
+  }
+
   return {
     'presentSession': {
       'firstTime/repeat': {
@@ -478,35 +463,15 @@ const showSession = ({session, prefixes, postfixes, buttonText,
                   title: session.title,
                   subtitle: `${getMoment(session.startTimestamp).format('ddd MMM D h:mmA')} / ${session.roomName}`,
                   text: session.description,
-                  buttons:
-                    getMoment(session.startTimestamp).isAfter(Date.now()) ? [
-                      new Button({
-                        title: buttonText || 'Add to my schedule',
-                        url: `https://events.google.com/io/schedule/?sid=${session.id}`,
-                      }),
-                    ] : session.livestream ? [
-                        new Button({
-                          title: 'Watch live',
-                          url: session.youtubeUrl,
-                        }),
-                    ] : undefined,
+                  buttons,
                 }),
               ],
               postfixes.screen,
             ],
             'suggestions': {
               'required': [
-                'Get directions',
                 pivotSuggestion || 'Other topics',
                 'Do something else',
-              ],
-              'randomized': [
-                'How can I watch remotely?',
-                'Keynotes',
-                'Will there be food?',
-                'Is there swag?',
-                `When's the after party?`,
-                'Codelabs and sandboxes',
               ],
             },
             'noInput': [
@@ -648,6 +613,7 @@ const askSessionType = () => {
 
 module.exports = {
   'browse-topics': browseTopics,
+  'browse-topics-after-io': browseTopicsAfterIO,
   'browse-topics-next': browseTopicsNext,
   'browse-sessions-first-set': browseSessionsFirstSet,
   'browse-sessions-next': browseSessionsNext,
