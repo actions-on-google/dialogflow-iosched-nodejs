@@ -2,7 +2,7 @@ node_modules
 *.DS_store
 *.log
 .firebaserc
-oauthClientKey.json
-eventsServiceKey.json
 *.zip
 package-lock.json
+functions/config/dev.json
+functions/config/serviceKey.json

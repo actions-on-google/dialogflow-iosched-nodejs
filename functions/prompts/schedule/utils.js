@@ -19,7 +19,6 @@ const {
   browse,
 } = require('../common/utils');
 const {getFirebaseUser} = require('../../auth/user');
-const getGoogleEmail = require('../../auth/oauth');
 const {UserData} = require('../../auth/user');
 
 const {getMoment} = require('../../timeUtils');
@@ -63,13 +62,11 @@ const nextSessionDirections = (conv) => {
 
 const schedule = (conv, callback) => {
   console.log('Showing the user their schedule');
-  if (conv.user.storage.uid && conv.user.access.token) {
+  if (conv.user.storage.uid && conv.user.email) {
     const user = new UserData(conv.user.storage.uid);
     return user.schedule().then((schedule) => {
       if (schedule.length === 0) {
-        conv.contexts.output['schedule-empty'] = {
-          lifespan: 2,
-        };
+        conv.contexts.set('schedule-empty', 2);
       }
       const sessionIds = [];
       for (const session of schedule) {
@@ -108,9 +105,7 @@ const showScheduleNext = (conv) => {
   console.log(`Browsing next set of schedule sessions`);
   const prompts = require('./'+conv.phase+'.js')['show-schedule-next'];
   if (!conv.data.nextItems || conv.data.nextItems.length === 0) {
-    conv.contexts.output['schedule-empty'] = {
-      lifespan: 3,
-    };
+    conv.contexts.set('schedule-empty', 3);
     return parse(conv,
       require('./'+conv.phase+'.js')['show-schedule']().noMoreOptions);
   }
@@ -143,19 +138,14 @@ const scheduleSignIn = (conv) => {
 
 const signIn = (conv, callback) => {
   console.log('Handling SIGN_IN intent');
-  if (conv.arguments.get('SIGN_IN').status === 'OK' &&
-    conv.user.access.token) {
-    return getGoogleEmail(conv.user.access.token).then((email) => {
-      return getFirebaseUser(email).then((uid) => {
-        conv.user.storage.uid = uid;
-        return callback(conv);
-      }).catch((error) => {
-        console.error(`Error finding Firebase user: ${error}`);
-        return parse(conv, prompts['sign-in-user-not-found']);
-      });
+  if (conv.arguments.get('SIGN_IN').status === 'OK' && conv.user.email) {
+    const email = conv.user.email;
+    return getFirebaseUser(email).then((uid) => {
+      conv.user.storage.uid = uid;
+      return callback(conv);
     }).catch((error) => {
-      console.error(`Error signing in user: ${error}`);
-      return parse(conv, prompts['sign-in-error']);
+      console.error(`Error finding Firebase user: ${error}`);
+      return parse(conv, prompts['sign-in-user-not-found']);
     });
   } else if (conv.arguments.get('SIGN_IN').status === 'CANCELLED') {
     console.error('User denied sign in');
@@ -175,9 +165,7 @@ const intents = {
   'show-schedule': showSchedule,
   'schedule-sign-in': scheduleSignIn,
   'show-schedule-browse-topics-yes': (conv, ...args) => {
-    conv.contexts.output['browse-topics-followup'] = {
-      lifespan: 3,
-    };
+    conv.contexts.set('browse-topics-followup', 3);
     conv.intent = 'browse-topics';
     return require('../menu/utils')(conv, ...args);
   },

@@ -14,6 +14,17 @@
 const {
   dialogflow,
 } = require('actions-on-google');
+
+const getConfig = () => {
+  try {
+    return require('./config/dev.json');
+  } catch (error) {
+    console.debug(`Using default config, ${error}`);
+    return require('./config/default.json');
+  }
+};
+const config = getConfig();
+
 const {
   getPhase,
 } = require('./timeUtils');
@@ -29,6 +40,7 @@ const ConferenceData = require('./event/conference');
 
 const app = dialogflow({
   debug: true,
+  clientId: config.clientId,
   init: () => ({
     data: {
       fallbackCount: 0,
@@ -47,10 +59,14 @@ const app = dialogflow({
 
 app.middleware((conv) => {
   conv.currentTime = Date.now();
-  conv.phase = getPhase(conv.currentTime);
+  conv.phase = config.phase === 'default' || undefined ?
+    getPhase(conv.currentTime) :
+    config.phase;
   if (conv.phase === 'post') {
     delete conv.user.storage.uid;
     conv.data.sessionType = 'sessions';
+  } else {
+    conv.contexts.set('pre-or-during-io', 99);
   }
   conv.isRepeat = conv.phase === getPhase(conv.user.last.seen) ?
     'repeat' : 'firstTime';

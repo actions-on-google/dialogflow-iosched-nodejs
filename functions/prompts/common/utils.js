@@ -144,30 +144,14 @@ exports.browse = ({conv, itemsPromise, prompts,
 };
 
 resetConversationContext = (conv) => {
-  conv.contexts.output['ask-attending-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['browse-sessions-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['browse-topics-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['browse-schedule-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-schedule-session-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-schedule-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['show-session-followup'] = {
-    lifespan: 0,
-  };
-  conv.contexts.output['type-checked'] = {
-    lifespan: 0,
-  };
+  conv.contexts.delete('ask-attending-followup');
+  conv.contexts.delete('browse-sessions-followup');
+  conv.contexts.delete('browse-topics-followup');
+  conv.contexts.delete('browse-schedule-followup');
+  conv.contexts.delete('show-schedule-session-followup');
+  conv.contexts.delete('show-schedule-followup');
+  conv.contexts.delete('show-session-followup');
+  conv.contexts.delete('type-checked');
 };
 
 resetConversationData = (conv) => {
