@@ -12,7 +12,7 @@ called `dialogflow-agent.zip`.
 
 1. Use the [Actions on Google Console](https://console.actions.google.com) to
 add a new project with a name of your choosing and click *Create Project*.
-1. Click *Skip*, located on the top right to skip over category selection menu.
+1. Scroll down to the *More Options* section, and click on the *Conversational* card.
 1. On the left navigation menu under *BUILD*, click on *Actions*. Click on
 *Add Your First Action* and choose your app's language(s).
 1. Select *Custom intent*, click *BUILD*. This will open a Dialogflow Console.
