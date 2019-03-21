@@ -1,8 +1,7 @@
 node_modules
+package-lock.json
+.firebaserc
 *.DS_store
 *.log
-.firebaserc
-*.zip
-package-lock.json
 functions/config/dev.json
 functions/config/serviceKey.json

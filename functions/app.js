@@ -24,6 +24,7 @@ const getConfig = () => {
     config = require('./config/default.json');
   }
   config.phase = config.phase || 'default';
+  return config;
 };
 const config = getConfig();
 
