@@ -12,7 +12,7 @@
 // limitations under the License.
 
 const admin = require('firebase-admin');
-const db = null;
+let db = null;
 try {
   admin.initializeApp({
     credential: admin.credential.cert(require('../config/serviceKey.json')),
