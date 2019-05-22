@@ -27,10 +27,11 @@ const getMultipleRandom = (arr) => arr.filter(() => Math.random() > 0.5);
 
 // Returns a Suggestions object based off suggestions spec provided
 const getSuggestions = (suggestions = {}) => {
-  const finalSuggestions = suggestions.required || [];
+  let finalSuggestions = suggestions.required || [];
   if (suggestions.randomized) {
     finalSuggestions.push(...getMultipleRandom(suggestions.randomized));
   }
+  finalSuggestions = [...new Set(finalSuggestions)];
   return new Suggestions(finalSuggestions.slice(0, MAX_SUGGESTIONS));
 };
 

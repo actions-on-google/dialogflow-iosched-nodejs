@@ -24,7 +24,7 @@ try {
 
 exports.getFirebaseUser = (email) => {
   console.log(`Fetching user from Firebase Auth`);
-  return eventsAdmin.auth().getUserByEmail(email).then((userRecord) => {
+  return admin.auth().getUserByEmail(email).then((userRecord) => {
     return userRecord.uid;
   }).catch((error) => {
     console.error(`Error fetching user`);
