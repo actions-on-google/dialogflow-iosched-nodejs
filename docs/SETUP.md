@@ -12,8 +12,8 @@ This sample demonstrates Actions on Google features for use on Google Assistant 
 
 ### Configuration
 #### Actions Console
-1. From the [Actions on Google Console](https://console.actions.google.com/), add a new project > **Create Project** > under **More options** > **Conversational**
-1. From the left navigation menu under **Build** > **Actions** > **Add Your First Action** > **BUILD** (this will bring you to the Dialogflow console) > Select language and time zone > **CREATE**.
+1. From the [Actions on Google Console](https://console.actions.google.com/), New project (this will become your *Project ID*) > **Create project** > under **More options** > **Conversational**
+1. From the top menu under **Develop** > **Actions** (left nav) > **Add your first action** > **BUILD** (this will bring you to the Dialogflow console) > Select language and time zone > **CREATE**.
 1. In the Dialogflow console, go to **Settings** ⚙ > **Export and Import** > **Restore from zip** using the `agent.zip` in this sample's directory.
 
 #### Firebase Deployment
@@ -30,7 +30,7 @@ This sample demonstrates Actions on Google features for use on Google Assistant 
 ### Google Sign In (Account Linking)
 **Required if testing the personal schedule feature.**
 1. Create a copy of default.json in the `functions/config` directory called `dev.json`
-1. In the [Actions on Google console](https://console.actions.google.com) > under **Advanced Options** > **Account Linking**:
+1. In the [Actions on Google console](https://console.actions.google.com) > from the top menu **Develop** > **Account Linking** (left nav):
     + **Account Creation**: select `Yes, allow users to sign up for new accounts via voice`
     + **Linking Type**: **Google Sign In**.
     + **Client Information**: copy the **Client ID** and paste into `functions/config/dev.json`
