@@ -6,6 +6,8 @@ from developers showcasing their technologies.
 
 This project is the Action for the Google Assistant at Google I/O.
 
+:warning: This code sample was built using Dialogflow. We now recommend using [Actions Builder or the Actions SDK](https://developers.google.com/assistant/conversational/overview) to develop, test, and deploy Conversational Actions.
+
 ## Features
 This Action is split primarily into 3 categories of features: before, during, and after I/O.
 
