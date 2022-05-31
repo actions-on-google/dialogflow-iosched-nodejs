@@ -1,5 +1,8 @@
 # Google I/O '18 Action for the Google Assistant
 
+*:warning: Warning: Conversational Actions will be deprecated on June 13, 2023. For more information, see [Conversational Actions Sunset](https://goo.gle/ca-sunset).*
+
+
 Google I/O is a developer conference held each year with three days of deep
 technical content featuring technical sessions and hundreds of demonstrations
 from developers showcasing their technologies.
